@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="read-a-text-file-from-a-jar:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/read_a_text_file_from_a_jar_jar</output-path>
+    <root id="archive" name="read-a-text-file-from-a-jar.jar">
+      <element id="module-output" name="read-a-text-file-from-a-jar" />
+    </root>
+  </artifact>
+</component>
