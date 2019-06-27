@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="java-get-parameter-from-stdin:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/java_get_parameter_from_stdin_jar</output-path>
+    <root id="archive" name="java-get-parameter-from-stdin.jar">
+      <element id="module-output" name="java-get-parameter-from-stdin" />
+    </root>
+  </artifact>
+</component>
