@@ -1,0 +1,47 @@
+1 -> 2 -> 3 -> 4 -> null
+==========
+now head is 1
+the data here eaten by reverse() is 1
+from head:   1 -> 2 -> 3 -> 4 -> null
+*** one layer deeper
+now head is 1
+the data here eaten by reverse() is 2
+from head:   1 -> 2 -> 3 -> 4 -> null
+*** one layer deeper
+now head is 1
+the data here eaten by reverse() is 3
+from head:   1 -> 2 -> 3 -> 4 -> null
+*** one layer deeper
+now head is 1
+the data here eaten by reverse() is 4
+from head:   1 -> 2 -> 3 -> 4 -> null
+!!! point of bouncing-back, bottum of recurrence
+*** one layer back
+headOfRest is 4
+head       is 1
+the data here eaten by reverse() is 3
+from head:   1 -> 2 -> 3 -> 4 -> null
+from headOfRest:   4 -> null
+---- re-arrang the linking ----
+from head:   1 -> 2 -> 3 -> null
+from headOfRest:   4 -> 3 -> null
+*** one layer back
+headOfRest is 4
+head       is 1
+the data here eaten by reverse() is 2
+from head:   1 -> 2 -> 3 -> null
+from headOfRest:   4 -> 3 -> null
+---- re-arrang the linking ----
+from head:   1 -> 2 -> null
+from headOfRest:   4 -> 3 -> 2 -> null
+*** one layer back
+headOfRest is 4
+head       is 1
+the data here eaten by reverse() is 1
+from head:   1 -> 2 -> null
+from headOfRest:   4 -> 3 -> 2 -> null
+---- re-arrang the linking ----
+from head:   1 -> null
+from headOfRest:   4 -> 3 -> 2 -> 1 -> null
+==========
+4 -> 3 -> 2 -> 1 -> null
