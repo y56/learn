@@ -8,10 +8,10 @@ https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
 @author: y56
 """
 
-from sys import maxint 
+# from sys import maxint 
 def maxSubArraySum(a,size): 
        
-    max_so_far = -maxint - 1
+    max_so_far = -9999999
     max_ending_here = 0
        
     for i in range(0, size): 
