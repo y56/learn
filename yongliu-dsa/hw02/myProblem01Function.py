@@ -13,12 +13,10 @@ def myProblem01Function(A):
         if (p > q) or ((q + 1) > r):
             return -9999
     
-        
         # grow left from q-1 until p to maximize 
         # grow right from q until r-1 to maximize
         # p <--- q || q+1 ---> r
         
-    
         leftSum = A[q] 
         leftMax = leftSum
         i = q - 1
@@ -70,7 +68,7 @@ def myProblem01Function(A):
         
         return leftMax + rightMax + sum(A[q + 1 :r + 1])
     
-    def F(A, p, l):  # flavored by [p, l)  
+    def F(A, p, l):  
         print("F", p, l)
 
         if p > l:  # should never happen

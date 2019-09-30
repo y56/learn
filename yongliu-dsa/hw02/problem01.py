@@ -14,11 +14,9 @@ def G(A, p, q, r):
         print("Use -inf to discard this term.")
         return -99997
 
-    
     # grow left from q-1 until p to maximize 
     # grow right from q until r-1 to maximize
     # p <--- q || q+1 ---> r
-    
 
     leftSum = A[q] 
     leftMax = leftSum
@@ -72,7 +70,7 @@ def H(A, p, q, r, l):
     
     return leftMax + rightMax + sum(A[q + 1 :r + 1])
     
-def F(A, p, l):  # flavored by [p, l)  
+def F(A, p, l):
     print("F", p, l)
 
     if p > l:  # should never happen
@@ -98,7 +96,6 @@ def F(A, p, l):  # flavored by [p, l)
     print([s1, s2, s3, s12, s23, s123])
     
     return max(s1, s2, s3, s12, s23, s123)
-
 
 A = [2, 13, -3, -2, -2, 4, -6, -10, -14, -17]
 print(F(A, 0, len(A) - 1))
