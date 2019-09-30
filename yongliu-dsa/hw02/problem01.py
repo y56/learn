@@ -73,16 +73,9 @@ def H(A, p, q, r, l):
 
 def F(A, p, l):  # flavored by [p, l)  
     print("F", p, l)
-    # [p ~ q)
-    # [q ~ r)
-    # [r ~ l)
-    # I until-now realize that [x, y) is a great design,
-    # e.g., in range(x, y), y will not be reached.
-    # The great point is that we merge two pieces smoothly.
-    # We can do foo(a, b) foo(b, c),
-    # rather than boo(a, b) boo(b+1, c).
+
     if p > l:  # should never happen
-        print("ERROR!!!")
+        print("Using -inf to discard this term")
         return -99999
     
     if p == l:
