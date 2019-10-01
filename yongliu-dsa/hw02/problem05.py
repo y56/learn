@@ -23,7 +23,7 @@ class LinkedList:
         newNode = ListNode(data)
         newNode.next = self.head
         self.head = newNode
-    def printList(self):
+    def printList(self):223
         ptr = self.head
         while ptr:
             print(ptr.data)
