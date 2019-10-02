@@ -17,8 +17,6 @@ def maxHeapify(A, i):
     if leftChild < len(A):  # index may go out of range!
         if A[leftChild] > A[i]:
             largestSoFar = leftChild
-    else:
-        largestSoFar = i
         
     if rightChild < len(A):  # index may go out of range!
         if A[rightChild] > A[largestSoFar]: 
@@ -33,8 +31,6 @@ def buildMaxHeap(A):
         print(i, "build")
         maxHeapify(A, i)
         
-
-
 A = [1, 7, 9, 3, 100, 13, 12, 5, 14]
 buildMaxHeap(A)
 print(A)
