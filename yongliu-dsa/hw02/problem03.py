@@ -12,6 +12,8 @@ def maxHeapify(A, i):
     rightChild = 2 * i + 2
     print("heapify", "me", i, "left", leftChild, "right", rightChild)
     
+    largestSoFar = i
+    
     if leftChild < len(A):  # index may go out of range!
         if A[leftChild] > A[i]:
             largestSoFar = leftChild
