@@ -42,7 +42,7 @@ def heapSort(A):
         maxHeapify(A, 0, i - 1)
         print(A)
     
-A = [1, 7, 9, 3, 100, 13, 12, 5, 14]
+A = [30, 18, 26, 3, 37, 5, 16, 29]
 print("                                ", "Initiate")
 print(A)
 heapSort(A)
