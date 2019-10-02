@@ -36,7 +36,7 @@ def heapSort(A):
     print(A)
     for i in range(len(A)-1, 0, -1):
         A[0], A[i] = A[i], A[0]
-        print("                                ", "Swap")
+        print("                                ", "Swap", "0,", i)
         print(A)
         print("                                ", "Heaptify", 0, "..", i - 1)
         maxHeapify(A, 0, i - 1)
