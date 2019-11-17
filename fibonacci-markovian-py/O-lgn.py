@@ -14,14 +14,17 @@ def F(n):
     O = numpy.array([[1,1], [1,0]])  # Markovian operator
     v = numpy.array([[1], [1]])  # initial condition
     A = numpy.array([[1,0], [0,1]])  # identity
-    while n:
-        if n & 1:  # the LSB is 1
+    #print(bin(n))
+    while n != 0:
+        if n & 1 == 1:  # if the LSB/right-most bit is 1
             A = numpy.dot(O,A)
-        n >>= 1
+        n >>= 1  # n = n // 2
         O = numpy.dot(O,O)
+        #print(bin(n))
     
     v = numpy.dot(A,v)
+    
     return v[0][0]
 
-for i in range(10):
+for i in range(1,100):
     print(F(i))

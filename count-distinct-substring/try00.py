@@ -14,6 +14,7 @@ Output: 0
 """
 
 def f(s,k):
+    
     n=len(s)
     ans=0
     t = [0] * 27

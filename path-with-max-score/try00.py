@@ -62,9 +62,22 @@ grid5 =    [ [20, 20, 3],
 grid6 =    [ [1, 2, 3], 
              [4, 5, 1]]
 
+grid7 =    [ [5, 1, 7]]
+            
+grid8 = [      [4] ]
+grid9 = [[4],
+         [8],
+         [23],
+         [2],
+         [1] ]
+
+
 print(maxScorePath(grid1))
 print(maxScorePath(grid2))
 print(maxScorePath(grid3))
 print(maxScorePath(grid4))
 print(maxScorePath(grid5))
 print(maxScorePath(grid6))
+print(maxScorePath(grid7))
+print(maxScorePath(grid8))
+print(maxScorePath(grid9))
