@@ -14,7 +14,9 @@ m |    |
     
 @author: y56
 """
-def longestSuccessiveLength(h):
+def maxSuccessiveLen(h):
+    if len(h) == 1:
+        return 1
     dh = [latter - former for former, latter in zip(h[0:-1], h[1:])]
     # print(dh)
     count = 0
@@ -30,6 +32,9 @@ def longestSuccessiveLength(h):
     # print(countCollect)
     return max(countCollect) + 1
 
-def f(m,n,h,v):
-    return (longestSuccessiveLength(h) + 1) * (longestSuccessiveLength(v) + 1) 
-    
+def maxCellArea(m, n, h, v):
+    return (maxSuccessiveLen(h) + 1) * (maxSuccessiveLen(v) + 1) 
+
+print(maxCellArea(10, 10, [1], [1]))
+print(maxCellArea(10, 10, [1], [1]))
+print(maxCellArea(10, 10, [1, 3, 5, 7, 9], [1, 2]))
