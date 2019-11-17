@@ -3,6 +3,8 @@
 """
 Created on Mon Nov  4 15:18:48 2019
 
+Count substrings with exactly K distinct chars
+
 Input: s = "pqpqs", k = 2
 Output: 7
 Explanation: ["pq", "pqp", "pqpq", "qp", "qpq", "pq", "qs"]
