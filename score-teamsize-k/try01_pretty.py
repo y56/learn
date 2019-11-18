@@ -33,6 +33,7 @@ def f(l, n, k):
         
     else:  # not long enough, to wait to be merged
         
+        middle = []
         frontHeap = []
         backHeap = neg_l  # to be the same format as line-65
     

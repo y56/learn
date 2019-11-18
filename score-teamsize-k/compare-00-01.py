@@ -8,6 +8,8 @@ Created on Mon Nov 18 14:56:11 2019
 
 import try00
 import try01
+import try01_pretty
+import try02
 
 import time
 
@@ -34,7 +36,7 @@ for _ in range(1000):
     
     l1 = l[:]
     tic = time.time()
-    b = try01.f(l1, n, k)
+    b = try02.f(l1, n, k)
     dt1 = time.time() - tic    
 
 #    print(len_l, n, k)
