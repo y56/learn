@@ -2,7 +2,7 @@
 
 ## Naming Style
 
-Follow PEP8
+Follow PEP8.
 
 ## Environment 
 
@@ -20,70 +20,35 @@ The time complexity is $\Theta(n)$, where $n$ is the number of nodes in the tree
 
 ### Space
 
-The space complexity is $O(log(n))$, where $n$ is the number of nodes in the tree.
+The space complexity is $O(n)$, where $n$ is the number of nodes in the tree.
 
-The maximum memory usage occurs when the function is printing the level with most nodes.
+The maximum memory usage occurs when the function is printing/about to print the level with most nodes.
 
-#### example 1
+Recall that for a complete tree with $n$ nodes, the number of nodes in the deepest full level is $2^{\lfloor log(n+1) \rfloor - 1}$.
 
-```graphviz
-digraph G {
-    nodesep=0.4; //was 0.8
-    ranksep=0.5;
+Also, for a tree with $n$ nodes, the level having most nodes is either the deepest full level or the deepest level. 
 
-    {node[style=invis,label=""]; cx_30;
-    }
-    {node[style=invis, label="", width=.1]; ocx_45; ocx_20;
-    }
+So the maximum number of nodes is between $2^{\lfloor log(n+1) \rfloor - 1}$ and $2^{\lfloor log(n+1) \rfloor}$. Since ${\lfloor log(n+1) \rfloor \leq log(n+1) }$, it is safe to remove the floor function in big-O notation. Finally, the space complexity is $O(\frac{n+1}{2}) = O(n+1)=O(n)$ 
 
-    {rank=same; ELSE; THEN; cx_30}
-    {rank=same; CASE; END; ocx_20}
-    {rank=same; OF; ocx_45}
-
-    IF -> ELSE;
-    IF -> THEN;
-    ELSE -> CASE;
-    ELSE -> END;
-
-    THEN -> OF;
-
-    {edge[style=invis];
-                        //Distantiate nodes
-                        IF -> cx_30;
-                            ELSE -> cx_30 -> OF;
-
-                        //Force ordering between children
-                        THEN -> ocx_45;
-                            OF -> ocx_45;
-                        ELSE -> ocx_20;
-                            CASE -> ocx_20 -> END;
-    } 
-} 
+#### Example 1
 ```
-
-#### example 2
-
-
-For a complete tree with $n$ nodes, the number of nodes in the deepest full level is $2^{\lfloor log(n+1) \rfloor - 1}$.
-
-For a tree with $n$ nodes, the maximum number the tree can have within a single level is between $2^{\lfloor log(n+1) \rfloor - 1}$ and $2^{\lfloor log(n+1) \rfloor}$
-
-1 -> 1 OK 1 2
-2 -> 1 OK 1 2
-3 -> 2 OK 2 4
-4 -> 2 OK 2 4
-5 -> 2 OK 2 4
-6 -> 3 ?? 2 4
-7 -> 4 OK 4 8
-8 -> 4 OK 4 8
+      [1]
+  [2]     [3]
+[4] [5] [6] [7]
+```
+Max length of `fifoqueue` is 4
+#### Example 2
+```
+             [1]
+      [2]           [3]
+  [4]     [5]     [6] [7]
+[8][9]  [10][11]
+```
+Max length of `fifoqueue` is 6, while the max number of nodes in a level is 4. 
 
 
 
-n - (the max (power of 2)) which is smaller than n
-vs
-(the max (power of 2)) which is smaller than n
 
-We can find this result considering the minimum number of nodes to achieve a tree with a level node number of  $m$ 
 
 ## Complextity of bunary search
 
