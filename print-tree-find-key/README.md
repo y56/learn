@@ -1,16 +1,7 @@
-# Assesment for 
+# Software Engineer Coding Challenge
 
-## Naming Style
-
-Follow PEP8.
-
-## Environment 
-
-Python 3.6.8
-
-## To run unit test
-
-
+For rendered Markdown, please read
+https://hackmd.io/@y56/B1fDgAu3r
 
 ## Complexity of `binarytree.printtree()`
 
@@ -46,10 +37,49 @@ Max length of `fifoqueue` is 4
 ```
 Max length of `fifoqueue` is 6, while the max number of nodes in a level is 4. 
 
+## Complexity of `binarysearch.binarysearch()`
+
+### Time
+
+The time complexity is $O(log(n))$.
+
+The worst-case happens when we have to go to the deepest level of the binary search tree. 
+The best case happens when we find the target in the first middle position.
+
+### Space
+
+The space complexity is $O(log(n))$. 
+
+
+
+Each function call will grow the OS stack. Fortunately, in each call, sizes of all local variables and pointers are constant to the input size.
+
+Since Python is [pass-by-object-reference](https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/), `sortedlist` and `target` in `binarysearchhelper()` are passed by reference in recursive calls and will only need space for references in the stack for a single function call. However, new indices `mid` and `mid+1` as new `low` (or `mid-1` as new `high`) do need new extra (but constant) space in memory (which is outside the stack) in each recursive call. To sum up, the space complexity is still determined by the number of calls. It is $O(log(n))$.
+
+We can run `space_binarysearch.py` to look at memory usage.
 
 
 
 
-## Complextity of bunary search
+## Style for Python Code
 
+PEP8
 
+## Environment 
+
+Python 3.6.8
+
+## Unit Test
+
+Run
+
+`python3 -m unittest test_binarytree`  
+`python3 -m unittest test_binarysearch`
+
+Or to be verbose,
+
+`python3 -m unittest -v test_binarytree`  
+`python3 -m unittest -v test_binarysearch`
+
+### Reference
+https://docs.python.org/3.6/library/unittest.html
