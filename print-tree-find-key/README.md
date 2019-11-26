@@ -15,9 +15,9 @@ The space complexity is $O(n)$, where $n$ is the number of nodes in the tree.
 
 The maximum memory usage occurs when the length of `fifoqueue` reach its peak. This happens when the function is printing/about to print the level with most nodes.
 
-Recall that for a complete tree with $n$ nodes, the number of nodes in the deepest full level is $2^{\lfloor log(n+1) \rfloor - 1}$.
+Recall that for a complete tree with $n$ nodes, the number of nodes in the deepest complete level is $2^{\lfloor log(n+1) \rfloor - 1}$.
 
-Also, for a tree with $n$ nodes to have a maximum number in a single level, we shall construct the tree to be complete, and the desired level will be either the deepest full level or the deepest level. 
+Also, for a tree with $n$ nodes to have a maximum number in a single level, we shall construct the tree to be complete, and the desired level will be either the deepest complete level or the deepest level. 
 
 So the maximum number of nodes in one level is between $2^{\lfloor log(n+1) \rfloor - 1}$ and $2^{\lfloor log(n+1) \rfloor}$. Since ${\lfloor log(n+1) \rfloor \leq log(n+1) }$, it is safe to remove the floor function in big-O notation. Finally, the space complexity is $O(\frac{n+1}{2}) = O(n+1)=O(n)$ 
 
