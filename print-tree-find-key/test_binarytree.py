@@ -3,17 +3,9 @@
 """
 Created on Thu Nov 21 22:30:13 2019
 
-python3 -m unittest test_binarytree
+Unit test of binarytree.printtree()
 
-or
-
-python3 -m unittest -v test_binarytree
-
-
-ref = 
-https://docs.python.org/3.8/library/unittest.html
-
-@author: y56
+@author: Yu-Jen (Eugene) Wang, yjwang.y56@gmail.com
 """
 
 
@@ -31,18 +23,19 @@ class TestPrintTree(unittest.TestCase):
         root.left.left = binarytree.TreeNode(4)
         root.left.right = binarytree.TreeNode(5)
 
-        testResult = binarytree.printTree(root)
+        testResult = binarytree.printtree(root)
         correctAnswer = [1, 2, 3, 4, 5]
 
         self.assertEqual(testResult, correctAnswer)
 
     def test_linear_tree(self):
+
         root = binarytree.TreeNode(10)
         root.left = binarytree.TreeNode(20)
         root.left.left = binarytree.TreeNode(30)
         root.left.left.left = binarytree.TreeNode(40)
 
-        testResult = binarytree.printTree(root)
+        testResult = binarytree.printtree(root)
         correctAnswer = [10, 20, 30, 40]
 
         self.assertEqual(testResult, correctAnswer)
@@ -55,7 +48,7 @@ class TestPrintTree(unittest.TestCase):
         root.left.left = binarytree.TreeNode(None)
         root.left.right = binarytree.TreeNode(5)
 
-        testResult = binarytree.printTree(root)
+        testResult = binarytree.printtree(root)
         correctAnswer = [None, 2, 3, None, 5]
 
         self.assertEqual(testResult, correctAnswer)
@@ -63,7 +56,8 @@ class TestPrintTree(unittest.TestCase):
     def test_empty_tree(self):
 
         root = None
-        testResult = binarytree.printTree(root)
+
+        testResult = binarytree.printtree(root)
         correctAnswer = []
 
         self.assertEqual(testResult, correctAnswer)
@@ -73,7 +67,7 @@ class TestPrintTree(unittest.TestCase):
         root = 1
 
         with self.assertRaises(AttributeError):
-            binarytree.printTree(root)
+            binarytree.printtree(root)
 
 
 if __name__ == "__main__":

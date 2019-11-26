@@ -3,16 +3,11 @@
 """
 Created on Thu Nov 21 21:04:15 2019
 
-# binary tree
+Binary Tree
 
-## print in level order: root to leaf, left to right
+Print in level order: root to leaf, left to right
 
-## TODO:
-- create test cases
-- complete functions
-- time/space analysis
-
-@author: y56
+@author: Yu-Jen (Eugene) Wang, yjwang.y56@gmail.com
 """
 
 
@@ -27,16 +22,18 @@ class TreeNode:
 def printtree(root):
 
     print("\nStart printing >>>")
+
     result = []
 
     if root is None:
+
         print(">>> Finish printing")
+
         return result
 
     fifoQueue = []
     fifoQueue.append(root)
-    
-    
+
     while len(fifoQueue) > 0:
 
         print(fifoQueue[0].data)
@@ -48,8 +45,9 @@ def printtree(root):
 
         if currentNode.right is not None:
             fifoQueue.append(currentNode.right)
-    
+
     print(">>> Finish printing")
+
     return result
 
 
@@ -60,5 +58,7 @@ if __name__ == "__main__":
     root.right = TreeNode(3)
     root.left.left = TreeNode(4)
     root.left.right = TreeNode(5)
-    
+    root.right.left = TreeNode(6)
+    root.right.right = TreeNode(7)
+
     result = printtree(root)
