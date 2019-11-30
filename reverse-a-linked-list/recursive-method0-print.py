@@ -33,9 +33,9 @@ class LinkedList:
                 temp = temp.next
             print("null")
         
-        def printFromHeadOfRest():
-            print("from headOfRest:   ", end = '')
-            temp = headOfRest
+        def printFromNewHead():
+            print("from NewHead:   ", end = '')
+            temp = NewHead
             while temp:
                 print(temp.data,  "-> " , end = '')
                 temp = temp.next
@@ -54,16 +54,16 @@ class LinkedList:
             return node
         
         print("*** one layer deeper")
-        headOfRest = self.reverse(node.next)
+        NewHead = self.reverse(node.next)
         print("*** one layer back")
-        print("headOfRest is", headOfRest.data)
+        print("NewHead is", NewHead.data)
         print("head       is", self.head.data)
         
         print("the data here eaten by reverse() is", node.data)
 
         
         printFromHead()
-        printFromHeadOfRest()
+        printFromNewHead()
         
         print("---- re-arrang the linking ----")
 
@@ -71,9 +71,9 @@ class LinkedList:
         node.next = None
         
         printFromHead()
-        printFromHeadOfRest()
+        printFromNewHead()
         
-        return headOfRest
+        return NewHead
             
 myLinkedList = LinkedList()
 myLinkedList.push(4)

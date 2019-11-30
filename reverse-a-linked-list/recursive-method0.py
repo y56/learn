@@ -31,12 +31,13 @@ class LinkedList:
             # it is the point of bouncing-back, bottum of recurrence
             return node
         
-        headOfRest = self.reverse(node.next)
+        newhead = self.reverse(node.next)
+        # newhead is the last node of the original linked-lisl
 
         node.next.next = node    
         node.next = None
       
-        return headOfRest
+        return newhead
             
 myLinkedList = LinkedList()
 myLinkedList.push(4)
