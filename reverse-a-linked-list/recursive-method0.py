@@ -32,7 +32,7 @@ class LinkedList:
             return node
         
         newhead = self.reverse(node.next)
-        # newhead is the last node of the original linked-lisl
+        # newhead is the last node of the original linked-list
 
         node.next.next = node    
         node.next = None
