@@ -1,17 +1,14 @@
 from __future__ import print_function
-#from __future__ import division
-
+from __future__ import division
 
 import sys
 
 from pyspark import SparkContext
 
-
 import numpy as np
 import datetime
 
 from numpy.random import rand
-
 
 print(datetime.datetime.now())
 
@@ -113,55 +110,16 @@ if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: spark-submit sort <inputfile> <outputfile>", file=sys.stderr)
         exit(-1)
-
+        
     sc = SparkContext(appName="PythonSortyy")
-
-    #rdd = sc.parallelize([2, 3, 4])
-    #rddrdd = rdd.flatMap(lambda x: range(1, x))
-
-    #N = 10
-    #time = []
-    #for i in range(0, N):
-    #    time.append(-10000*i)
-    #E = []
-    #for i in range(0, N):
-    #    E.append(i)
-    #M = []
-    #for i in range(0, N):
-    #    M.append(10*i)
-    #C = []
-    #for i in range(0, N):
-    #    C.append(100*i)
-    #X = []
-    #for i in range(0, N):
-    #    X.append(1000*i)
-
+    
     time4 = list(T) + ['WWWWWWWW'] + list(T) + ['WWWWWWWW'] + list(T) + ['WWWWWWWW'] + list(T)
     EMCX = list(E) + ['WWWWWWWW'] + list(M) + ['WWWWWWWW'] + list(C) + ['WWWWWWWW'] + list(X)
-
 
     a = sc.textFile(sys.argv[1], 1)
     nums = a.flatMap(lambda x: range(0, 4*N+3))
     word = nums.map(lambda x: [time4[int(x)], EMCX[int(x)]])
     out  = word
-    #line_04 = num_04.flatMap(lambda x: x.split(''))
-    #out = line_04
-    #line_0_4 = five_line.flatmap(lambda x: )
-
-    #with open('/user/student2/sparkoutput_withopentest/a.txt', 'w') as f:
-    #    for j in range(10):
-    #        f.write("{}\t{}\n".format(1111111111*j, 1010101010))
-
-
-    #sortedData = counts.sortByKey()
-
-    #sortedData = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-
-    #path = os.path.join('/user/student2/sparkoutput_withopentest/a.txt')
-    #with open(path, "w") as testFile:
-    #    _ = testFile.write("Hello world!")
-    #textFile = sc.textFile(path)
-
     out.saveAsTextFile('/user/student2/mini')
 
     i = 0
