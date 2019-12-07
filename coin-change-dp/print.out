@@ -1,0 +1,193 @@
+[0, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf]
+ask value = 1
+try coin:[ 9 ]
+coin too large
+try coin:[ 6 ]
+coin too large
+try coin:[ 5 ]
+coin too large
+try coin:[ 1 ]
+coin good
+check residual value = 0 , there we use 0 coins
+so here we are using 1 coins
+we are using less coins
+[0, 1, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf]
+ask value = 2
+try coin:[ 9 ]
+coin too large
+try coin:[ 6 ]
+coin too large
+try coin:[ 5 ]
+coin too large
+try coin:[ 1 ]
+coin good
+check residual value = 1 , there we use 1 coins
+so here we are using 2 coins
+we are using less coins
+[0, 1, 2, inf, inf, inf, inf, inf, inf, inf, inf, inf]
+ask value = 3
+try coin:[ 9 ]
+coin too large
+try coin:[ 6 ]
+coin too large
+try coin:[ 5 ]
+coin too large
+try coin:[ 1 ]
+coin good
+check residual value = 2 , there we use 2 coins
+so here we are using 3 coins
+we are using less coins
+[0, 1, 2, 3, inf, inf, inf, inf, inf, inf, inf, inf]
+ask value = 4
+try coin:[ 9 ]
+coin too large
+try coin:[ 6 ]
+coin too large
+try coin:[ 5 ]
+coin too large
+try coin:[ 1 ]
+coin good
+check residual value = 3 , there we use 3 coins
+so here we are using 4 coins
+we are using less coins
+[0, 1, 2, 3, 4, inf, inf, inf, inf, inf, inf, inf]
+ask value = 5
+try coin:[ 9 ]
+coin too large
+try coin:[ 6 ]
+coin too large
+try coin:[ 5 ]
+coin good
+check residual value = 0 , there we use 0 coins
+so here we are using 1 coins
+we are using less coins
+try coin:[ 1 ]
+coin good
+check residual value = 4 , there we use 4 coins
+so here we are using 5 coins
+we are *NOT* use less coins
+[0, 1, 2, 3, 4, 1, inf, inf, inf, inf, inf, inf]
+ask value = 6
+try coin:[ 9 ]
+coin too large
+try coin:[ 6 ]
+coin good
+check residual value = 0 , there we use 0 coins
+so here we are using 1 coins
+we are using less coins
+try coin:[ 5 ]
+coin good
+check residual value = 1 , there we use 1 coins
+so here we are using 2 coins
+we are *NOT* use less coins
+try coin:[ 1 ]
+coin good
+check residual value = 5 , there we use 1 coins
+so here we are using 2 coins
+we are *NOT* use less coins
+[0, 1, 2, 3, 4, 1, 1, inf, inf, inf, inf, inf]
+ask value = 7
+try coin:[ 9 ]
+coin too large
+try coin:[ 6 ]
+coin good
+check residual value = 1 , there we use 1 coins
+so here we are using 2 coins
+we are using less coins
+try coin:[ 5 ]
+coin good
+check residual value = 2 , there we use 2 coins
+so here we are using 3 coins
+we are *NOT* use less coins
+try coin:[ 1 ]
+coin good
+check residual value = 6 , there we use 1 coins
+so here we are using 2 coins
+we are *NOT* use less coins
+[0, 1, 2, 3, 4, 1, 1, 2, inf, inf, inf, inf]
+ask value = 8
+try coin:[ 9 ]
+coin too large
+try coin:[ 6 ]
+coin good
+check residual value = 2 , there we use 2 coins
+so here we are using 3 coins
+we are using less coins
+try coin:[ 5 ]
+coin good
+check residual value = 3 , there we use 3 coins
+so here we are using 4 coins
+we are *NOT* use less coins
+try coin:[ 1 ]
+coin good
+check residual value = 7 , there we use 2 coins
+so here we are using 3 coins
+we are *NOT* use less coins
+[0, 1, 2, 3, 4, 1, 1, 2, 3, inf, inf, inf]
+ask value = 9
+try coin:[ 9 ]
+coin good
+check residual value = 0 , there we use 0 coins
+so here we are using 1 coins
+we are using less coins
+try coin:[ 6 ]
+coin good
+check residual value = 3 , there we use 3 coins
+so here we are using 4 coins
+we are *NOT* use less coins
+try coin:[ 5 ]
+coin good
+check residual value = 4 , there we use 4 coins
+so here we are using 5 coins
+we are *NOT* use less coins
+try coin:[ 1 ]
+coin good
+check residual value = 8 , there we use 3 coins
+so here we are using 4 coins
+we are *NOT* use less coins
+[0, 1, 2, 3, 4, 1, 1, 2, 3, 1, inf, inf]
+ask value = 10
+try coin:[ 9 ]
+coin good
+check residual value = 1 , there we use 1 coins
+so here we are using 2 coins
+we are using less coins
+try coin:[ 6 ]
+coin good
+check residual value = 4 , there we use 4 coins
+so here we are using 5 coins
+we are *NOT* use less coins
+try coin:[ 5 ]
+coin good
+check residual value = 5 , there we use 1 coins
+so here we are using 2 coins
+we are *NOT* use less coins
+try coin:[ 1 ]
+coin good
+check residual value = 9 , there we use 1 coins
+so here we are using 2 coins
+we are *NOT* use less coins
+[0, 1, 2, 3, 4, 1, 1, 2, 3, 1, 2, inf]
+ask value = 11
+try coin:[ 9 ]
+coin good
+check residual value = 2 , there we use 2 coins
+so here we are using 3 coins
+we are using less coins
+try coin:[ 6 ]
+coin good
+check residual value = 5 , there we use 1 coins
+so here we are using 2 coins
+we are using less coins
+try coin:[ 5 ]
+coin good
+check residual value = 6 , there we use 1 coins
+so here we are using 2 coins
+we are *NOT* use less coins
+try coin:[ 1 ]
+coin good
+check residual value = 10 , there we use 2 coins
+so here we are using 3 coins
+we are *NOT* use less coins
+[0, 1, 2, 3, 4, 1, 1, 2, 3, 1, 2, 2]
+Minimum coins required is  2
