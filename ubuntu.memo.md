@@ -24,3 +24,23 @@ ref: https://askubuntu.com/questions/210293/how-can-i-remove-a-string-of-text-fr
 ```
 for file in *; do mv "${file}" "${file//\.svg/}"; done
 ```
+
+# print to clipboard
+
+cat myfile | xclip -sel clip
+echo lalala | xclip -sel clip
+
+alias clipb='xclip -sel clip'
+
+myfile | clipb
+echo lalala | clipb
+
+# clipboard to file
+
+xclip -selection clipboard -o > myfile
+
+alias clipf='xclip -selection clipboard -o'
+
+clipf > myfile
+
+
