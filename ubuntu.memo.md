@@ -1,4 +1,3 @@
-
 # keyboard shorcut to delete the latest downnloaded file
 put `trashld` in /usr/bin
 register it as a program
