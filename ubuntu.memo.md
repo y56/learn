@@ -6,6 +6,13 @@ it is:
 ```
 trash ~/Downloads/$(ls -1t ~/Downloads/ | head -1)
 ```
+
+chmod +x filename
+to make it executable
+
+Reload .profile or .bash_profle:
+$ . ~/.bash_profile
+
 ref:
 https://unix.stackexchange.com/questions/84686/how-to-create-custom-commands-in-unix-linux
 ctrl + alt + super + eject: trashld
