@@ -1,6 +1,7 @@
 # keyboard shorcut to delete the latest downnloaded file
 put `trashld` in /usr/bin
 register it as a program
+
 it is:
 ```
 trash ~/Downloads/$(ls -1t ~/Downloads/ | head -1)
