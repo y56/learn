@@ -63,3 +63,20 @@ from tensorflow import keras
 model = keras.models.load_model('path/to/location')
 
 https://www.tensorflow.org/guide/keras/save_and_serialize
+
+# range() and reversed(range())
+
+```python
+my_iter_1 = range()
+for ele in li:
+    for i in my_iter_1:
+        # good 
+        # new instance of iterator are created
+```
+```python
+my_iter_2 = reversed(range())
+for ele in li:
+    for i in my_iter_2:
+        # bad
+        # only one instance of iterator ever
+`````
