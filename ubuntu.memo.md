@@ -68,6 +68,10 @@ python3-apport/bionic-updates,bionic-updates 2.20.9-0ubuntu7.21 all [upgradable 
 python3-problem-report/bionic-updates,bionic-updates 2.20.9-0ubuntu7.21 all [upgradable from: 2.20.9-0ubuntu7.20]
 ```
 
+lemme find time to figure out how have sound after update`
+
+https://askubuntu.com/questions/1218041/ubuntu-18-04-audio-disappeared-after-update
+
 # stop to modify `/etc/default/grub` to make sound device work
 
 previously, an update broke my sound device
