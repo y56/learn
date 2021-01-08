@@ -50,4 +50,42 @@ alias clipf='xclip -selection clipboard -o'
 
 clipf > myfile
 
+# speaker no sound after update
+
+Although headphone works well.
+
+Some of the below update will break the speaker
+```
+apport/bionic-updates,bionic-updates 2.20.9-0ubuntu7.21 all [upgradable from: 2.20.9-0ubuntu7.20]
+apport-gtk/bionic-updates,bionic-updates 2.20.9-0ubuntu7.21 all [upgradable from: 2.20.9-0ubuntu7.20]
+containerd/bionic-updates 1.3.3-0ubuntu1~18.04.4 amd64 [upgradable from: 1.3.3-0ubuntu1~18.04.2]
+docker.io/bionic-updates 19.03.6-0ubuntu1~18.04.3 amd64 [upgradable from: 19.03.6-0ubuntu1~18.04.2]
+linux-generic-hwe-18.04/bionic-security,bionic-updates 5.4.0.60.67~18.04.55 amd64 [upgradable from: 5.4.0.58.64~18.04.53]
+linux-headers-generic-hwe-18.04/bionic-security,bionic-updates 5.4.0.60.67~18.04.55 amd64 [upgradable from: 5.4.0.58.64~18.04.53]
+linux-hwe-5.4-tools-common/bionic-security,bionic-security,bionic-updates,bionic-updates 5.4.0-60.67~18.04.1 all [upgradable from: 5.4.0-58.64~18.04.1]
+linux-image-generic-hwe-18.04/bionic-security,bionic-updates 5.4.0.60.67~18.04.55 amd64 [upgradable from: 5.4.0.58.64~18.04.53]
+python3-apport/bionic-updates,bionic-updates 2.20.9-0ubuntu7.21 all [upgradable from: 2.20.9-0ubuntu7.20]
+python3-problem-report/bionic-updates,bionic-updates 2.20.9-0ubuntu7.21 all [upgradable from: 2.20.9-0ubuntu7.20]
+```
+
+# stop to modify `/etc/default/grub` to make sound device work
+
+previously, an update broke my sound device
+
+memo: https://gist.github.com/y56/ffcf21204620a21b629906c1d6abe8e7
+
+but now it fixes.
+
+
+`sudo vim /etc/default/grub`
+
+```
+# /etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash snd_hda_intel.dmic_detect=0"
+```
+
+no need any more, I can now have normal sound without this
+
+and look like this is deprecated
 
