@@ -93,3 +93,24 @@ no need any more, I can now have normal sound without this
 
 and look like this is deprecated
 
+# How to change critically low battery value?
+
+https://askubuntu.com/questions/92794/how-to-change-critically-low-battery-value
+
+I would like my laptop to hibernate itself when the battery level is 10% to be sure it has enough power to complete the operation properly. Actually if I don't pay attention my laptop informs me it will hibernate when it's too late, so instead it brutally shuts down. This kills lithium batteries and is not acceptable.
+
+
+
+    Start dconf-editor
+    Browse to org -> gnome -> settings-daemon -> plugins -> power
+    Change the values of percentage-critical and percentage-action to the level you require
+    Change use-time-for-policy to false
+    Done!
+
+You can also do this from a terminal with:
+
+gsettings set org.gnome.settings-daemon.plugins.power percentage-critical 10
+gsettings set org.gnome.settings-daemon.plugins.power percentage-action 9
+gsettings set org.gnome.settings-daemon.plugins.power use-time-for-policy false
+
+
