@@ -113,4 +113,4 @@ gsettings set org.gnome.settings-daemon.plugins.power percentage-critical 10
 gsettings set org.gnome.settings-daemon.plugins.power percentage-action 9
 gsettings set org.gnome.settings-daemon.plugins.power use-time-for-policy false
 
-
+# menu key: shift + F10
