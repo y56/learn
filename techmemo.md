@@ -80,3 +80,18 @@ for ele in li:
         # bad
         # only one instance of iterator ever
 ```
+# I want to zoom just ONE tab/window - not all of them - Help!
+
+https://support.mozilla.org/en-US/questions/681298
+
+Zoom is driving me nuts!  I use multiple tabs and windows, and to maximize screen space I need to make some pages very small.  In IE each window can be zoomed independently- but with firefox they all change if you change any window's zoom.  I've tried NoSquint add-on and it adds site-specific zoom, which is still not what I need.  Surely there's an add-on that allows each window to have its own zoom level.
+
+Are these tabs perhaps in the same site? If they are, you need to configure Firefox not to remember zoom levels for a specific site. Do this:
+
+    1. type about:config in your address bar and press enter
+    2. if Firefox asks you, say you'll be careful
+    3. search this string browser.zoom.siteSpecific (if it doesn't exist, create one, it's a boolean string)
+    4. set it to false (rightclick > "Toogle").
+
+Now your Firefox won't remember the zoom level. You can restore your zoom level by click CTRL+0 (that's zero) in your keyboard, or going into View > Zoom > Reset.
+

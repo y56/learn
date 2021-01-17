@@ -1,0 +1,16 @@
+Compilation successful.
+
+Example test:   [[True, False], [True, True]]
+OK
+
+Example test:   [[True, False, True, False, False, False, False, False], [True, True, True, False, False, False, False, False], [True, True, True, False, False, False, False, True], [False, True, True, True, True, True, True, False], [False, True, True, True, True, True, True, False], [False, False, True, False, True, False, True, False]]
+OK
+
+Example test:   [[False, False, True, True, True, True, True, True, True, True, True, False, False, False, True, True, True, True, True, False, False], [False, True, True, True, True, True, True, True, True, True, True, True, False, False, True, True, True, True, True, False, False], [True, True, True, True, True, True, True, True, True, True, True, True, True, False, True, True, True, True, True, False, False], [True, True, True, True, False, False, False, False, True, True, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, False, False, False, False, True, True, True, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, False, False, False, True, True, True, True, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, False, False, True, True, True, True, True, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, False, True, True, True, True, True, True, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, True, True, True, True, True, True, True, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, True, True, True, True, True, True, False, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, True, True, True, True, True, False, False, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, True, True, True, True, False, False, False, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, True, True, True, False, False, False, False, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, True, True, False, False, False, False, True, True, True, True, False, False, False, True, True, True, False, False], [True, True, True, True, True, True, True, True, True, True, True, True, True, False, True, True, True, True, True, True, True], [False, True, True, True, True, True, True, True, True, True, True, True, False, False, True, True, True, True, True, True, True], [False, False, True, True, True, True, True, True, True, True, True, False, False, False, True, True, True, True, True, True, True]]
+OK
+
+Example test:   [[True, False], [False, True]]
+OK
+
+Your code is syntactically correct and works properly on the example test.
+Note that the example tests are not part of your score. On submission at least 8 test cases not shown here will assess your solution.
