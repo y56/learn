@@ -95,3 +95,206 @@ Are these tabs perhaps in the same site? If they are, you need to configure Fire
 
 Now your Firefox won't remember the zoom level. You can restore your zoom level by click CTRL+0 (that's zero) in your keyboard, or going into View > Zoom > Reset.
 
+# Queue interface in java
+## https://javagoal.com/queue-interface-in-java/
+
+
+Queue interface in java
+
+queue interface in java extends the collection interface and it is available in java.util package. Java queue maintains the orders the elements in FIFO(First In First Out) manner. In FIFO, the first element removes first, and the last element removes at last. Java queue is a collection that is used to hold the elements and perform various operations like insertion, removal, etc. In Queue the element inserts at the end of the list and deleting elements from the start of the list. The Queue interface has its implementation in PriorityQueue and the LinkedList class is also implementing it through the Deque. PriorityQueue and LinkedList class are not thread-safe But there is another alternative implementation that is PriorityBlockingQueue which is thread-safe.
+Queue interface in java
+Java queue class diagram
+Important points about Java Queue
+
+1. Java Queue is just like a real-world queue, It based on FIFO (First In First Out). In queue inserts elements at the end and removes from the beginning.
+
+2. Java Queue represents an ordered list of elements and it supports all methods of Collection interface.
+
+3. LinkedList, PriorityQueue, and ArrayBlockingQueue are the most frequently used Queue implementations.
+
+4. BlockingQueue is the thread-safe implementation of Queue and it doesn’t accept any null element.
+Java queue methods
+
+1. add() method
+
+This method is used to add the element in the Queue, it adds the element at the tail(Rear). As you know the Queue interface is implemented by PriorityQueue and LinkedList. In both classes add method work differently. In LinkedList, the element will be added at the last. But in PriorityQueue, the element will be added according to the priority in case of priority queue implementation.
+
+2. peek() method
+
+This method is used to get the head(First) element of the queue without removing it. If the queue is empty it will return null.
+
+3. element() method
+
+This method is also used to get the head(First) element of the queue without removing it. It is very similar to peek() method. If the queue is empty it will throw NoSuchElementException.
+
+4. remove() method
+
+This method is used to remove and get the head(First) element from the queue. If queue is empty it will throw NoSuchElementException.
+
+5. poll() method
+
+This method is also used to remove and get the head(First) element from the queue. It is very similar to remove() method. If the queue is empty it will return null.
+
+6. size() method: This method returns the number of elements presents in the queue.
+Java queue implementations
+
+There are some classes that provides the implementation to queue interface.
+PriorityQueue class
+
+PriorityQueue extends the AbstarctQueue that implements the Queue interface. The PriorityQueue works based on priority and process the objects. It is also works based on the First-In-First-Out algorithm, but sometimes it processes the element according to the priority. Let’s take an example of java queue program
+import java.util.PriorityQueue;
+import java.util.Queue; 
+  
+public class ExampleOfQueue 
+{ 
+  public static void main(String[] args) 
+  { 
+    Queue<String> stringQueue = new PriorityQueue<String>(); 
+  
+    // Adding some number/elements in queue by use of add() method
+    stringQueue.add("AA"); 
+    stringQueue.add("BB"); 
+    stringQueue.add("CC"); 
+    stringQueue.add("DD");
+    stringQueue.add("EE"); 
+    
+    // Showing all data from queue
+    System.out.println("Elements from the queue: "+stringQueue); 
+  
+    // Getting the head(First) element from queue by use of peek() method. 
+    String firstStringByPeek = stringQueue.peek(); 
+    System.out.println("Getting the by peek() method: " + firstStringByPeek); 
+  
+    // Getting the head(First) element from queue by use of element() method. 
+    String firstStringByElement = stringQueue.element(); 
+    System.out.println("Getting the by element() method: " + firstStringByElement); 
+    
+    // Removing the head(First) element from queue by use of remove() method. 
+    String removedElement = stringQueue.remove(); 
+    System.out.println("Removing element by remove() method: " + removedElement); 
+  
+    // Removing the head(First) element from queue by use of poll() method. 
+    String removedElementByPoll = stringQueue.poll(); 
+    System.out.println("Removing element by poll() method: " + removedElementByPoll); 
+  
+    // Getting size of Queue
+    int size = stringQueue.size(); 
+    System.out.println("Size of queue: " + size); 
+  } 
+}
+
+    Output: Elements from the queue: [AA, BB, CC, DD, EE]
+    Getting the by peek() method: AA
+    Getting the by element() method: AA
+    Removing element by remove() method: AA
+    Removing element by poll() method: BB
+    Size of queue: 3
+
+LinkedList class
+
+LinkedList class is a very popular implementation of the Queue interface. It stores the elements in the contiguous memory location and maintains the insertion order of the element. Let’s take an example of java queue program
+import java.util.LinkedList; 
+import java.util.Queue; 
+  
+public class ExampleOfQueue 
+{ 
+  public static void main(String[] args) 
+  { 
+    Queue<Integer> numbers = new LinkedList<Integer>(); 
+  
+    // Adding some number/elements in queue by use of add() method
+    numbers.add(1); 
+    numbers.add(2); 
+    numbers.add(3); 
+    numbers.add(4);
+    numbers.add(5); 
+    
+    // Showing all data from queue
+    for(Integer num : numbers)
+        System.out.println("Elements from the queue: "+num); 
+  
+    // Getting the head(First) element from queue by use of peek() method. 
+    int firstNumberByPeek = numbers.peek(); 
+    System.out.println("Getting the by peek() method: " + firstNumberByPeek); 
+  
+    // Getting the head(First) element from queue by use of element() method. 
+    int firstNumberByElement = numbers.element(); 
+    System.out.println("Getting the by element() method: " + firstNumberByElement); 
+    
+    // Removing the head(First) element from queue by use of remove() method. 
+    int removedElement = numbers.remove(); 
+    System.out.println("Removing element by remove() method: " + removedElement); 
+  
+    // Removing the head(First) element from queue by use of poll() method. 
+    int removedElementByPoll = numbers.poll(); 
+    System.out.println("Removing element by poll() method: " + removedElementByPoll); 
+  
+    // Getting size of Queue
+    int size = numbers.size(); 
+    System.out.println("Size of queue: " + size); 
+  } 
+}
+
+    Output: Elements from the queue: 1
+    Elements from the queue: 2
+    Elements from the queue: 3
+    Elements from the queue: 4
+    Elements from the queue: 5
+    Getting the by peek() method: 1
+    Getting the by element() method: 1
+    Removing element by remove() method: 1
+    Removing element by poll() method: 2
+    Size of queue: 3
+
+PriorityBlockingQueue class
+
+PriorityBlockingQueue class implements the Queue interface and provides the thread-safe implementation of the queue. The PriorityQueue and LinkedList are not thread-safe. Let’s take an example of java queue program
+import java.util.Queue;
+import java.util.concurrent.PriorityBlockingQueue; 
+  
+public class ExampleOfQueue 
+{ 
+  public static void main(String[] args) 
+  { 
+    Queue<String> stringQueue = new PriorityBlockingQueue<String>(); 
+  
+    // Adding some number/elements in queue by use of add() method
+    stringQueue.add("AA"); 
+    stringQueue.add("BB"); 
+    stringQueue.add("CC"); 
+    stringQueue.add("DD");
+    stringQueue.add("EE"); 
+    
+    // Showing all data from queue
+    System.out.println("Elements from the queue: "+stringQueue); 
+  
+    // Getting the head(First) element from queue by use of peek() method. 
+    String firstStringByPeek = stringQueue.peek(); 
+    System.out.println("Getting the by peek() method: " + firstStringByPeek); 
+  
+    // Getting the head(First) element from queue by use of element() method. 
+    String firstStringByElement = stringQueue.element(); 
+    System.out.println("Getting the by element() method: " + firstStringByElement); 
+    
+    // Removing the head(First) element from queue by use of remove() method. 
+    String removedElement = stringQueue.remove(); 
+    System.out.println("Removing element by remove() method: " + removedElement); 
+  
+    // Removing the head(First) element from queue by use of poll() method. 
+    String removedElementByPoll = stringQueue.poll(); 
+    System.out.println("Removing element by poll() method: " + removedElementByPoll); 
+  
+    // Getting size of Queue
+    int size = stringQueue.size(); 
+    System.out.println("Size of queue: " + size); 
+  } 
+}
+
+    Output: Elements from the queue: [AA, BB, CC, DD, EE]
+    Getting the by peek() method: AA
+    Getting the by element() method: AA
+    Removing element by remove() method: AA
+    Removing element by poll() method: BB
+    Size of queue: 3
+
+
