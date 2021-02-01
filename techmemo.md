@@ -297,4 +297,4 @@ public class ExampleOfQueue
     Removing element by poll() method: BB
     Size of queue: 3
 
-
+# test
