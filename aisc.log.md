@@ -32,7 +32,7 @@ https://adb-868627275432697.17.azuredatabricks.net/login.html?o=868627275432697#
 ## ref
 ### pyspark sql 
 https://spark.apache.org/docs/latest/sql-getting-started.html
-https://docs.databricks.com/_static/notebooks/graphframes-user-guide-py.html
+[](https://docs.databricks.com/_static/notebooks/graphframes-user-guide-py.html)
 ## learning note
 ### 
 groupby needs aggregation function 
@@ -75,36 +75,34 @@ Receiver operating characteristic
 Area under the curve
 # 2021.Feb.03
 ## pipeline arch
-constant
-constant
-table
-partition col: save in diffirent folder
+constant/table 
+constant/table schema
 
-table_transformer will generate table
+partition col: save in diffirent folder; since data are big
+
+table-transformer will generate table
 
 raw transform
 
-black list 
+black list, by: (they will contaminate our analysis)
 1st party
-3rd party
+3rd party; 
 
-meta data store
+meta_data_store
 
-feature store
+feature_store
 
 ua=user agent
 
-user id = KG gave us
+user_id = the correct account membership ID KG gave us
 
-prediction with member
+prediction with/without member
 
 user id = KG news
 group id = if using same device
 
-predic w/ w/o member
-
 ## administrative routines
-VPN for work from homw
+VPN for work from home!!!
 ## python oop
 ### self vs cls
 https://stackoverflow.com/questions/4613000/difference-between-cls-and-self-in-python-classes
@@ -117,3 +115,13 @@ https://www.programiz.com/python-programming/methods/built-in/classmethod
 #### Factory methods
 Factory methods are those methods that return a class object (like constructor) for different use cases.
 ### class MyClass vs class Myclass(object)
+
+## EOM: E?? of month
+
+something like monthly report, by Brett, to TaiYi
+
+business model; busisness contract to the client; engineering achievement; 
+
+CPU utilization of azure VM
+
+the "exam" proposed by our client
