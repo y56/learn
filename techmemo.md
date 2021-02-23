@@ -311,4 +311,52 @@ cz bump 會自動提升版本號，
 主要根據 cz commit 裡有沒有 BREAKING CHANGE，以及分類 (feat, fix, ... 那些)
 如果要自行指定增加的版本號可以用選項 --increment {MAJOR,MINOR,PATCH}，
 然後 --changelog 會把 cz commit 的那些 commit 整理起來。
-# 
+
+# WSL font color
+How to change the dark blue in wsl (Windows Subsystem for Linux) to something brighter? Here is a picture of a config file opened with vim. I basically see a black screen. I cannot read it. And the property window of the console does not allow to change specific colors. Only the background and the main text.
+https://superuser.com/questions/1365258/how-to-change-the-dark-blue-in-wsl-to-something-brighter
+
+# javascript console.log font color
+```
+console.log('\x1b[36m%s\x1b[0m', 'I am cyan');  //cyan
+console.log('\x1b[33m%s\x1b[0m', stringToMakeYellow);  //yellow
+'\x1b[31m%s\x1b[0m' // red
+```
+https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
+```
+Reset = "\x1b[0m"
+Bright = "\x1b[1m"
+Dim = "\x1b[2m"
+Underscore = "\x1b[4m"
+Blink = "\x1b[5m"
+Reverse = "\x1b[7m"
+Hidden = "\x1b[8m"
+
+%s 
+
+FgBlack = "\x1b[30m"
+FgRed = "\x1b[31m"
+FgGreen = "\x1b[32m"
+FgYellow = "\x1b[33m"
+FgBlue = "\x1b[34m"
+FgMagenta = "\x1b[35m"
+FgCyan = "\x1b[36m"
+FgWhite = "\x1b[37m"
+
+BgBlack = "\x1b[40m"
+BgRed = "\x1b[41m"
+BgGreen = "\x1b[42m"
+BgYellow = "\x1b[43m"
+BgBlue = "\x1b[44m"
+BgMagenta = "\x1b[45m"
+BgCyan = "\x1b[46m"
+BgWhite = "\x1b[47m"
+```
+# terminology: bump version
+What does Bump Version stand for?
+https://stackoverflow.com/questions/4181185/what-does-bump-version-stand-for
+It means to increment the version number to a new, unique value.
+
+# VS Code color theme
+https://code.visualstudio.com/docs/getstarted/themes
+
