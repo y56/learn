@@ -303,3 +303,12 @@ https://xenby.com/b/227-%E6%95%99%E5%AD%B8-android-studio-%E9%96%8B%E7%99%BC%E7%
 https://askubuntu.com/questions/1177729/wsl-am-i-running-version-1-or-version-2#
 I have Windows Subsystem for Linux, but I don't know which version I have, and many things won't work in version 1. How do I check my version?
 
+# write good commit message with Commitizen
+https://commitizen-tools.github.io/commitizen/
+https://www.coderbridge.com/series/66cb226274ea4d349abd49d2aef44037/posts/6770ab92a0654588b9d389664a36c449
+
+cz bump 會自動提升版本號，
+主要根據 cz commit 裡有沒有 BREAKING CHANGE，以及分類 (feat, fix, ... 那些)
+如果要自行指定增加的版本號可以用選項 --increment {MAJOR,MINOR,PATCH}，
+然後 --changelog 會把 cz commit 的那些 commit 整理起來。
+# 
