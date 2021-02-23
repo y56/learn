@@ -299,4 +299,7 @@ public class ExampleOfQueue
 # 教學-android-studio-開發環境安裝教學-linux版
 
 https://xenby.com/b/227-%E6%95%99%E5%AD%B8-android-studio-%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8-linux%E7%89%88
+# WSL: Am I running version 1 or version 2?
+https://askubuntu.com/questions/1177729/wsl-am-i-running-version-1-or-version-2#
+I have Windows Subsystem for Linux, but I don't know which version I have, and many things won't work in version 1. How do I check my version?
 
