@@ -1,3 +1,13 @@
+
+
+
+
+# get a pink slip
+= get fired
+
+# install node.js ver 12
+https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/
+
 # one hot onehot
 
 y_onehot = keras.utils.to_categorical(y, num_classes=1283)
@@ -299,6 +309,9 @@ public class ExampleOfQueue
 # 教學-android-studio-開發環境安裝教學-linux版
 
 https://xenby.com/b/227-%E6%95%99%E5%AD%B8-android-studio-%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8-linux%E7%89%88
+# WSL: Am I running version 1 or version 2?
+https://askubuntu.com/questions/1177729/wsl-am-i-running-version-1-or-version-2#
+I have Windows Subsystem for Linux, but I don't know which version I have, and many things won't work in version 1. How do I check my version?
 
 # write good commit message with Commitizen
 https://commitizen-tools.github.io/commitizen/
@@ -309,9 +322,50 @@ cz bump 會自動提升版本號，
 如果要自行指定增加的版本號可以用選項 --increment {MAJOR,MINOR,PATCH}，
 然後 --changelog 會把 cz commit 的那些 commit 整理起來。
 
-# get a pink slip
-= get fired
+# WSL font color
+How to change the dark blue in wsl (Windows Subsystem for Linux) to something brighter? Here is a picture of a config file opened with vim. I basically see a black screen. I cannot read it. And the property window of the console does not allow to change specific colors. Only the background and the main text.
+https://superuser.com/questions/1365258/how-to-change-the-dark-blue-in-wsl-to-something-brighter
 
-# install node.js ver 12
-https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/
+# javascript console.log font color
+```
+console.log('\x1b[36m%s\x1b[0m', 'I am cyan');  //cyan
+console.log('\x1b[33m%s\x1b[0m', stringToMakeYellow);  //yellow
+'\x1b[31m%s\x1b[0m' // red
+```
+https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
+```
+Reset = "\x1b[0m"
+Bright = "\x1b[1m"
+Dim = "\x1b[2m"
+Underscore = "\x1b[4m"
+Blink = "\x1b[5m"
+Reverse = "\x1b[7m"
+Hidden = "\x1b[8m"
 
+%s 
+
+FgBlack = "\x1b[30m"
+FgRed = "\x1b[31m"
+FgGreen = "\x1b[32m"
+FgYellow = "\x1b[33m"
+FgBlue = "\x1b[34m"
+FgMagenta = "\x1b[35m"
+FgCyan = "\x1b[36m"
+FgWhite = "\x1b[37m"
+
+BgBlack = "\x1b[40m"
+BgRed = "\x1b[41m"
+BgGreen = "\x1b[42m"
+BgYellow = "\x1b[43m"
+BgBlue = "\x1b[44m"
+BgMagenta = "\x1b[45m"
+BgCyan = "\x1b[46m"
+BgWhite = "\x1b[47m"
+```
+# terminology: bump version
+What does Bump Version stand for?
+https://stackoverflow.com/questions/4181185/what-does-bump-version-stand-for
+It means to increment the version number to a new, unique value.
+
+# VS Code color theme
+https://code.visualstudio.com/docs/getstarted/themes
