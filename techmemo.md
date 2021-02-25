@@ -308,4 +308,10 @@ cz bump 會自動提升版本號，
 主要根據 cz commit 裡有沒有 BREAKING CHANGE，以及分類 (feat, fix, ... 那些)
 如果要自行指定增加的版本號可以用選項 --increment {MAJOR,MINOR,PATCH}，
 然後 --changelog 會把 cz commit 的那些 commit 整理起來。
-# 
+
+# get a pink slip
+= get fired
+
+# install node.js ver 12
+https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/
+
