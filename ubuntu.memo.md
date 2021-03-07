@@ -114,3 +114,7 @@ gsettings set org.gnome.settings-daemon.plugins.power percentage-action 9
 gsettings set org.gnome.settings-daemon.plugins.power use-time-for-policy false
 
 # menu key: shift + F10
+
+# ubuntu laptop speakers sound but headphones fine
+https://askubuntu.com/questions/1006176/laptop-speakers-not-working-but-headphones-fine
+https://www.maketecheasier.com/fix-no-sound-issue-ubuntu/

@@ -360,3 +360,43 @@ It means to increment the version number to a new, unique value.
 # VS Code color theme
 https://code.visualstudio.com/docs/getstarted/themes
 
+# run foo.exe in window
+```
+& "C:\Program Files\Sublime Text 3\sublime_text.exe"
+```
+
+# convert powershell script to exe
+https://github.com/MScholtes/PS2EXE
+```
+PS C:\> Install-Module ps2exe // to install
+
+ps2exe .\source.ps1 .\target.exe // to convert
+```
+
+# handle of object
+http://www.cs.technion.ac.il/users/yechiel/c++-faq/what-is-a-handle.html
+ [8.8] What is a handle to an object? Is it a pointer? Is it a reference? Is it a pointer-to-a-pointer? What is it?
+
+The term handle is used to mean any technique that lets you get to another object — a generalized pseudo-pointer. The term is (intentionally) ambiguous and vague.
+
+Ambiguity is actually an asset in certain cases. For example, during early design you might not be ready to commit to a specific representation for the handles. You might not be sure whether you'll want simple pointers vs. references vs. pointers-to-pointers vs. references-to-pointers vs. integer indices into an array vs. strings (or other key) that can be looked up in a hash-table (or other data structure) vs. database keys vs. some other technique. If you merely know that you'll need some sort of thingy that will uniquely identify and get to an object, you call the thingy a Handle. 
+
+# COM Component Object Model
+https://de.wikipedia.org/wiki/Component_Object_Model
+
+# execute some sql query through feathers app.service('messages').find()
+https://docs.feathersjs.com/api/databases/querying.html#sort```
+// Only return the `text` and `userId` field in a message
+app.service('messages').find({
+  query: {
+    $select: [ 'text', 'userId' ]
+  }
+});
+
+app.service('messages').get(1, {
+  query: {
+    $select: [ 'text' ]
+  }
+});
+
+```
