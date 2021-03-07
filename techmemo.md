@@ -1,3 +1,10 @@
+
+# get a pink slip
+= get fired
+
+# install node.js ver 12
+https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/
+
 # one hot onehot
 
 y_onehot = keras.utils.to_categorical(y, num_classes=1283)
