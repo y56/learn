@@ -392,7 +392,9 @@ Ambiguity is actually an asset in certain cases. For example, during early desig
 https://de.wikipedia.org/wiki/Component_Object_Model
 
 # execute some sql query through feathers app.service('messages').find()
-https://docs.feathersjs.com/api/databases/querying.html#sort```
+## how to do sql select
+https://docs.feathersjs.com/api/databases/querying.html#sort
+```json
 // Only return the `text` and `userId` field in a message
 app.service('messages').find({
   query: {
@@ -407,3 +409,135 @@ app.service('messages').get(1, {
 });
 
 ```
+# pySpark how to replace null into unique string
+## See: https://stackoverflow.com/questions/41330387/how-to-fill-the-null-value-in-dataframe-to-uuid
+## See: https://gist.github.com/zoltanctoth/2deccd69e3d1cde1dd78
+```python
+# QQ this python code doesnt work QQ
+null_news_category_id_to_uuid4 = F.udf(lambda x: str(uuid.uuid4()), StringType())
+self.df = self.df.withColumn('news_category_lv1_id', null_news_category_id_to_uuid4(F.col('news_category_lv1_id')))
+self.df = self.df.withColumn('news_category_lv2_id', null_news_category_id_to_uuid4(F.col('news_category_lv2_id')))
+```
+# [skip ci] [ci skip] [skip Travis]
+# spark pyspark fill null with 0 zero uuid
+https://stackoverflow.com/questions/41330387/how-to-fill-the-null-value-in-dataframe-to-uuid
+# user-defined function udf python pyspark
+https://docs.databricks.com/spark/latest/spark-sql/udf-python.html
+# display() vs df.show()
+display() is more readable
+# Generate a Unique String -- UUID
+https://stackoverflow.com/questions/26030811/generate-a-unique-string-in-python-django/26032898
+# How are Python's Built In Dictionaries Implemented? python dictionary implementation
+https://stackoverflow.com/questions/327311/how-are-pythons-built-in-dictionaries-implemented
+Here is everything about Python dicts that I was able to put together (probably more than anyone would like to know; but the answer is comprehensive).
+
+    Python dictionaries are implemented as hash tables.
+
+    Hash tables must allow for hash collisions i.e. even if two distinct keys have the same hash value, the table's implementation must have a strategy to insert and retrieve the key and value pairs unambiguously.
+
+    Python dict uses open addressing to resolve hash collisions (explained below) (see dictobject.c:296-297).
+
+    Python hash table is just a contiguous block of memory (sort of like an array, so you can do an O(1) lookup by index).
+
+    Each slot in the table can store one and only one entry. This is important.
+
+    Each entry in the table is actually a combination of the three values: < hash, key, value >. This is implemented as a C struct (see dictobject.h:51-56).
+
+    The figure below is a logical representation of a Python hash table. In the figure below, 0, 1, ..., i, ... on the left are indices of the slots in the hash table (they are just for illustrative purposes and are not stored along with the table obviously!).
+
+      # Logical model of Python Hash table
+      -+-----------------+
+      0| <hash|key|value>|
+      -+-----------------+
+      1|      ...        |
+      -+-----------------+
+      .|      ...        |
+      -+-----------------+
+      i|      ...        |
+      -+-----------------+
+      .|      ...        |
+      -+-----------------+
+      n|      ...        |
+      -+-----------------+
+
+    When a new dict is initialized it starts with 8 slots. (see dictobject.h:49)
+
+    When adding entries to the table, we start with some slot, i, that is based on the hash of the key. CPython initially uses i = hash(key) & mask (where mask = PyDictMINSIZE - 1, but that's not really important). Just note that the initial slot, i, that is checked depends on the hash of the key.
+
+    If that slot is empty, the entry is added to the slot (by entry, I mean, <hash|key|value>). But what if that slot is occupied!? Most likely because another entry has the same hash (hash collision!)
+
+    If the slot is occupied, CPython (and even PyPy) compares the hash AND the key (by compare I mean == comparison not the is comparison) of the entry in the slot against the hash and key of the current entry to be inserted (dictobject.c:337,344-345) respectively. If both match, then it thinks the entry already exists, gives up and moves on to the next entry to be inserted. If either hash or the key don't match, it starts probing.
+
+    Probing just means it searches the slots by slot to find an empty slot. Technically we could just go one by one, i+1, i+2, ... and use the first available one (that's linear probing). But for reasons explained beautifully in the comments (see dictobject.c:33-126), CPython uses random probing. In random probing, the next slot is picked in a pseudo random order. The entry is added to the first empty slot. For this discussion, the actual algorithm used to pick the next slot is not really important (see dictobject.c:33-126 for the algorithm for probing). What is important is that the slots are probed until first empty slot is found.
+
+    The same thing happens for lookups, just starts with the initial slot i (where i depends on the hash of the key). If the hash and the key both don't match the entry in the slot, it starts probing, until it finds a slot with a match. If all slots are exhausted, it reports a fail.
+
+    BTW, the dict will be resized if it is two-thirds full. This avoids slowing down lookups. (see dictobject.h:64-65)
+
+NOTE: I did the research on Python Dict implementation in response to my own question about how multiple entries in a dict can have same hash values. I posted a slightly edited version of the response here because all the research is very relevant for this question as well.
+# Memory-usage of dictionary in Python?
+https://stackoverflow.com/questions/6579757/memory-usage-of-dictionary-in-python
+Compute Memory footprint of an object and its contents (Python recipe) 
+https://code.activestate.com/recipes/577504/
+```python
+from __future__ import print_function
+from sys import getsizeof, stderr
+from itertools import chain
+from collections import deque
+try:
+    from reprlib import repr
+except ImportError:
+    pass
+
+def total_size(o, handlers={}, verbose=False):
+    """ Returns the approximate memory footprint an object and all of its contents.
+
+    Automatically finds the contents of the following builtin containers and
+    their subclasses:  tuple, list, deque, dict, set and frozenset.
+    To search other containers, add handlers to iterate over their contents:
+
+        handlers = {SomeContainerClass: iter,
+                    OtherContainerClass: OtherContainerClass.get_elements}
+
+    """
+    dict_handler = lambda d: chain.from_iterable(d.items())
+    all_handlers = {tuple: iter,
+                    list: iter,
+                    deque: iter,
+                    dict: dict_handler,
+                    set: iter,
+                    frozenset: iter,
+                   }
+    all_handlers.update(handlers)     # user handlers take precedence
+    seen = set()                      # track which object id's have already been seen
+    default_size = getsizeof(0)       # estimate sizeof object without __sizeof__
+
+    def sizeof(o):
+        if id(o) in seen:       # do not double count the same object
+            return 0
+        seen.add(id(o))
+        s = getsizeof(o, default_size)
+
+        if verbose:
+            print(s, type(o), repr(o), file=stderr)
+
+        for typ, handler in all_handlers.items():
+            if isinstance(o, typ):
+                s += sum(map(sizeof, handler(o)))
+                break
+        return s
+
+    return sizeof(o)
+
+
+##### Example call #####
+
+if __name__ == '__main__':
+    d = dict(a=1, b=2, c=3, d=[4,5,6,7], e='a string of chars')
+    print(total_size(d, verbose=True))
+
+```
+# can't login to aics github, login prompt doesn't pop up
+clean history, cookie, and cache
+https://support.mozilla.org/en-US/kb/fix-login-issues-on-websites-require-passwords 
+
