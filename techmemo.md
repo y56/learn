@@ -541,3 +541,15 @@ if __name__ == '__main__':
 clean history, cookie, and cache
 https://support.mozilla.org/en-US/kb/fix-login-issues-on-websites-require-passwords 
 
+# Integrity Confidentiality Authenticity
+https://security.stackexchange.com/questions/148173/authenticity-confidentiality-integrity-general-questions
+Integrity: Integrity is used to make sure that nobody in between site A and B (for example) changed some parts of the shared information. Therefore a hash is calculated and added to a packet. This can be achieved by using hashing algorithms like MD5, SHA(1,2) and so on. To really make sure that no one is even able to modify the hash HMACs are used. This stands for hashed message authentication code. The main difference between a hash and a hmac is that in addition to the value that should be hashed (checksum calculated) a secret passphrase that is common to both sites is added to the calculation process. E.g. [Value that should be hashed] + [secret passhrase] -> Hashed value of this "two" inputs. Here comes my first question: Can this be compared with a "salt"? Or what exactly is the difference between a HMAC and a Hash + Salt? And what is Pepper, if a Hash + Salt equals a HMAC?
+
+Confidentiality: Confidentiality is used to make sure that nobody in between site A and B is able to read what data or information is sent between the to sites. To achieve this encryption algorithms are used. There are two kinds of encryption algorithms, symmetric and also asymmetric ones. Symmetric algorithms allow encryption and decryption with the same key. With asymmetric algorithms you have to kinds of keys: a public one and also a private one. The public key is often available to the public while the private key is just available for "yourself" (if the mentioned keypair is yours). Everything that you encrypt with the public key can only be decrypted with the private one and vice versa. When it comes to confidentiality you often just use symmetric algorithms like DES, 3DES (both outdated) or AES. Asymmetric encryption is used to transfer a symmetric key and also to make sure that the other site is really who it seems to be (when it comes to SSL/TLS).
+
+Authenticity: And this last sentence of the confidentiality part leads directly to the authenticity part. Authenticity is used to make sure that you really communicate with the partner you want to. To achieve these different kinds of techniques can be used, e.g. Pre-shared keys that are configured on both sites, Elliptic Curves or RSA as public/private key algorithms. 
+# vpn nyu
+sudo openconnect vpn.nyu.edu
+第一個密碼用2go加w
+第二個用push
+then confirm by DUO
