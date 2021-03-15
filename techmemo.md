@@ -553,3 +553,57 @@ sudo openconnect vpn.nyu.edu
 第一個密碼用2go加w
 第二個用push
 then confirm by DUO
+# Add more color to the Python code of your Databricks notebook 
+https://keestalkstech.com/2019/11/add-more-color-to-the-python-code-of-your-databricks-notebook/
+# How do I resolve ExecutorLostFailure "Slave lost" errors in Spark on Amazon EMR?
+https://aws.amazon.com/premiumsupport/knowledge-center/executorlostfailure-slave-lost-emr/
+High disk utilization
+Using Spot Instances for cluster nodes
+Aggressive Amazon Elastic Compute Cloud (Amazon EC2) Auto Scaling policies
+# mystery of pyspark
+```python
+21/03/15 06:03:50 ERROR TaskSchedulerImpl: Lost executor 163 on 10.139.64.28: worker decommissioned: Worker Decommissioned
+21/03/15 06:03:50 ERROR TaskSchedulerImpl: Lost executor 171 on 10.139.64.18: worker decommissioned: Worker Decommissioned
+21/03/15 06:03:50 ERROR TaskSchedulerImpl: Lost executor 189 on 10.139.64.26: worker decommissioned: Worker Decommissioned
+21/03/15 06:03:50 ERROR TaskSchedulerImpl: Lost executor 190 on 10.139.64.16: worker decommissioned: Worker Decommissioned
+21/03/15 06:03:50 ERROR TaskSchedulerImpl: Lost executor 192 on 10.139.64.6: worker decommissioned: Worker Decommissioned
+21/03/15 06:03:50 ERROR TaskSchedulerImpl: Lost executor 193 on 10.139.64.22: worker decommissioned: Worker Decommissioned
+21/03/15 06:03:50 ERROR TaskSchedulerImpl: Lost executor 194 on 10.139.64.12: worker decommissioned: Worker Decommissioned
+21/03/15 06:03:50 ERROR TaskSchedulerImpl: Lost executor 196 on 10.139.64.30: worker decommissioned: Worker Decommissioned
+21/03/15 06:06:20 ERROR TaskSchedulerImpl: Lost executor 191 on 10.139.64.23: worker decommissioned: Worker Decommissioned
+21/03/15 06:06:20 ERROR TaskSchedulerImpl: Lost executor 195 on 10.139.64.14: worker decommissioned: Worker Decommissioned
+21/03/15 06:06:20 ERROR TaskSchedulerImpl: Lost executor 197 on 10.139.64.29: worker decommissioned: Worker Decommissioned
+21/03/15 06:16:59 ERROR TaskSchedulerImpl: Lost executor 166 on 10.139.64.25: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:17:59 ERROR TaskSchedulerImpl: Lost executor 137 on 10.139.64.32: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:17:59 ERROR TaskSchedulerImpl: Lost executor 142 on 10.139.64.17: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:17:59 ERROR TaskSchedulerImpl: Lost executor 157 on 10.139.64.15: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:17:59 ERROR TaskSchedulerImpl: Lost executor 158 on 10.139.64.24: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:17:59 ERROR TaskSchedulerImpl: Lost executor 159 on 10.139.64.31: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:17:59 ERROR TaskSchedulerImpl: Lost executor 160 on 10.139.64.20: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:17:59 ERROR TaskSchedulerImpl: Lost executor 161 on 10.139.64.10: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:17:59 ERROR TaskSchedulerImpl: Lost executor 162 on 10.139.64.11: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:17:59 ERROR TaskSchedulerImpl: Lost executor 164 on 10.139.64.37: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 198 on 10.139.64.25: worker decommissioned: Worker Decommissioned
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 199 on 10.139.64.24: worker decommissioned: Worker Decommissioned
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 200 on 10.139.64.15: worker decommissioned: Worker Decommissioned
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 201 on 10.139.64.11: worker decommissioned: Worker Decommissioned
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 202 on 10.139.64.20: worker decommissioned: Worker Decommissioned
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 203 on 10.139.64.10: worker decommissioned: Worker Decommissioned
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 204 on 10.139.64.17: worker decommissioned: Worker Decommissioned
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 205 on 10.139.64.31: worker decommissioned: Worker Decommissioned
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 206 on 10.139.64.32: worker decommissioned: Worker Decommissioned
+21/03/15 06:29:10 ERROR TaskSchedulerImpl: Lost executor 207 on 10.139.64.37: worker decommissioned: Worker Decommissioned
+21/03/15 06:31:40 ERROR TaskSchedulerImpl: Lost executor 208 on 10.139.64.23: worker decommissioned: Worker Decommissioned
+21/03/15 06:31:40 ERROR TaskSchedulerImpl: Lost executor 209 on 10.139.64.16: worker decommissioned: Worker Decommissioned
+21/03/15 06:31:40 ERROR TaskSchedulerImpl: Lost executor 210 on 10.139.64.28: worker decommissioned: Worker Decommissioned
+21/03/15 06:31:40 ERROR TaskSchedulerImpl: Lost executor 211 on 10.139.64.22: worker decommissioned: Worker Decommissioned
+21/03/15 06:31:40 ERROR TaskSchedulerImpl: Lost executor 212 on 10.139.64.14: worker decommissioned: Worker Decommissioned
+21/03/15 06:31:40 ERROR TaskSchedulerImpl: Lost executor 214 on 10.139.64.29: worker decommissioned: Worker Decommissioned
+21/03/15 06:43:25 ERROR TaskSchedulerImpl: Lost executor 213 on 10.139.64.26: worker decommissioned: Worker Decommissioned
+21/03/15 06:43:25 ERROR TaskSchedulerImpl: Lost executor 215 on 10.139.64.12: worker decommissioned: Worker Decommissioned
+21/03/15 06:43:25 ERROR TaskSchedulerImpl: Lost executor 216 on 10.139.64.18: worker decommissioned: Worker Decommissioned
+21/03/15 06:43:25 ERROR TaskSchedulerImpl: Lost executor 217 on 10.139.64.30: worker decommissioned: Worker Decommissioned
+21/03/15 06:43:25 ERROR TaskSchedulerImpl: Lost executor 218 on 10.139.64.33: worker decommissioned: Worker Decommissioned
+21/03/15 06:43:25 ERROR TaskSchedulerImpl: Lost executor 219 on 10.139.64.44: worker decommissioned: Worker Decommissioned
+21/03/15 06:43:25 ERROR TaskSchedulerImpl: Lost executor 220 on 10.139.64.41: worker decommissioned: Worker Decommissioned
+```
