@@ -607,3 +607,440 @@ Aggressive Amazon Elastic Compute Cloud (Amazon EC2) Auto Scaling policies
 21/03/15 06:43:25 ERROR TaskSchedulerImpl: Lost executor 219 on 10.139.64.44: worker decommissioned: Worker Decommissioned
 21/03/15 06:43:25 ERROR TaskSchedulerImpl: Lost executor 220 on 10.139.64.41: worker decommissioned: Worker Decommissioned
 ```
+
+```python
+device_id_map
+ad_id_map
+lc_map
+cookie_map
+user_id_map
+
+"device_id_map",
+"ad_id_map",
+"lc_map",
+"cookie_map",
+"user_id_map",
+
+  print('app_device_id', res.where("app_device_id is NULL").count())
+  print('app_advertising_id', res.where("app_advertising_id is NULL").count())
+  print('local_cookie_id', res.where("local_cookie_id is NULL").count())
+  print('cookie_id', res.where("cookie_id is NULL").count())
+  print('user_id', res.where("user_id is NULL").count())
+```
+
+03 start XDD
+XDD, before, null count
+app_device_id 12246371
+app_advertising_id 12237957
+local_cookie_id 1104582
+cookie_id 4979856
+user_id 13881832
+app_device_id 147148 147148
+app_advertising_id 147175 145253
+local_cookie_id 567940 567940
+cookie_id 567951 566351
+user_id 714983 58033
+app_device_id
+app_advertising_id
+local_cookie_id
+cookie_id
+user_id
+XDD, AFTER, null count
+app_device_id 12246371
+app_advertising_id 12237957
+local_cookie_id 1104582
+cookie_id 4979856
+user_id 13881832
+
+```python
+import sys
+
+sys.path.append('/dbfs/mnt/XXXdev/XXata-branch/model/integrate_app_a_month/XXX-data-analytics/')
+
+from etl.utils.safe_operator import safe_union
+from etl.utils.column_operator import recode
+
+import pyspark.sql.functions as F
+from pyspark.sql.types import StringType
+
+from pyspark.sql.session import SparkSession
+
+spark = SparkSession.builder.getOrCreate()
+spark.sparkContext.setLogLevel("ERROR")
+
+second_XXXmall = \
+spark.read.format('parquet').\
+load('dbfs:/mnt/XXXdev/personal/shared/replace_all_id_evaluation/XXX_fake_id_mapping_table__sec_test/').\
+withColumn('source', F.when((F.col("type") == "android") | (F.col("type") == "ios"), "app").otherwise("web")).\
+withColumn('bu', F.lit('XXmall')).\
+select('source', 'bu', 'identify_id', 'fake_local_cookie_id', 'fake_cookie_id', 'fake_user_id', 'fake_device_id', 'fake_advertising_id')
+
+second_XXXtoday = \
+spark.read.format('parquet').\
+load('dbfs:/mnt/XXX2dev/personal/shared/replace_all_id_evaluation/XXXtoday_fake_id_mapping_table__sec_test/').\
+withColumn('source', F.when((F.col("type") == "android") | (F.col("type") == "ios"), "app").otherwise("web")).\
+withColumn('bu', F.lit('XXXtoday')).\
+select('source', 'bu', 'identify_id', 'fake_local_cookie_id', 'fake_cookie_id', 'fake_user_id', 'fake_device_id', 'fake_advertising_id')
+
+first_XXXmall = \
+spark.read.format('parquet').\
+load('dbfs:/mnt/XXXdev/personal/shared/replace_all_id_evaluation/evaluation_result_XXXmall_s2_first_test_id_mapping_table/').\
+withColumn('source', F.when((F.col("type") == "android") | (F.col("type") == "ios"), "app").otherwise("web")).\
+withColumn('bu', F.lit('XXXtoday')).\
+withColumnRenamed('fake_locak_cookie_id', 'fake_local_cookie_id').\
+select('source', 'bu', 'identify_id', 'fake_local_cookie_id', 'fake_cookie_id', 'fake_user_id', 'fake_device_id', 'fake_advertising_id')
+
+
+fake_data = \
+safe_union(safe_union(second_XXXmall, second_XXXtoday), first_XXXmall).withColumn("fake_user_id",F.col('fake_user_id').cast(StringType()))
+
+ 
+
+def working_fun(my_dict):
+    def f(x):
+        return my_dict.get(x,x)
+    return F.udf(f)
+
+####
+for d in ['ALL']:
+  print(d, "start XDD")
+  
+  feb_data = \
+  spark.read.format('delta').\
+  load('dbfs:/mnt/XXXdev/XXXdata-v5-prod/delta/XXX_id_optimize_v2/').\
+  filter(F.col('month')=='02')
+  
+  print("XDD, before, null count")
+  a1=feb_data.where("app_device_id is NULL").count()
+  a2=feb_data.where("app_advertising_id is NULL").count()
+  a3=feb_data.where("local_cookie_id is NULL").count()
+  a4=feb_data.where("cookie_id is NULL").count()
+  a5=feb_data.where("user_id is NULL").count()
+  print('app_device_id', a1)
+  print('app_advertising_id', a2)
+  print('local_cookie_id', a3)
+  print('cookie_id', a4)
+  print('user_id', a5)
+  print("++++++++")
+    
+  device_id_map = \
+  fake_data.\
+  filter(F.col('source')=='app').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'app_device_id').\
+  join(feb_data.\
+       filter(F.col('source')=='app'),
+       ['bu', 'app_device_id']).\
+  select('fake_device_id', 'app_device_id').\
+  toPandas().\
+  set_index('fake_device_id')['app_device_id'].\
+  to_dict()
+  
+  print('app_device_id:: ', len(set(device_id_map.keys())),
+        len(set(device_id_map.values())), len(set(device_id_map.keys()))-
+        len(set(device_id_map.values())))
+
+  ad_id_map = \
+  fake_data.\
+  filter(F.col('source')=='app').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'app_device_id').\
+  join(feb_data.\
+       filter(F.col('source')=='app'),
+       ['bu', 'app_device_id']).\
+  select('fake_advertising_id', 'app_advertising_id').\
+  toPandas().\
+  set_index('fake_advertising_id')['app_advertising_id'].\
+  to_dict()
+  
+  print('app_advertising_id:: ', len(set(ad_id_map.keys())),
+        len(set(ad_id_map.values())), len(set(ad_id_map.keys()))-
+        len(set(ad_id_map.values())))
+
+  lc_map = \
+  fake_data.\
+  filter(F.col('source')=='web').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'local_cookie_id').\
+  join(feb_data.\
+       filter(F.col('source')=='web'),
+       ['bu', 'local_cookie_id']).\
+  select('fake_local_cookie_id', 'local_cookie_id').\
+  toPandas().\
+  set_index('fake_local_cookie_id')['local_cookie_id'].\
+  to_dict()
+  
+  print('local_cookie_id:: ', len(set(lc_map.keys())),
+        len(set(lc_map.values())), len(set(lc_map.keys()))-
+        len(set(lc_map.values())))
+
+  cookie_map = \
+  fake_data.\
+  filter(F.col('source')=='web').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'local_cookie_id').\
+  join(feb_data.\
+       filter(F.col('source')=='web'),
+       ['bu', 'local_cookie_id']).\
+  select('fake_cookie_id', 'cookie_id').\
+  toPandas().\
+  set_index('fake_cookie_id')['cookie_id'].\
+  to_dict()
+  
+  print('cookie_id:: ', len(set(cookie_map.keys())),
+        len(set(cookie_map.values())), len(set(cookie_map.keys()))-
+        len(set(cookie_map.values())))
+
+  user_id_map = \
+  safe_union(fake_data.\
+  filter(F.col('source')=='web').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'local_cookie_id').\
+  join(feb_data.\
+       filter(F.col('source')=='web'),
+       ['bu', 'local_cookie_id']).\
+  select('fake_user_id', 'user_id'),
+             fake_data.\
+  filter(F.col('source')=='app').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'app_device_id').\
+  join(feb_data.\
+       filter(F.col('source')=='app'),
+       ['bu', 'app_device_id']).\
+  select('fake_user_id', 'user_id')).\
+  toPandas().\
+  set_index('fake_user_id')['user_id'].\
+  to_dict()
+  
+  print('user_id:: ', len(set(user_id_map.keys())),
+        len(set(user_id_map.values())), len(set(user_id_map.keys()))-
+        len(set(user_id_map.values())))
+  
+  print("========")
+  
+  # get all dict
+
+  # use udf to take dict
+  feb_data = feb_data.withColumn('app_device_id', working_fun(device_id_map)(F.col('app_device_id')))\
+                    .withColumn('app_advertising_id', working_fun(ad_id_map)(F.col('app_advertising_id')))\
+                    .withColumn('local_cookie_id', working_fun(lc_map)(F.col('local_cookie_id')))\
+                    .withColumn('cookie_id', working_fun(cookie_map)(F.col('cookie_id')))\
+                    .withColumn('user_id', working_fun(user_id_map)(F.col('user_id')))
+
+  
+  # after 
+  print("XDD, QQQQ, AFTER, null count")
+  b1=feb_data.where("app_device_id is NULL").count()
+  b2=feb_data.where("app_advertising_id is NULL").count()
+  b3=feb_data.where("local_cookie_id is NULL").count()
+  b4=feb_data.where("cookie_id is NULL").count()
+  b5=feb_data.where("user_id is NULL").count()
+  print('app_device_id', b1)
+  print('app_advertising_id', b2)
+  print('local_cookie_id', b3)
+  print('cookie_id', b4)
+  print('user_id', b5)
+  print("QWQ xxxxxxxx")
+  print('app_device_id', b1-a1)
+  print('app_advertising_id', b2-a2)
+  print('local_cookie_id', b3-a3)
+  print('cookie_id', b4-a4)
+  print('user_id', b5-a5)
+  
+  # disp to check
+#   display(feb_data)
+#   display(feb_data.groupBy('year','month','day').count())
+  
+  # write
+  feb_data.write.format("delta").option("mergeSchema", "true").mode("overwrite").\
+  partitionBy(['source','bu','year','month','day']).\
+  save("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d)
+  
+  # load to disp to check
+#   display(spark.read.format('delta').\
+#   load("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d).\
+#   groupBy('year','month','day').\
+#   count())
+  
+  print(d, "finish XDD")
+
+####
+```
+```python
+
+for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']:
+  print(d, "start XDD")
+  
+  feb_data = \
+  spark.read.format('delta').\
+  load('dbfs:/mnt/XXXdev/XXXdata-v5-prod/delta/kg_id_optimize_v2/').\
+  filter(F.col('month')=='02').filter(F.col('day')==d)
+  
+  print("XDD, before, null count")
+  a1=feb_data.where("app_device_id is NULL").count()
+  a2=feb_data.where("app_advertising_id is NULL").count()
+  a3=feb_data.where("local_cookie_id is NULL").count()
+  a4=feb_data.where("cookie_id is NULL").count()
+  a5=feb_data.where("user_id is NULL").count()
+  print('app_device_id', a1)
+  print('app_advertising_id', a2)
+  print('local_cookie_id', a3)
+  print('cookie_id', a4)
+  print('user_id', a5)
+  print("++++++++")
+    
+  device_id_map = \
+  fake_data.\
+  filter(F.col('source')=='app').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'app_device_id').\
+  join(feb_data.\
+       filter(F.col('source')=='app'),
+       ['bu', 'app_device_id']).\
+  select('fake_device_id', 'app_device_id').\
+  toPandas().\
+  set_index('fake_device_id')['app_device_id'].\
+  to_dict()
+  
+  print('app_device_id:: ', len(set(device_id_map.keys())),
+        len(set(device_id_map.values())), len(set(device_id_map.keys()))-
+        len(set(device_id_map.values())))
+
+  ad_id_map = \
+  fake_data.\
+  filter(F.col('source')=='app').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'app_device_id').\
+  join(feb_data.\
+       filter(F.col('source')=='app'),
+       ['bu', 'app_device_id']).\
+  select('fake_advertising_id', 'app_advertising_id').\
+  toPandas().\
+  set_index('fake_advertising_id')['app_advertising_id'].\
+  to_dict()
+  
+  print('app_advertising_id:: ', len(set(ad_id_map.keys())),
+        len(set(ad_id_map.values())), len(set(ad_id_map.keys()))-
+        len(set(ad_id_map.values())))
+
+  lc_map = \
+  fake_data.\
+  filter(F.col('source')=='web').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'local_cookie_id').\
+  join(feb_data.\
+       filter(F.col('source')=='web'),
+       ['bu', 'local_cookie_id']).\
+  select('fake_local_cookie_id', 'local_cookie_id').\
+  toPandas().\
+  set_index('fake_local_cookie_id')['local_cookie_id'].\
+  to_dict()
+  
+  print('local_cookie_id:: ', len(set(lc_map.keys())),
+        len(set(lc_map.values())), len(set(lc_map.keys()))-
+        len(set(lc_map.values())))
+
+  cookie_map = \
+  fake_data.\
+  filter(F.col('source')=='web').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'local_cookie_id').\
+  join(feb_data.\
+       filter(F.col('source')=='web'),
+       ['bu', 'local_cookie_id']).\
+  select('fake_cookie_id', 'cookie_id').\
+  toPandas().\
+  set_index('fake_cookie_id')['cookie_id'].\
+  to_dict()
+  
+  print('cookie_id:: ', len(set(cookie_map.keys())),
+        len(set(cookie_map.values())), len(set(cookie_map.keys()))-
+        len(set(cookie_map.values())))
+
+  user_id_map = \
+  safe_union(fake_data.\
+  filter(F.col('source')=='web').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'local_cookie_id').\
+  join(feb_data.\
+       filter(F.col('source')=='web'),
+       ['bu', 'local_cookie_id']).\
+  select('fake_user_id', 'user_id'),
+             fake_data.\
+  filter(F.col('source')=='app').\
+  drop('source').\
+  withColumnRenamed('identify_id', 'app_device_id').\
+  join(feb_data.\
+       filter(F.col('source')=='app'),
+       ['bu', 'app_device_id']).\
+  select('fake_user_id', 'user_id')).\
+  toPandas().\
+  set_index('fake_user_id')['user_id'].\
+  to_dict()
+  
+  print('user_id:: ', len(set(user_id_map.keys())),
+        len(set(user_id_map.values())), len(set(user_id_map.keys()))-
+        len(set(user_id_map.values())))
+  
+  print("========")
+  
+  # get all dict
+
+  # use udf to take dict
+  feb_data = feb_data.withColumn('app_device_id', working_fun(device_id_map)(F.col('app_device_id')))\
+                    .withColumn('app_advertising_id', working_fun(ad_id_map)(F.col('app_advertising_id')))\
+                    .withColumn('local_cookie_id', working_fun(lc_map)(F.col('local_cookie_id')))\
+                    .withColumn('cookie_id', working_fun(cookie_map)(F.col('cookie_id')))\
+                    .withColumn('user_id', working_fun(user_id_map)(F.col('user_id')))
+
+  
+  # after 
+  print("XDD, QQQQ, AFTER, null count")
+  b1=feb_data.where("app_device_id is NULL").count()
+  b2=feb_data.where("app_advertising_id is NULL").count()
+  b3=feb_data.where("local_cookie_id is NULL").count()
+  b4=feb_data.where("cookie_id is NULL").count()
+  b5=feb_data.where("user_id is NULL").count()
+  print('app_device_id', b1)
+  print('app_advertising_id', b2)
+  print('local_cookie_id', b3)
+  print('cookie_id', b4)
+  print('user_id', b5)
+  print("QWQ xxxxxxxx")
+  print('app_device_id', b1-a1)
+  print('app_advertising_id', b2-a2)
+  print('local_cookie_id', b3-a3)
+  print('cookie_id', b4-a4)
+  print('user_id', b5-a5)
+  
+  # disp to check
+#   display(feb_data)
+#   display(feb_data.groupBy('year','month','day').count())
+  
+  # write
+  feb_data.write.format("delta").option("mergeSchema", "true").mode("overwrite").\
+  partitionBy(['source','bu','year','month','day']).\
+  save("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d)
+  
+  # load to disp to check
+#   display(spark.read.format('delta').\
+#   load("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d).\
+#   groupBy('year','month','day').\
+#   count())
+  
+  print(d, "finish XDD")
+  
+```
+```python
+for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']:
+  tmp=spark.read.format('delta').load("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d)\
+  .write.format("delta").option("mergeSchema", "true").mode("append").\
+  partitionBy(['source','bu','year','month','day']).save("dbfs:/mnt/XXXdev/XXXdata-e2e/model_20210305/delta/kg_id_optimize_v2/")
+  
+display(spark.read.format('delta').\
+load("dbfs:/mnt/XXXdev/XXXdata-e2e/model_20210305/delta/kg_id_optimize_v2/").\
+groupBy('year','month','day').\
+count())
+
+# before saving there are: 01 02 12 13 14 15 16 17 18; in Feb
+```
