@@ -1044,6 +1044,14 @@ count())
 
 # before saving there are: 01 02 12 13 14 15 16 17 18; in Feb
 ```
+# `#!/bin/sh -e`
+https://stackoverflow.com/questions/2936287/what-does-the-line-bin-sh-e-do
+The -e flag's long name is errexit, causing the script to immediately exit on the first error. 
+# Run terminal sudo command at startup
+How to run a script during boot as root (7 answers)
+Proper fstab entry to mount a samba share on boot? (2 answers) 
+I need to run the following command at startup or upon login
+https://askubuntu.com/questions/956237/run-terminal-sudo-command-at-startup
 # apache druid on k8s 
 https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
 it uses helm 2, decrepted
