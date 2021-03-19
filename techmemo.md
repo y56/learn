@@ -1044,3 +1044,11 @@ count())
 
 # before saving there are: 01 02 12 13 14 15 16 17 18; in Feb
 ```
+
+# apply a certificate for testing
+https://letsencrypt.org/zh-tw/docs/staging-environment/
+# k8s;; cert manager;; cert issuer
+# use Helm to manager yaml files;; Helm Chart
+can use variable etc
+# acr
+azure container registry
