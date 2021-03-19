@@ -1044,3 +1044,33 @@ count())
 
 # before saving there are: 01 02 12 13 14 15 16 17 18; in Feb
 ```
+# apache druid on k8s 
+https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
+it uses helm 2, decrepted
+## kill all pods in kubernetes
+https://stackoverflow.com/questions/33509194/command-to-delete-all-pods-in-all-kubernetes-namespaces
+kubectl delete pods --all --all-namespaces
+## get wsl 2 // ref: 
+check internet, if no, reboot
+sudo apt update && sudo apt upgrade
+## get minikube 
+https://minikube.sigs.k8s.io/docs/start/
+kubectl get node // list node
+## get druid in k8s
+https://github.com/druid-io/druid-operator/blob/master/docs/getting_started.md
+git clone
+cd into dir
+
+
+kubectl create namespace druid-operator
+helm -n druid-operator install cluster-druid-operator ./chart
+
+## example 
+https://www.slideshare.net/implydata/splunk-druid-on-kubernetes-with-druidoperator
+
+## get into the druid service???S
+Check the Router URL
+
+On the Kubernetes cluster, port forward the Druid router service using this command and open http://127.0.0.1:8080 in the browser
+
+kubectl port-forward svc/druid-router 8080:8888
