@@ -1052,7 +1052,27 @@ How to run a script during boot as root (7 answers)
 Proper fstab entry to mount a samba share on boot? (2 answers) 
 I need to run the following command at startup or upon login
 https://askubuntu.com/questions/956237/run-terminal-sudo-command-at-startup
-# apache druid on k8s 
+# where to add path
+https://stackoverflow.com/questions/50554817/golang-installation
+Add this line to your file /etc/profile, or better $HOME/.profile:
+
+export PATH=$PATH:/usr/local/go/bin
+# apt install golang
+https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
+First remove your current golang installation with this command, you don't need to manually remove files installed by apt-get,
+
+sudo apt-get purge golang
+
+For an easy install of golang 1.4 you can use this PPA
+
+sudo add-apt-repository ppa:evarlast/golang1.4
+sudo apt-get update
+
+Now you can use
+
+sudo apt-get install golang
+
+# apache druid on k8s on azure (aks=azure k8s service)
 https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
 it uses helm 2, decrepted
 ## kill all pods in kubernetes
@@ -1082,3 +1102,43 @@ Check the Router URL
 On the Kubernetes cluster, port forward the Druid router service using this command and open http://127.0.0.1:8080 in the browser
 
 kubectl port-forward svc/druid-router 8080:8888
+
+
+## note for cloud shell
+azure portal ==> cloud shell // databricks notebook is not a terminal, some commands will fail, but we can sudo // cloud shell can't sudo QQ
+az login // use azure cli (az) to login your azure accout
+az account set --subscription 35015be4-a4d5-4a9d-a705-d88eabccfa2f  // id
+az aks get-credentials --resource-group kg-one-id-deploy-dev --name kg-aks-druid-dev
+kubectl get nodes // list nodes // cloud shell has installed kubectl for us
+install go
+method 1: https://golang.org/doc/install + https://stackoverflow.com/questions/50554817/golang-installation // if you can't a `.profile`
+method 2: https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
+git clone https://github.com/druid-io/druid-operator.git
+kubectl create namespace druid-operator
+cd druid-operator
+helm -n druid-operator install cluster-druid-operator ./chart
+kubectl apply -f examples/tiny-cluster-zk.yaml
+make run
+netstat -an --tcp --program  //  check port w/o sudo
+```
+2021-03-19T14:31:10.714Z        ERROR   controller-runtime.metrics      metrics server failed to listen. You may want to disable the metrics server or use another port if it is due to conflicts     {"error": "error listening on :8080: listen tcp :8080: bind: address already in use"}
+github.com/go-logr/zapr.(*zapLogger).Error
+        /home/eugene/go/pkg/mod/github.com/go-logr/zapr@v0.1.0/zapr.go:128
+sigs.k8s.io/controller-runtime/pkg/metrics.NewListener
+        /home/eugene/go/pkg/mod/sigs.k8s.io/controller-runtime@v0.6.0/pkg/metrics/listener.go:48
+sigs.k8s.io/controller-runtime/pkg/manager.New
+        /home/eugene/go/pkg/mod/sigs.k8s.io/controller-runtime@v0.6.0/pkg/manager/manager.go:302
+main.main
+        /home/eugene/druid-operator/main.go:41
+runtime.main
+        /usr/local/go/src/runtime/proc.go:203
+2021-03-19T14:31:10.714Z        ERROR   setup   unable to start manager {"error": "error listening on :8080: listen tcp :8080: bind: address already in use"}
+github.com/go-logr/zapr.(*zapLogger).Error
+        /home/eugene/go/pkg/mod/github.com/go-logr/zapr@v0.1.0/zapr.go:128
+main.main
+        /home/eugene/druid-operator/main.go:50
+runtime.main
+        /usr/local/go/src/runtime/proc.go:203
+exit status 1
+make: *** [Makefile:26: run] Error 1
+```
