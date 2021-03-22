@@ -118,3 +118,26 @@ gsettings set org.gnome.settings-daemon.plugins.power use-time-for-policy false
 # ubuntu laptop speakers sound but headphones fine
 https://askubuntu.com/questions/1006176/laptop-speakers-not-working-but-headphones-fine
 https://www.maketecheasier.com/fix-no-sound-issue-ubuntu/
+
+# make ubuntu look like windows 10
+## Make Linux Look Like Windows 10 With These Tips and Tweaks
+tweak etc
+https://www.makeuseof.com/tag/make-linux-look-like-windows/
+## theme source
+https://github.com/B00merang-Project/Windows-10
+https://github.com/B00merang-Project/Windows-10-Dark
+## icon source
+https://github.com/B00merang-Artwork/Windows-10
+https://github.com/B00merang-Artwork/Windows-10-Dark
+## dash-to-panel to have a bar like win 10
+https://extensions.gnome.org/extension/1160/dash-to-panel/
+## enable shell theme; this makes bar black
+https://ubuntuhandbook.org/index.php/2017/05/enable-shell-theme-in-gnome-tweak-tool-in-ubuntu/
+the bar will be transparent, and use wallpaper to fake the bar color
+with my special wallpaper
+https://imgur.com/a/Bt6l9qH
+## start button icon source
+icon source
+https://iconape.com/windows-10-icon-logo-logo-icon-svg-png.html
+how to replace
+https://ubuntuhandbook.org/index.php/2019/01/change-show-applications-grid-icon-ubuntu-18-04/

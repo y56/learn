@@ -1044,6 +1044,77 @@ count())
 
 # before saving there are: 01 02 12 13 14 15 16 17 18; in Feb
 ```
+# Faiss应用 - 召回框架  https://zhuanlan.zhihu.com/p/90768014
+PaulC
+PaulC
+算法工程师
+
+Faiss是为稠密向量提供高效相似度搜索的框架(Facebook AI Research），选择索引方式是faiss的核心内容，faiss 三个最常用的索引是：IndexFlatL2, IndexIVFFlat,IndexIVFPQ。
+
+    IndexFlatL2/ IndexFlatIP为最基础的精确查找。应用样例：
+
+user_vector_arr  # shape(526,066, 128)
+gds_vector_arr   # shape(5,172, 128)
+dim = 128# 向量维度
+k = 10  # 定义召回向量个数
+index = faiss.IndexFlatL2(dim)  # L2距离，即欧式距离（越小越好）
+\# index=faiss.IndexFlatIP(dim) # 点乘，归一化的向量点乘即cosine相似度（越大越好）
+index.add(gds_vector_arr) # 添加训练时的样本
+D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用户ID矩阵， D表示距离矩阵
+
+2. IndexIVFFlat称为倒排文件索引，是使用K-means建立聚类中心，通过查询最近的聚类中心，比较聚类中的所有向量得到相似的向量，是一种加速搜索方法的索引。应用样例：
+
+user_vector_arr  # shape(526,066, 128)
+gds_vector_arr   # shape(5,172, 128)
+dim = 128 # 向量维度
+k = 10  # 定义召回向量个数
+nlist = 100 #聚类中心的个数
+quantizer = faiss.IndexFlatL2(dim)  # 定义量化器
+index = faiss.IndexIVFFlat(quantizer, dim, nlist, faiss.METRIC_L2) #也可采用向量內积               
+index.nprobe = 10 #查找聚类中心的个数，默认为1个，若nprobe=nlist则等同于精确查找
+index.train(gds_vector_arr) #需要训练
+index.add(gds_vector_arr) # 添加训练时的样本
+D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用户ID矩阵， D表示距离矩阵
+
+3. IndexIVFPQ是一种减少内存的索引方式，IndexFlatL2和IndexIVFFlat都会全量存储所有的向量在内存中，面对大数据量，faiss提供一种基于Product Quantizer(乘积量化)的压缩算法编码向量到指定字节数来减少内存占用。但这种情况下，存储的向量是压缩过的，所以查询的距离也是近似的。应用样例：
+
+user_vector_arr  # shape(526,066, 128)
+gds_vector_arr   # shape(5,172, 128)
+dim = 128 # 向量维度
+k = 10  # 定义召回向量个数
+nlist = 100  #聚类中心的个数
+m = 8        # 压缩成8bits
+quantizer = faiss.IndexFlatL2(dim) # 定义量化器  
+index = faiss.IndexIVFPQ(quantizer, dim, nlist, m, 8)  # 8 specifies that each sub-vector is encoded as 8 bits
+index.nprobe = 10 #查找聚类中心的个数，默认为1个，若nprobe=nlist则等同于精确查找
+index.train(gds_vector_arr) #需要训练
+index.add(gds_vector_arr) # 添加训练时的样本
+D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用户ID矩阵， D表示距离矩阵
+
+4. index_factory是faiss实现的一个索引工厂模式,可以通过字符串来灵活的创建索引；PCA算法可将向量降到指定的维度。应用样例：
+
+user_vector_arr  # shape(526,066, 128)
+gds_vector_arr   # shape(5,172, 128)
+dim = 128 # 向量维度
+k = 10  # 定义召回向量个数
+index = faiss.index_factory(dim, “PCAR32,IVF100,SQ8”)# PCA降到32位；搜索空间100；SQ8,scalar标量化，每个向量编码为8bit(1字节)
+index.train(gds_vector_arr) #需要训练
+index.add(gds_vector_arr) # 添加训练时的样本
+D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用户ID矩阵， D表示距离矩阵
+
+\# 索引简写可查询：https://github.com/facebookresearch/faiss/wiki/Faiss-indexes
+
+=>一般选用欧式距离，速度较快(KNN算法-KDTree? 处理高维向量 - BallTree?)；也可得到距离矩阵后转化为cosine(向量须为L2归一化后), 方便有用户商品对截断需求的阈值确定。
+
+cosine = (2 - L2_Distance)/2
+
+    官方文档：https://github.com/facebookresearch/faiss/wikihttps://blog.csdn.net/kanbuqinghuanyizhang/article/details/80774609https://zhuanlan.zhihu.com/p/40236865
+
+
+编译安装：
+
+    依赖库 – OpenBLAS 依赖库 – Lapack (yum install)安装swig & 环境配置 https://www.lizenghai.com/archives/29946.html安装faiss 手把手教你安装Faiss（Linux） (./configure --without-cuda)make py 然后 cd faiss/python 执行：python setup.py install
+
 # apply a certificate for testing
 https://letsencrypt.org/zh-tw/docs/staging-environment/
 # k8s;; cert manager;; cert issuer
@@ -1079,12 +1150,24 @@ Now you can use
 
 sudo apt-get install golang
 
+# apt install golang
+```bash
+wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
+echo "export PATH=\$PATH:/usr/local/go/bin" >>  /etc/profile
+source  /etc/profile
+go version
+```
+
 # apache druid on k8s on azure (aks=azure k8s service)
+
+## this uses helm 2, decrepted
 https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
-it uses helm 2, decrepted
+
 ## kill all pods in kubernetes
 https://stackoverflow.com/questions/33509194/command-to-delete-all-pods-in-all-kubernetes-namespaces
 kubectl delete pods --all --all-namespaces
+
 ## get wsl 2 // ref: 
 check internet, if no, reboot
 sudo apt update && sudo apt upgrade
@@ -1100,32 +1183,43 @@ cd into dir
 kubectl create namespace druid-operator
 helm -n druid-operator install cluster-druid-operator ./chart
 
-## example 
+## example of log output form splunk
 https://www.slideshare.net/implydata/splunk-druid-on-kubernetes-with-druidoperator
 
-## get into the druid service???S
-Check the Router URL
+## get into the druid service gui???S
+Check the Router URL ???
 
 On the Kubernetes cluster, port forward the Druid router service using this command and open http://127.0.0.1:8080 in the browser
 
 kubectl port-forward svc/druid-router 8080:8888
 
-
 ## note for cloud shell
 azure portal ==> cloud shell // databricks notebook is not a terminal, some commands will fail, but we can sudo // cloud shell can't sudo QQ
 az login // use azure cli (az) to login your azure accout
-az account set --subscription 35015be4-a4d5-4a9d-a705-d88eabccfa2f  // id
-az aks get-credentials --resource-group kg-one-id-deploy-dev --name kg-aks-druid-dev
-kubectl get nodes // list nodes // cloud shell has installed kubectl for us
-install go
-method 1: https://golang.org/doc/install + https://stackoverflow.com/questions/50554817/golang-installation // if you can't a `.profile`
-method 2: https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
-git clone https://github.com/druid-io/druid-operator.git
+az account set --subscription 35015be4-a4d5-4a9d-a705-d88eabccfa2f  // login deeper
+az aks get-credentials --resource-group kg-one-id-deploy-dev --name kg-aks-druid-dev // login deeper
 kubectl create namespace druid-operator
+kubectl get nodes // list nodes // cloud shell has installed kubectl for us
+    install go // no need for cloud shell
+    method 1: https://golang.org/doc/install + https://stackoverflow.com/questions/50554817/golang-installation // if you can't a `.profile`
+    method 2: https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
+git clone https://github.com/druid-io/druid-operator.git
+
 cd druid-operator
 helm -n druid-operator install cluster-druid-operator ./chart
 kubectl apply -f examples/tiny-cluster-zk.yaml
 make run
+## get druid-operator pod name
+druid-operator$ kubectl get po | grep druid-operator
+## check druid-operator pod logs
+druid-operator$ kubectl logs <druid-operator pod name>
+## check the druid spec
+druid-operator$ kubectl describe druids tiny-cluster
+##  check if druid cluster is deployed
+druid-operator$ kubectl get svc | grep tiny
+druid-operator$ kubectl get cm | grep tiny
+druid-operator$ kubectl get sts | grep tiny
+## 8080 occupied 
 netstat -an --tcp --program  //  check port w/o sudo
 ```
 2021-03-19T14:31:10.714Z        ERROR   controller-runtime.metrics      metrics server failed to listen. You may want to disable the metrics server or use another port if it is due to conflicts     {"error": "error listening on :8080: listen tcp :8080: bind: address already in use"}
@@ -1149,3 +1243,62 @@ runtime.main
 exit status 1
 make: *** [Makefile:26: run] Error 1
 ```
+
+
+# azure cloud shell error: can't mount
+error as
+```
+Warning: Failed to mount the Azure file share. Your cloud drive won't be available.
+Your Cloud Shell session will be ephemeral so no files or system changes will persist beyond your current session.
+e
+```
+https://techcommunity.microsoft.com/t5/azure/azure-cloud-shell-error/m-p/71089#M489
+By chance did you delete the storage resource that was created for you when first launching Cloud Shell?
+
+1. Run "clouddrive unmount"
+
+2. Restart Cloud Shell via restart icon or exit and relaunch
+
+3. You should be prompted with the storage creation dialog again
+
+# not sure whether druid operator provide gui??????
+
+set a non-splunk druid @u5 to observe/play, get the gui endpoint
+set a splunk druid-operator @u5 to observe/play, get the gui endpoint 
+// make sure I am all correct with druid-operator @u5
+
+set a splunk druid-operator @aks to observe/play, get the gui endpoint
+
+
+# noVNC
+local to remote with gui
+
+# github repo !!!
+https://github.com/Zenatix-Tech/Druid-Kubernetes
+```
+git clone https://github.com/Zenatix-Tech/Druid-Kubernetes
+cd Druid-Kubernetes
+helm repo add bitnami https://charts.bitnami.com/bitnami
+kubectl create namespace druid
+helm install dz -f k8s/zookeeper-values.yaml --namespace druid bitnami/zookeeper
+helm upgrade dz -f k8s/zookeeper-values.yaml --namespace druid bitnami/zookeeper
+
+helm uninstall dz -n druid
+
+# !!!
+https://docs.imply.io/2021.02/k8s-azure/
+https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
+
+# since I can't have a GUI, use api
+https://druid.apache.org/docs/latest/operations/api-reference.html
+
+# kill a process
+kill pid_number
+
+# list pid and port usage
+sudo ss -lp "sport = :443"
+sudo ss -lp "sport = :8080"
+sudo ss -lp "sport = :domain"
+sudo ss -lp "sport = :53"
+sudo ss -lp "sport = :22"
+
