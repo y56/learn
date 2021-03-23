@@ -1,4 +1,5 @@
-
+tech note
+====
 # get a pink slip
 = get fired
 
@@ -146,7 +147,9 @@ This method is also used to remove and get the head(First) element from the queu
 Java queue implementations
 
 There are some classes that provides the implementation to queue interface.
+```
 PriorityQueue class
+
 
 PriorityQueue extends the AbstarctQueue that implements the Queue interface. The PriorityQueue works based on priority and process the objects. It is also works based on the First-In-First-Out algorithm, but sometimes it processes the element according to the priority. Let’s take an example of java queue program
 import java.util.PriorityQueue;
@@ -296,13 +299,15 @@ public class ExampleOfQueue
     System.out.println("Size of queue: " + size); 
   } 
 }
-
+```
+```
     Output: Elements from the queue: [AA, BB, CC, DD, EE]
     Getting the by peek() method: AA
     Getting the by element() method: AA
     Removing element by remove() method: AA
     Removing element by poll() method: BB
     Size of queue: 3
+```
 # 教學-android-studio-開發環境安裝教學-linux版
 
 https://xenby.com/b/227-%E6%95%99%E5%AD%B8-android-studio-%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8-linux%E7%89%88
@@ -548,7 +553,7 @@ Integrity: Integrity is used to make sure that nobody in between site A and B (f
 Confidentiality: Confidentiality is used to make sure that nobody in between site A and B is able to read what data or information is sent between the to sites. To achieve this encryption algorithms are used. There are two kinds of encryption algorithms, symmetric and also asymmetric ones. Symmetric algorithms allow encryption and decryption with the same key. With asymmetric algorithms you have to kinds of keys: a public one and also a private one. The public key is often available to the public while the private key is just available for "yourself" (if the mentioned keypair is yours). Everything that you encrypt with the public key can only be decrypted with the private one and vice versa. When it comes to confidentiality you often just use symmetric algorithms like DES, 3DES (both outdated) or AES. Asymmetric encryption is used to transfer a symmetric key and also to make sure that the other site is really who it seems to be (when it comes to SSL/TLS).
 
 Authenticity: And this last sentence of the confidentiality part leads directly to the authenticity part. Authenticity is used to make sure that you really communicate with the partner you want to. To achieve these different kinds of techniques can be used, e.g. Pre-shared keys that are configured on both sites, Elliptic Curves or RSA as public/private key algorithms. 
-# vpn nyu
+# vpn nyu vpn 
 sudo openconnect vpn.nyu.edu
 第一個密碼用2go加w
 第二個用push
@@ -1044,6 +1049,78 @@ count())
 
 # before saving there are: 01 02 12 13 14 15 16 17 18; in Feb
 ```
+# Faiss应用 - 召回框架  https://zhuanlan.zhihu.com/p/90768014
+PaulC
+PaulC
+算法工程师
+
+Faiss是为稠密向量提供高效相似度搜索的框架(Facebook AI Research），选择索引方式是faiss的核心内容，faiss 三个最常用的索引是：IndexFlatL2, IndexIVFFlat,IndexIVFPQ。
+
+    IndexFlatL2/ IndexFlatIP为最基础的精确查找。应用样例：
+
+user_vector_arr  # shape(526,066, 128)
+gds_vector_arr   # shape(5,172, 128)
+dim = 128# 向量维度
+k = 10  # 定义召回向量个数
+index = faiss.IndexFlatL2(dim)  # L2距离，即欧式距离（越小越好）
+\# index=faiss.IndexFlatIP(dim) # 点乘，归一化的向量点乘即cosine相似度（越大越好）
+index.add(gds_vector_arr) # 添加训练时的样本
+D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用户ID矩阵， D表示距离矩阵
+
+2. IndexIVFFlat称为倒排文件索引，是使用K-means建立聚类中心，通过查询最近的聚类中心，比较聚类中的所有向量得到相似的向量，是一种加速搜索方法的索引。应用样例：
+
+user_vector_arr  # shape(526,066, 128)
+gds_vector_arr   # shape(5,172, 128)
+dim = 128 # 向量维度
+k = 10  # 定义召回向量个数
+nlist = 100 #聚类中心的个数
+quantizer = faiss.IndexFlatL2(dim)  # 定义量化器
+index = faiss.IndexIVFFlat(quantizer, dim, nlist, faiss.METRIC_L2) #也可采用向量內积               
+index.nprobe = 10 #查找聚类中心的个数，默认为1个，若nprobe=nlist则等同于精确查找
+index.train(gds_vector_arr) #需要训练
+index.add(gds_vector_arr) # 添加训练时的样本
+D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用户ID矩阵， D表示距离矩阵
+
+3. IndexIVFPQ是一种减少内存的索引方式，IndexFlatL2和IndexIVFFlat都会全量存储所有的向量在内存中，面对大数据量，faiss提供一种基于Product Quantizer(乘积量化)的压缩算法编码向量到指定字节数来减少内存占用。但这种情况下，存储的向量是压缩过的，所以查询的距离也是近似的。应用样例：
+
+user_vector_arr  # shape(526,066, 128)
+gds_vector_arr   # shape(5,172, 128)
+dim = 128 # 向量维度
+k = 10  # 定义召回向量个数
+nlist = 100  #聚类中心的个数
+m = 8        # 压缩成8bits
+quantizer = faiss.IndexFlatL2(dim) # 定义量化器  
+index = faiss.IndexIVFPQ(quantizer, dim, nlist, m, 8)  # 8 specifies that each sub-vector is encoded as 8 bits
+index.nprobe = 10 #查找聚类中心的个数，默认为1个，若nprobe=nlist则等同于精确查找
+index.train(gds_vector_arr) #需要训练
+index.add(gds_vector_arr) # 添加训练时的样本
+D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用户ID矩阵， D表示距离矩阵
+
+4. index_factory是faiss实现的一个索引工厂模式,可以通过字符串来灵活的创建索引；PCA算法可将向量降到指定的维度。应用样例：
+
+user_vector_arr  # shape(526,066, 128)
+gds_vector_arr   # shape(5,172, 128)
+dim = 128 # 向量维度
+k = 10  # 定义召回向量个数
+index = faiss.index_factory(dim, “PCAR32,IVF100,SQ8”)# PCA降到32位；搜索空间100；SQ8,scalar标量化，每个向量编码为8bit(1字节)
+index.train(gds_vector_arr) #需要训练
+index.add(gds_vector_arr) # 添加训练时的样本
+D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用户ID矩阵， D表示距离矩阵
+
+\# 索引简写可查询：https://github.com/facebookresearch/faiss/wiki/Faiss-indexes
+
+=>一般选用欧式距离，速度较快(KNN算法-KDTree? 处理高维向量 - BallTree?)；也可得到距离矩阵后转化为cosine(向量须为L2归一化后), 方便有用户商品对截断需求的阈值确定。
+
+cosine = (2 - L2_Distance)/2
+
+    官方文档：https://github.com/facebookresearch/faiss/wikihttps://blog.csdn.net/kanbuqinghuanyizhang/article/details/80774609https://zhuanlan.zhihu.com/p/40236865
+
+
+编译安装：
+
+    依赖库 – OpenBLAS 依赖库 – Lapack (yum install)安装swig & 环境配置 https://www.lizenghai.com/archives/29946.html安装faiss 手把手教你安装Faiss（Linux） (./configure --without-cuda)make py 然后 cd faiss/python 执行：python setup.py install
+# How did they ever come up with that kooky ‘Kubernetes’ name? Here’s the inside story
+https://www.geekwire.com/2016/ever-come-kooky-kubernetes-name-heptio/
 # apply a certificate for testing
 https://letsencrypt.org/zh-tw/docs/staging-environment/
 # k8s;; cert manager;; cert issuer
@@ -1059,11 +1136,7 @@ How to run a script during boot as root (7 answers)
 Proper fstab entry to mount a samba share on boot? (2 answers) 
 I need to run the following command at startup or upon login
 https://askubuntu.com/questions/956237/run-terminal-sudo-command-at-startup
-# where to add path
-https://stackoverflow.com/questions/50554817/golang-installation
-Add this line to your file /etc/profile, or better $HOME/.profile:
 
-export PATH=$PATH:/usr/local/go/bin
 # apt install golang
 https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
 First remove your current golang installation with this command, you don't need to manually remove files installed by apt-get,
@@ -1079,20 +1152,38 @@ Now you can use
 
 sudo apt-get install golang
 
-# apache druid on k8s on azure (aks=azure k8s service)
-https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
-it uses helm 2, decrepted
-## kill all pods in kubernetes
-https://stackoverflow.com/questions/33509194/command-to-delete-all-pods-in-all-kubernetes-namespaces
-kubectl delete pods --all --all-namespaces
-## get wsl 2 // ref: 
+# wget install golang
+```bash
+wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
+echo "export PATH=\$PATH:/usr/local/go/bin" >>  /etc/profile
+source  /etc/profile
+go version
+```
+## where to add path
+https://stackoverflow.com/questions/50554817/golang-installation
+Add this line to your file /etc/profile, or better $HOME/.profile:
+export PATH=$PATH:/usr/local/go/bin
+
+# get wsl 2 // ref: 
 check internet, if no, reboot
 sudo apt update && sudo apt upgrade
-## get minikube 
+# get minikube 
 https://minikube.sigs.k8s.io/docs/start/
 kubectl get node // list node
-## get druid in k8s
+
+# apache druid on k8s on azure (aks=azure k8s service)
+
+## this one uses helm 2, decrepted
+https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
+
+
+
+
+
+# try splunk druid-operator in aks
 https://github.com/druid-io/druid-operator/blob/master/docs/getting_started.md
+
 git clone
 cd into dir
 
@@ -1100,32 +1191,47 @@ cd into dir
 kubectl create namespace druid-operator
 helm -n druid-operator install cluster-druid-operator ./chart
 
-## example 
+## example of log output form splunk
 https://www.slideshare.net/implydata/splunk-druid-on-kubernetes-with-druidoperator
 
-## get into the druid service???S
-Check the Router URL
+## get into the druid service gui???
+Check the Router URL ???
 
 On the Kubernetes cluster, port forward the Druid router service using this command and open http://127.0.0.1:8080 in the browser
 
 kubectl port-forward svc/druid-router 8080:8888
 
-
 ## note for cloud shell
+```
 azure portal ==> cloud shell // databricks notebook is not a terminal, some commands will fail, but we can sudo // cloud shell can't sudo QQ
 az login // use azure cli (az) to login your azure accout
-az account set --subscription 35015be4-a4d5-4a9d-a705-d88eabccfa2f  // id
-az aks get-credentials --resource-group kg-one-id-deploy-dev --name kg-aks-druid-dev
-kubectl get nodes // list nodes // cloud shell has installed kubectl for us
-install go
-method 1: https://golang.org/doc/install + https://stackoverflow.com/questions/50554817/golang-installation // if you can't a `.profile`
-method 2: https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
-git clone https://github.com/druid-io/druid-operator.git
+az account set --subscription xxxxxxxxxxxx  // login deeper
+az aks get-credentials --resource-group kg-one-id-deploy-dev --name kg-aks-druid-dev // login deeper
 kubectl create namespace druid-operator
+kubectl get nodes // list nodes // cloud shell has installed kubectl for us
+    // install go // no need for cloud shell
+    // method 1: https://golang.org/doc/install + https://stackoverflow.com/questions/50554817/golang-installation // if you can't a `.profile`
+    // method 2: https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
+git clone https://github.com/druid-io/druid-operator.git
+
 cd druid-operator
 helm -n druid-operator install cluster-druid-operator ./chart
 kubectl apply -f examples/tiny-cluster-zk.yaml
 make run
+```
+## get druid-operator pod name
+druid-operator$ kubectl get po | grep druid-operator
+## check druid-operator pod logs
+```
+druid-operator$ kubectl logs <druid-operator pod name>
+```
+## check the druid spec
+druid-operator$ kubectl describe druids tiny-cluster
+##  check if druid cluster is deployed
+druid-operator$ kubectl get svc | grep tiny
+druid-operator$ kubectl get cm | grep tiny
+druid-operator$ kubectl get sts | grep tiny
+## 8080 occupied 
 netstat -an --tcp --program  //  check port w/o sudo
 ```
 2021-03-19T14:31:10.714Z        ERROR   controller-runtime.metrics      metrics server failed to listen. You may want to disable the metrics server or use another port if it is due to conflicts     {"error": "error listening on :8080: listen tcp :8080: bind: address already in use"}
@@ -1149,3 +1255,230 @@ runtime.main
 exit status 1
 make: *** [Makefile:26: run] Error 1
 ```
+
+
+# azure cloud shell error: can't mount
+error as
+```
+Warning: Failed to mount the Azure file share. Your cloud drive won't be available.
+Your Cloud Shell session will be ephemeral so no files or system changes will persist beyond your current session.
+e
+```
+https://techcommunity.microsoft.com/t5/azure/azure-cloud-shell-error/m-p/71089#M489
+By chance did you delete the storage resource that was created for you when first launching Cloud Shell?
+
+1. Run "clouddrive unmount"
+
+2. Restart Cloud Shell via restart icon or exit and relaunch
+
+3. You should be prompted with the storage creation dialog again
+
+# not sure whether druid operator provide gui??????
+
+set a non-splunk druid @u5 to observe/play, get the gui endpoint
+set a splunk druid-operator @u5 to observe/play, get the gui endpoint 
+// make sure I am all correct with druid-operator @u5
+
+set a splunk druid-operator @aks to observe/play, get the gui endpoint
+
+# noVNC
+local to remote with gui
+
+# a hopeful github repo !!! Zenatix-Tech
+https://github.com/Zenatix-Tech/Druid-Kubernetes
+```bash=
+git clone https://github.com/Zenatix-Tech/Druid-Kubernetes
+cd Druid-Kubernetes
+helm repo add bitnami https://charts.bitnami.com/bitnami
+kubectl create namespace druid
+helm install dz -f k8s/zookeeper-values.yaml --namespace druid bitnami/zookeeper
+```
+> ```
+> NAME: dz
+> LAST DEPLOYED: Mon Mar 22 15:12:40 2021
+> NAMESPACE: druid
+> STATUS: deployed
+> REVISION: 1
+> TEST SUITE: None
+> NOTES:
+> ** Please be patient while the chart is being deployed **
+> 
+> ZooKeeper can be accessed via port 2181 on the following DNS name from within your cluster:
+> 
+> dz-zookeeper.druid.svc.cluster.local
+> 
+> To connect to your ZooKeeper server run the following commands:
+> 
+> export POD_NAME=$(kubectl get pods --namespace druid -l "app.kubernetes.io/name=zookeeper,app.kubernetes.io/instance=dz,app.kubernetes.io/component=zookeeper" -o jsonpath="{.items[0].metadata.name}")
+> kubectl exec -it $POD_NAME -- zkCli.sh
+> 
+> To connect to your ZooKeeper server from outside the cluster execute the following commands:
+> 
+> kubectl port-forward --namespace druid svc/dz-zookeeper 2181:2181 &
+> zkCli.sh 127.0.0.1:2181
+> ```
+```bash=
+helm upgrade dz -f k8s/zookeeper-values.yaml --namespace druid bitnami/zookeeper
+```
+> ```
+> Release "dz" has been upgraded. Happy Helming!
+> NAME: dz
+> LAST DEPLOYED: Mon Mar 22 15:13:30 2021
+> NAMESPACE: druid
+> STATUS: deployed
+> REVISION: 2
+> TEST SUITE: None
+> NOTES:
+> ** Please be patient while the chart is being deployed **
+> 
+> ZooKeeper can be accessed via port 2181 on the following DNS name from within your cluster:
+> 
+>     dz-zookeeper.druid.svc.cluster.local
+> 
+> To connect to your ZooKeeper server run the following commands:
+> 
+>     export POD_NAME=$(kubectl get pods --namespace druid -l "app.kubernetes.io/name=zookeeper,app.kubernetes.io/instance=dz,app.kubernetes.io/component=zookeeper" -o jsonpath="{.items[0].metadata.name}")
+>     kubectl exec -it $POD_NAME -- zkCli.sh
+> 
+> To connect to your ZooKeeper server from outside the cluster execute the following commands:
+> 
+>     kubectl port-forward --namespace druid svc/dz-zookeeper 2181:2181 &
+>     zkCli.sh 127.0.0.1:2181
+> ```
+```bash=
+helm install dpg -f k8s/postgresql-values.yaml --namespace druid bitnami/postgresql
+```
+> ```
+> coalesce.go:196: warning: cannot overwrite table with non table for tls (map[])
+> coalesce.go:196: warning: cannot overwrite table with non table for tls (map[])
+> NAME: dpg
+> LAST DEPLOYED: Mon Mar 22 15:41:07 2021
+> NAMESPACE: druid
+> STATUS: deployed
+> REVISION: 1
+> TEST SUITE: None
+> NOTES:
+> ** Please be patient while the chart is being deployed **
+> 
+> PostgreSQL can be accessed via port 5432 on the following DNS name from within your cluster:
+> 
+>     dpg-postgresql.druid.svc.cluster.local - Read/Write connection
+> 
+> To get the password for "postgres" run:
+> 
+>     export POSTGRES_PASSWORD=$(kubectl get secret --namespace druid dpg-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
+> 
+> To connect to your database run the following command:
+> 
+>     kubectl run dpg-postgresql-client --rm --tty -i --restart='Never' --namespace druid --image docker.io/bitnami/postgresql:11.5.0-debian-9-r84 --env="PGPASSWORD=$POSTGRES_PASSWORD" --command -- psql --host dpg-postgresql -U postgres -d druid -p 5432
+> 
+> 
+> 
+> To connect to your database from outside the cluster execute the following commands:
+> 
+>     kubectl port-forward --namespace druid svc/dpg-postgresql 5432:5432 &
+>     PGPASSWORD="$POSTGRES_PASSWORD" psql --host 127.0.0.1 -U postgres -d druid -p 5432
+> ```
+```bash=
+helm upgrade dpg -f k8s/postgresql-values.yaml --namespace druid bitnami/postgresql
+```
+> ```
+> coalesce.go:196: warning: cannot overwrite table with non table for tls (map[])
+> coalesce.go:196: warning: cannot overwrite table with non table for tls (map[])
+> Release "dpg" has been upgraded. Happy Helming!
+> NAME: dpg
+> LAST DEPLOYED: Mon Mar 22 15:41:59 2021
+> NAMESPACE: druid
+> STATUS: deployed
+> REVISION: 2
+> TEST SUITE: None
+> NOTES:
+> ** Please be patient while the chart is being deployed **
+> 
+> PostgreSQL can be accessed via port 5432 on the following DNS name from within your cluster:
+> 
+>     dpg-postgresql.druid.svc.cluster.local - Read/Write connection
+> 
+> To get the password for "postgres" run:
+> 
+>     export POSTGRES_PASSWORD=$(kubectl get secret --namespace druid dpg-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
+> 
+> To connect to your database run the following command:
+> 
+>     kubectl run dpg-postgresql-client --rm --tty -i --restart='Never' --namespace druid --image docker.io/bitnami/postgresql:11.5.0-debian-9-r84 --env="PGPASSWORD=$POSTGRES_PASSWORD" --command -- psql --host dpg-postgresql -U postgres -d druid -p 5432
+> 
+> 
+> 
+> To connect to your database from outside the cluster execute the following commands:
+> 
+>     kubectl port-forward --namespace druid svc/dpg-postgresql 5432:5432 &
+>     PGPASSWORD="$POSTGRES_PASSWORD" psql --host 127.0.0.1 -U postgres -d druid -p 5432
+> ```
+```bash=
+eugene@Azure:~/Druid-Kubernetes$ kubectl apply -f k8s/druid
+```
+> ```
+> deployment.apps/druid-broker created
+> service/druid-broker created
+> deployment.apps/druid-coordinator created
+> service/druid-coordinator created
+> service/druid-historical created
+> statefulset.apps/druid-historical created
+> service/druid-middlemanager created
+> statefulset.apps/druid-middlemanager created
+> deployment.apps/druid-overlord created
+> service/druid-overlord created
+> deployment.apps/druid-router created
+> ```
+Use `kubectl get all` to check but only have
+```
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.0.0.1     <none>        443/TCP   16h
+```
+Seems like my nodes are not ready
+
+## how to start nodes
+az aks start --name kg-aks-druid-dev --resource-group kg-one-id-deploy-dev
+
+## uninstall
+```
+helm uninstall dz -n druid
+helm uninstall dpg --namespace druid
+```
+# candidates
+## Imply
+https://docs.imply.io/2021.02/k8s-azure/
+https://docs.imply.io/3.0/on-prem/quickstart
+## 
+https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
+# since I can't have a GUI, use api
+https://druid.apache.org/docs/latest/operations/api-reference.html
+
+# kill a process
+kill pid_number
+
+# list pid and port usage
+sudo ss -lp "sport = :443"
+sudo ss -lp "sport = :8080"
+sudo ss -lp "sport = :domain"
+sudo ss -lp "sport = :53"
+sudo ss -lp "sport = :22"
+
+# druid on aks through wsl2 
+## install kubectl
+```
+// make sure you have internet QQ
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl version --client
+```
+## GG
+```
+kubectl get all
+```
+```
+The connection to the server 127.0.0.1:32769 was refused - did you specify the right host or port?
+```
+## give up; dont use wsl
+
+# fight
