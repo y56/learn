@@ -1172,13 +1172,24 @@ sudo apt update && sudo apt upgrade
 https://minikube.sigs.k8s.io/docs/start/
 kubectl get node // list node
 
-# apache druid on k8s on azure (aks=azure k8s service)
+# noVNC
+local to remote with gui
 
-## this one uses helm 2, decrepted
-https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
+# azure cloud shell error: can't mount
+error as
+```
+Warning: Failed to mount the Azure file share. Your cloud drive won't be available.
+Your Cloud Shell session will be ephemeral so no files or system changes will persist beyond your current session.
+e
+```
+https://techcommunity.microsoft.com/t5/azure/azure-cloud-shell-error/m-p/71089#M489
+By chance did you delete the storage resource that was created for you when first launching Cloud Shell?
 
+1. Run "clouddrive unmount"
 
+2. Restart Cloud Shell via restart icon or exit and relaunch
 
+3. You should be prompted with the storage creation dialog again
 
 
 # try splunk druid-operator in aks
@@ -1220,7 +1231,9 @@ kubectl apply -f examples/tiny-cluster-zk.yaml
 make run
 ```
 ## get druid-operator pod name
+```
 druid-operator$ kubectl get po | grep druid-operator
+```
 ## check druid-operator pod logs
 ```
 druid-operator$ kubectl logs <druid-operator pod name>
@@ -1232,7 +1245,6 @@ druid-operator$ kubectl get svc | grep tiny
 druid-operator$ kubectl get cm | grep tiny
 druid-operator$ kubectl get sts | grep tiny
 ## 8080 occupied 
-netstat -an --tcp --program  //  check port w/o sudo
 ```
 2021-03-19T14:31:10.714Z        ERROR   controller-runtime.metrics      metrics server failed to listen. You may want to disable the metrics server or use another port if it is due to conflicts     {"error": "error listening on :8080: listen tcp :8080: bind: address already in use"}
 github.com/go-logr/zapr.(*zapLogger).Error
@@ -1255,25 +1267,11 @@ runtime.main
 exit status 1
 make: *** [Makefile:26: run] Error 1
 ```
+##  check ports, without sudo or su
+netstat -an --tcp --program  //  check port w/o sudo
+forget to record output GG
 
-
-# azure cloud shell error: can't mount
-error as
-```
-Warning: Failed to mount the Azure file share. Your cloud drive won't be available.
-Your Cloud Shell session will be ephemeral so no files or system changes will persist beyond your current session.
-e
-```
-https://techcommunity.microsoft.com/t5/azure/azure-cloud-shell-error/m-p/71089#M489
-By chance did you delete the storage resource that was created for you when first launching Cloud Shell?
-
-1. Run "clouddrive unmount"
-
-2. Restart Cloud Shell via restart icon or exit and relaunch
-
-3. You should be prompted with the storage creation dialog again
-
-# not sure whether druid operator provide gui??????
+## not sure whether druid operator provide gui??????
 
 set a non-splunk druid @u5 to observe/play, get the gui endpoint
 set a splunk druid-operator @u5 to observe/play, get the gui endpoint 
@@ -1281,8 +1279,11 @@ set a splunk druid-operator @u5 to observe/play, get the gui endpoint
 
 set a splunk druid-operator @aks to observe/play, get the gui endpoint
 
-# noVNC
-local to remote with gui
+
+# apache druid on k8s on azure (aks=azure k8s service)
+
+## this one uses helm 2, decrepted
+https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
 
 # a hopeful github repo !!! Zenatix-Tech
 https://github.com/Zenatix-Tech/Druid-Kubernetes
@@ -1435,10 +1436,212 @@ Use `kubectl get all` to check but only have
 NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 service/kubernetes   ClusterIP   10.0.0.1     <none>        443/TCP   16h
 ```
-Seems like my nodes are not ready
 
-## how to start nodes
-az aks start --name kg-aks-druid-dev --resource-group kg-one-id-deploy-dev
+```bash= 
+kubectl get no
+``` 
+shows that my nodes are not ready,
+so stop and start the cluster after start 
+```bash= 
+kubectl get no 
+``` 
+> ``` 
+> NAME                                STATUS   ROLES   AGE   VERSION 
+> aks-agentpool-28667265-vmss000006   Ready    agent   18m   v1.18.14 
+> aks-agentpool-28667265-vmss000007   Ready    agent 19m   v1.18.14 
+> aks-agentpool-28667265-vmss000008   Ready    agent   18m   v1.18.14 
+> ```
+```bash= 
+kubectl get all --all-namespaces=true 
+``` 
+``` 
+NAMESPACE     NAME                                      READY   STATUS             RESTARTS   AGE 
+druid         pod/dpg-postgresql-0                      0/2     Pending            0          13h 
+druid         pod/druid-broker-758c9c5d5f-dx24b         0/2     Pending            0          101m 
+druid         pod/druid-coordinator-8675f4755b-7fvc4    0/2     Pending            0          101m 
+druid         pod/druid-historical-0                    0/2     Pending            0          101m 
+druid         pod/druid-middlemanager-0                 0/2     Pending            0          101m 
+druid         pod/druid-overlord-6bbbc78d69-8qj2s       0/2     Pending            0          101m 
+druid         pod/druid-router-7cf678f494-ps7zf         1/2     ImagePullBackOff   0          101m 
+druid         pod/dz-zookeeper-0                        0/1     Pending            0          14h 
+druid         pod/dz-zookeeper-1                        0/1     Pending            0          14h 
+druid         pod/dz-zookeeper-2                        0/1     Pending            0          14h
+kube-system   pod/coredns-748cdb7bf4-gs7br              1/1     Running            0          10h 
+kube-system   pod/coredns-748cdb7bf4-zzctr              1/1     Running            0          16h 
+kube-system   pod/coredns-autoscaler-868b684fd4-dgpv5   1/1     Running            0          16h 
+kube-system   pod/kube-proxy-c2qqz                      1/1     Running            0          23m 
+kube-system   pod/kube-proxy-f89t7                      1/1     Running            0          23m 
+kube-system   pod/kube-proxy-qwpsv                      1/1     Running            0          22m 
+kube-system   pod/metrics-server-58fdc875d5-5dvxn       1/1     Running            4          16h 
+kube-system   pod/omsagent-6w7xq                        1/1     Running            0          23m 
+kube-system   pod/omsagent-hn6lt                        1/1     Running            0          23m 
+kube-system   pod/omsagent-j456f                        1/1     Running            1          22m 
+kube-system   pod/omsagent-rs-5f8ccc6d89-9w8hn          1/1     Running            0          10h
+kube-system   pod/tunnelfront-544d5fbfd9-h4qn4          1/1     Running            0          16h
+
+NAMESPACE     NAME                                     TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)
+default       service/kubernetes                       ClusterIP      10.0.0.1       <none>          443/TCP         17h
+druid         service/dpg-postgresql                   ClusterIP      10.0.170.172   <none>          5432/TCP        13h
+druid         service/dpg-postgresql-headless          ClusterIP      None           <none>          5432/TCP        13h
+druid         service/dpg-postgresql-metrics           ClusterIP      10.0.163.233   <none>          9187/TCP         3h
+druid         service/druid-broker                     LoadBalancer   10.0.129.55    20.198.201.25   8082:31936/TCP  101m
+druid         service/druid-coordinator                LoadBalancer   10.0.3.151     20.197.103.26   8081:30290/TCP  101m
+druid         service/druid-historical                 ClusterIP      10.0.205.91    <none>          8083/TCP        101m
+druid         service/druid-middlemanager              ClusterIP      10.0.3.211     <none>          8091/TCP,8100/TCP,8101/TCP,8102/TCP,8103/TCP,8104/TCP,8105/TCP,8106/TCP,8107/TCP,8108/TCP,8109/TCP,8110/TCP,8111/TCP,8112/TCP,8113/TCP,8114/TCP,8115/TCP,8116/TCP,8117/TCP,8118/TCP,8119/TCP,8120/TCP   101m
+druid         service/druid-overlord                   ClusterIP      10.0.190.152   <none>          8090/TCP                    101m
+druid         service/druid-router                     ClusterIP      10.0.135.146   <none>          8888/TCP                    101m
+druid         service/dz-zookeeper                     ClusterIP      10.0.105.195   <none>          2181/TCP,2888/TCP,3888/TCP  14h
+druid         service/dz-zookeeper-headless            ClusterIP      None           <none>          2181/TCP,2888/TCP,3888/TCP  14h
+druid         service/dz-zookeeper-metrics             ClusterIP      10.0.245.12    <none>          9141/TCP                    14h
+kube-system   service/healthmodel-replicaset-service   ClusterIP      10.0.145.54    <none>          25227/TCP                   17h
+kube-system   service/kube-dns                         ClusterIP      10.0.0.10      <none>          53/UDP,53/TCP               17h
+kube-system   service/metrics-server                   ClusterIP      10.0.228.28    <none>          443/TCP                     17h
+
+NAMESPACE     NAME                          DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                 AGE
+kube-system   daemonset.apps/kube-proxy     3         3         3       3            3           beta.kubernetes.io/os=linux   17h
+kube-system   daemonset.apps/omsagent       3         3         3       3            3           <none>                        17h
+kube-system   daemonset.apps/omsagent-win   0         0         0       0            0           <none>                        17h
+
+NAMESPACE     NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+druid         deployment.apps/druid-broker         0/1     1            0           101m
+druid         deployment.apps/druid-coordinator    0/1     1            0           101m
+druid         deployment.apps/druid-overlord       0/1     1            0           101m
+druid         deployment.apps/druid-router         0/1     1            0           101m
+kube-system   deployment.apps/coredns              2/2     2            2           17h
+kube-system   deployment.apps/coredns-autoscaler   1/1     1            1           17h
+kube-system   deployment.apps/metrics-server       1/1     1            1           17h
+kube-system   deployment.apps/omsagent-rs          1/1     1            1           17h
+kube-system   deployment.apps/tunnelfront          1/1     1            1           17h
+
+NAMESPACE     NAME                                            DESIRED   CURRENT   READY   AGE
+druid         replicaset.apps/druid-broker-758c9c5d5f         1         1         0       101m
+druid         replicaset.apps/druid-coordinator-8675f4755b    1         1         0       101m
+druid         replicaset.apps/druid-overlord-6bbbc78d69       1         1         0       101m
+druid         replicaset.apps/druid-router-7cf678f494         1         1         0       101m
+kube-system   replicaset.apps/coredns-748cdb7bf4              2         2         2       17h
+kube-system   replicaset.apps/coredns-autoscaler-868b684fd4   1         1         1       17h
+kube-system   replicaset.apps/metrics-server-58fdc875d5       1         1         1       17h
+kube-system   replicaset.apps/omsagent-rs-5f8ccc6d89          1         1         1       17h
+kube-system   replicaset.apps/tunnelfront-544d5fbfd9          1         1         1       17h
+
+NAMESPACE   NAME                                   READY   AGE
+druid       statefulset.apps/dpg-postgresql        0/1     13h
+druid       statefulset.apps/druid-historical      0/1     101m
+druid       statefulset.apps/druid-middlemanager   0/8     101m
+druid       statefulset.apps/dz-zookeeper          0/3     14h
+```
+
+try to look into 
+```
+druid         pod/druid-router-7cf678f494-ps7zf         1/2     ImagePullBackOff   0          101m
+```
+```
+eugene@Azure:~/Druid-Kubernetes$ kubectl describe pod/druid-router-7cf678f494-ps7zf -n druid
+Name:         druid-router-7cf678f494-ps7zf
+Namespace:    druid
+Priority:     0
+Node:         aks-agentpool-28667265-vmss000007/10.240.0.5
+Start Time:   Tue, 23 Mar 2021 04:53:30 +0000
+Labels:       component=router
+              pod-template-hash=7cf678f494
+Annotations:  prometheus.io/port: 8000
+              prometheus.io/scrape: true
+Status:       Pending
+IP:           10.244.0.8
+IPs:
+  IP:           10.244.0.8
+Controlled By:  ReplicaSet/druid-router-7cf678f494
+Containers:
+  druid:
+    Container ID:
+    Image:         gcr.io/zenatix-data-archiver/kube-druid:0.0.1
+    Image ID:
+    Port:          8888/TCP
+    Host Port:     0/TCP
+    Command:
+      /bin/bash
+      -c
+      ip=$(awk 'END{print $1}' /etc/hosts) && sed -ri 's/druid.host=.*/druid.host='${ip}'/g' /druid/conf/router/runtime.properties && bin/run-druid router /druid/conf
+    State:          Waiting
+      Reason:       ImagePullBackOff
+    Ready:          False
+    Restart Count:  0
+    Readiness:      http-get http://:8888/status/health delay=30s timeout=1s period=10s #success=1 #failure=3
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-vpwg6 (ro)
+  druid-exporter:
+    Container ID:   docker://4548c74ceb25d6c2052de2dc5d23e839d7c1e5bb2165de9b5ae8193ac28faa45
+    Image:          deepaksood619/druid-exporter:0.0.2
+    Image ID:       docker-pullable://deepaksood619/druid-exporter@sha256:9c9f729b651fdeeb0097044e9498026db76f243f8ba98e56cae1a1eb3d0f93d7
+    Port:           8000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 23 Mar 2021 04:54:18 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-vpwg6 (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             False
+  ContainersReady   False
+  PodScheduled      True
+Volumes:
+  default-token-vpwg6:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-vpwg6
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age                    From               Message
+  ----     ------            ----                   ----               -------
+  Warning  FailedScheduling  113m                   default-scheduler  0/3 nodes are available: 3 node(s) had taint {node.kubernetes.io/unreachable: }, that the pod didn't tolerate.
+  Warning  FailedScheduling  36m (x4 over 38m)      default-scheduler  no nodes available to schedule pods
+  Warning  FailedScheduling  35m                    default-scheduler  0/1 nodes are available: 1 node(s) had taint {node.kubernetes.io/not-ready: }, that the pod didn't tolerate.
+  Normal   Scheduled         35m                    default-scheduler  Successfully assigned druid/druid-router-7cf678f494-ps7zf to aks-agentpool-28667265-vmss000007
+  Normal   Pulling           34m                    kubelet            Pulling image "deepaksood619/druid-exporter:0.0.2"
+  Normal   Pulled            34m                    kubelet            Successfully pulled image "deepaksood619/druid-exporter:0.0.2"
+  Normal   Created           34m                    kubelet            Created container druid-exporter
+  Normal   Started           34m                    kubelet            Started container druid-exporter
+  Warning  Failed            33m (x3 over 34m)      kubelet            Failed to pull image "gcr.io/zenatix-data-archiver/kube-druid:0.0.1": rpc error: code = Unknown desc = Error response from daemon: unauthorized: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
+  Normal   BackOff           33m (x5 over 34m)      kubelet            Back-off pulling image "gcr.io/zenatix-data-archiver/kube-druid:0.0.1"
+  Normal   Pulling           33m (x4 over 35m)      kubelet            Pulling image "gcr.io/zenatix-data-archiver/kube-druid:0.0.1"
+  Warning  Failed            33m (x4 over 34m)      kubelet            Error: ErrImagePull
+  Warning  Failed            4m35s (x131 over 34m)  kubelet            Error: ImagePullBackOff
+```
+seem like nodes not enough and some permission issue, 
+scale up to 6 nodes by azure portal gui
+succeed
+try to restart a pod... GG, don't want to spend time on this repo
+:::danger
+too much time spent this repo, try other methods
+give up this repo
+:::
+
+See: https://ithelp.ithome.com.tw/articles/10193944
+try:
+```
+// in WSL // sudo dockerd in another terminal
+y56@AA2100083-NB:~$ docker pull gcr.io/zenatix-data-archiver/kube-druid:0.0.1
+Error response from daemon: unauthorized: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
+y56@AA2100083-NB:~$ docker pull gcr.io/zenatix-data-archiver/kube-druid
+Using default tag: latest
+Error response from daemon: unauthorized: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
+y56@AA2100083-NB:~$ docker pull zenatix-data-archiver/kube-druid
+Using default tag: latest
+Error response from daemon: pull access denied for zenatix-data-archiver/kube-druid, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+```
+:::danger
+That's a private docker hub, GG
+:::
+
+
 
 ## uninstall
 ```
