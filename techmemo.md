@@ -1175,24 +1175,13 @@ kubectl get node // list node
 # noVNC
 local to remote with gui
 
-# azure cloud shell error: can't mount
-error as
-```
-Warning: Failed to mount the Azure file share. Your cloud drive won't be available.
-Your Cloud Shell session will be ephemeral so no files or system changes will persist beyond your current session.
-e
-```
-https://techcommunity.microsoft.com/t5/azure/azure-cloud-shell-error/m-p/71089#M489
-By chance did you delete the storage resource that was created for you when first launching Cloud Shell?
+# apache druid on k8s on azure (aks=azure k8s service)
 
-1. Run "clouddrive unmount"
-
-2. Restart Cloud Shell via restart icon or exit and relaunch
-
-3. You should be prompted with the storage creation dialog again
+## deffer: this one uses helm 2, decrepted
+https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
 
 
-# try splunk druid-operator in aks
+## try splunk druid-operator in aks
 https://github.com/druid-io/druid-operator/blob/master/docs/getting_started.md
 
 git clone
@@ -1202,17 +1191,17 @@ cd into dir
 kubectl create namespace druid-operator
 helm -n druid-operator install cluster-druid-operator ./chart
 
-## example of log output form splunk
+### example of log output form splunk
 https://www.slideshare.net/implydata/splunk-druid-on-kubernetes-with-druidoperator
 
-## get into the druid service gui???
+### get into the druid service gui???
 Check the Router URL ???
 
 On the Kubernetes cluster, port forward the Druid router service using this command and open http://127.0.0.1:8080 in the browser
 
 kubectl port-forward svc/druid-router 8080:8888
 
-## note for cloud shell
+### note for cloud shell
 ```
 azure portal ==> cloud shell // databricks notebook is not a terminal, some commands will fail, but we can sudo // cloud shell can't sudo QQ
 az login // use azure cli (az) to login your azure accout
@@ -1230,21 +1219,21 @@ helm -n druid-operator install cluster-druid-operator ./chart
 kubectl apply -f examples/tiny-cluster-zk.yaml
 make run
 ```
-## get druid-operator pod name
+### get druid-operator pod name
 ```
 druid-operator$ kubectl get po | grep druid-operator
 ```
-## check druid-operator pod logs
+### check druid-operator pod logs
 ```
 druid-operator$ kubectl logs <druid-operator pod name>
 ```
-## check the druid spec
+### check the druid spec
 druid-operator$ kubectl describe druids tiny-cluster
-##  check if druid cluster is deployed
+###  check if druid cluster is deployed
 druid-operator$ kubectl get svc | grep tiny
 druid-operator$ kubectl get cm | grep tiny
 druid-operator$ kubectl get sts | grep tiny
-## 8080 occupied 
+### 8080 occupied 
 ```
 2021-03-19T14:31:10.714Z        ERROR   controller-runtime.metrics      metrics server failed to listen. You may want to disable the metrics server or use another port if it is due to conflicts     {"error": "error listening on :8080: listen tcp :8080: bind: address already in use"}
 github.com/go-logr/zapr.(*zapLogger).Error
@@ -1267,11 +1256,11 @@ runtime.main
 exit status 1
 make: *** [Makefile:26: run] Error 1
 ```
-##  check ports, without sudo or su
+###  check ports, without sudo or su
 netstat -an --tcp --program  //  check port w/o sudo
 forget to record output GG
 
-## not sure whether druid operator provide gui??????
+### not sure whether druid operator provide gui??????
 
 set a non-splunk druid @u5 to observe/play, get the gui endpoint
 set a splunk druid-operator @u5 to observe/play, get the gui endpoint 
@@ -1280,13 +1269,9 @@ set a splunk druid-operator @u5 to observe/play, get the gui endpoint
 set a splunk druid-operator @aks to observe/play, get the gui endpoint
 
 
-# apache druid on k8s on azure (aks=azure k8s service)
-
-## this one uses helm 2, decrepted
-https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
-
-# a hopeful github repo !!! Zenatix-Tech
-https://github.com/Zenatix-Tech/Druid-Kubernetes
+## ~~a hopeful github repo !!! Zenatix-Tech~~ GG
+Note that Helm 2 is deprecated. The `stable` and `incubator` repos have been de-listed from the Helm Hub.
+Using https://github.com/Zenatix-Tech/Druid-Kubernetes
 ```bash=
 git clone https://github.com/Zenatix-Tech/Druid-Kubernetes
 cd Druid-Kubernetes
@@ -1642,46 +1627,54 @@ That's a private docker hub, GG
 :::
 
 
-
-## uninstall
-```
-helm uninstall dz -n druid
-helm uninstall dpg --namespace druid
-```
-# candidates
-## Imply
+## try: Imply
 https://docs.imply.io/2021.02/k8s-azure/
 https://docs.imply.io/3.0/on-prem/quickstart
-## 
-https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
-# since I can't have a GUI, use api
-https://druid.apache.org/docs/latest/operations/api-reference.html
 
-# kill a process
+
+## tools
+### clean all the stuff; get a clean aks env
+will take a few minutes to derminate things
+```
+kubectl delete pods --all --all-namespaces
+kubectl delete --all pods --all-namespaces
+kubectl delete --all deployments --all-namespaces
+kubectl delete --all namespaces  # bad, will break kube-system, need to restart nodes
+
+kubectl get all --all-namespaces=true  # to check
+```
+However, the latter command is probably not something you want to do, since it will delete things in the kube-system namespace, which will make your cluster not usable. This command will delete all the namespaces except kube-system, which might be useful:
+```
+# for linux
+for each in $(kubectl get ns -o jsonpath="{.items[*].metadata.name}" | grep -v kube-system);
+do
+  kubectl delete ns $each
+done
+```
+
+### kill a process
 kill pid_number
 
-# list pid and port usage
+### list pid and port usage
 sudo ss -lp "sport = :443"
 sudo ss -lp "sport = :8080"
 sudo ss -lp "sport = :domain"
 sudo ss -lp "sport = :53"
 sudo ss -lp "sport = :22"
 
-# druid on aks through wsl2 
-## install kubectl
+### install kubectl on WSL2 or linux
 ```
 // make sure you have internet QQ
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
-## GG
+#### GG: hard to use on WSL2/Linux
 ```
 kubectl get all
 ```
 ```
 The connection to the server 127.0.0.1:32769 was refused - did you specify the right host or port?
 ```
-## give up; dont use wsl
+give up; dont use wsl
 
-# fight
