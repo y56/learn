@@ -1119,6 +1119,16 @@ cosine = (2 - L2_Distance)/2
 编译安装：
 
     依赖库 – OpenBLAS 依赖库 – Lapack (yum install)安装swig & 环境配置 https://www.lizenghai.com/archives/29946.html安装faiss 手把手教你安装Faiss（Linux） (./configure --without-cuda)make py 然后 cd faiss/python 执行：python setup.py install
+
+# windows powershell beautiful
+* to set font
+  * https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup
+* all themes
+  * Get-PoshThemes
+    * https://ohmyposh.dev/docs/themes/
+* fonts
+  * https://ohmyposh.dev/docs/fonts
+
 # How did they ever come up with that kooky ‘Kubernetes’ name? Here’s the inside story
 https://www.geekwire.com/2016/ever-come-kooky-kubernetes-name-heptio/
 # apply a certificate for testing
@@ -1152,7 +1162,7 @@ Now you can use
 
 sudo apt-get install golang
 
-# wget install golang
+# wget to install golang and add path by hand
 ```bash
 wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
 rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
@@ -1168,6 +1178,7 @@ export PATH=$PATH:/usr/local/go/bin
 # get wsl 2 // ref: 
 check internet, if no, reboot
 sudo apt update && sudo apt upgrade
+
 # get minikube 
 https://minikube.sigs.k8s.io/docs/start/
 kubectl get node // list node
@@ -1177,11 +1188,11 @@ local to remote with gui
 
 # apache druid on k8s on azure (aks=azure k8s service)
 
-## deffer: this one uses helm 2, decrepted
+## [yet] deffer: this one uses helm 2, decrepted
 https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
 
 
-## try splunk druid-operator in aks
+## [?? 8080???] try splunk druid-operator in aks
 https://github.com/druid-io/druid-operator/blob/master/docs/getting_started.md
 
 git clone
@@ -1269,7 +1280,7 @@ set a splunk druid-operator @u5 to observe/play, get the gui endpoint
 set a splunk druid-operator @aks to observe/play, get the gui endpoint
 
 
-## ~~a hopeful github repo !!! Zenatix-Tech~~ GG
+## [GG] [their private hub]~~a hopeful github repo !!! Zenatix-Tech~~ GG
 Note that Helm 2 is deprecated. The `stable` and `incubator` repos have been de-listed from the Helm Hub.
 Using https://github.com/Zenatix-Tech/Druid-Kubernetes
 ```bash=
@@ -1627,13 +1638,20 @@ That's a private docker hub, GG
 :::
 
 
-## try: Imply
+## [yet] try: Imply
 https://docs.imply.io/2021.02/k8s-azure/
 https://docs.imply.io/3.0/on-prem/quickstart
 
 
 ## tools
-### clean all the stuff; get a clean aks env
+
+### delete some of them
+
+kubectl delete deployment webfrontend  # clear all resources except service
+
+helm uninstall webfrontend  # need to wait pod, few seconds 
+
+### [bad, clean too much] clean all the stuff; get a clean aks env
 will take a few minutes to derminate things
 ```
 kubectl delete pods --all --all-namespaces
@@ -1669,12 +1687,301 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
-#### GG: hard to use on WSL2/Linux
-```
+#### QQ: hard to use on WSL2/Linux to access AKS
+```bash=
 kubectl get all
 ```
 ```
 The connection to the server 127.0.0.1:32769 was refused - did you specify the right host or port?
 ```
+WSL is trying to connect minikube, don't know how to config it
 give up; dont use wsl
 
+# [OK] hello world, for minikube, on WSL
+Use the Windows-native desktop docker as the docker engine, don't use dockerd in WSL
+Otherwise, you will have
+```
+❗  This container is having trouble accessing https://k8s.gcr.io
+💡  To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+```
+when doing minikube start
+and will have status as `ErrImagePull` or `ImagePullBackOff` for the pod created by
+```
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
+```
+See: https://blog.miniasp.com/post/2020/08/21/Install-Kubernetes-cluster-in-WSL-2-Docker-on-Windows-using-kind
+
+## command and printout
+```
+y56@AA2100083-NB:~$ minikube start
+😄  minikube v1.18.1 on Ubuntu 20.04
+✨  Using the docker driver based on existing profile
+
+💣  Exiting due to PROVIDER_DOCKER_NOT_RUNNING: "docker version --format -" exit status 1: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+💡  Suggestion: Start the Docker service
+📘  Documentation: https://minikube.sigs.k8s.io/docs/drivers/docker/
+
+y56@AA2100083-NB:~$ minikube start
+😄  minikube v1.18.1 on Ubuntu 20.04
+✨  Using the docker driver based on existing profile
+
+💣  Exiting due to PROVIDER_DOCKER_NOT_RUNNING: "docker version --format -" exit status 1: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+💡  Suggestion: Start the Docker service
+📘  Documentation: https://minikube.sigs.k8s.io/docs/drivers/docker/
+
+y56@AA2100083-NB:~$ minikube start
+😄  minikube v1.18.1 on Ubuntu 20.04
+✨  Using the docker driver based on existing profile
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+🤷  docker "minikube" container is missing, will recreate.
+🔥  Creating docker container (CPUs=2, Memory=3100MB) ...
+🐳  Preparing Kubernetes v1.20.2 on Docker 20.10.3 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v4
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+y56@AA2100083-NB:~$ kubectl get all -A
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-74ff55c5b-jdqqh            1/1     Running   0          46s
+kube-system   pod/etcd-minikube                      0/1     Running   0          54s
+kube-system   pod/kube-apiserver-minikube            1/1     Running   0          54s
+kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          54s
+kube-system   pod/kube-proxy-vwqd4                   1/1     Running   0          46s
+kube-system   pod/kube-scheduler-minikube            0/1     Running   0          54s
+kube-system   pod/storage-provisioner                1/1     Running   0          55s
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  66s
+kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   61s
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR
+AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   60s
+
+NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   deployment.apps/coredns   1/1     1            1           61s
+
+NAMESPACE     NAME                                DESIRED   CURRENT   READY   AGE
+y56@AA2100083-NB:~$ kubectl get all -A
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-74ff55c5b-jdqqh            1/1     Running   0          64s
+kube-system   pod/etcd-minikube                      0/1     Running   0          72s
+kube-system   pod/kube-apiserver-minikube            1/1     Running   0          72s
+kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          72s
+kube-system   pod/kube-proxy-vwqd4                   1/1     Running   0          64s
+kube-system   pod/kube-scheduler-minikube            1/1     Running   0          72s
+kube-system   pod/storage-provisioner                1/1     Running   0          73s
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  84s
+kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   79s
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   78s
+
+NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   deployment.apps/coredns   1/1     1            1           79s
+
+NAMESPACE     NAME                                DESIRED   CURRENT   READY   AGE
+kube-system   replicaset.apps/coredns-74ff55c5b   1         1         1       65s
+y56@AA2100083-NB:~$ kubectl get all -A
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-74ff55c5b-jdqqh            1/1     Running   0          76s
+kube-system   pod/etcd-minikube                      1/1     Running   0          84s
+kube-system   pod/kube-apiserver-minikube            1/1     Running   0          84s
+kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          84s
+kube-system   pod/kube-proxy-vwqd4                   1/1     Running   0          76s
+kube-system   pod/kube-scheduler-minikube            1/1     Running   0          84s
+kube-system   pod/storage-provisioner                1/1     Running   0          85s
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  96s
+kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   91s
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   90s
+
+NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   deployment.apps/coredns   1/1     1            1           91s
+
+NAMESPACE     NAME                                DESIRED   CURRENT   READY   AGE
+kube-system   replicaset.apps/coredns-74ff55c5b   1         1         1       77s
+y56@AA2100083-NB:~$ kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
+deployment.apps/hello-minikube created
+y56@AA2100083-NB:~$ kubectl expose deployment hello-minikube --type=NodePort --port=8080
+service/hello-minikube exposed
+y56@AA2100083-NB:~$ kubectl get services hello-minikube
+NAME             TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+hello-minikube   NodePort   10.107.169.186   <none>        8080:31472/TCP   7s
+y56@AA2100083-NB:~$ minikube service hello-minikube
+|-----------|----------------|-------------|---------------------------|
+| NAMESPACE |      NAME      | TARGET PORT |            URL            |
+|-----------|----------------|-------------|---------------------------|
+| default   | hello-minikube |        8080 | http://192.168.49.2:31472 |
+|-----------|----------------|-------------|---------------------------|
+🏃  Starting tunnel for service hello-minikube.
+|-----------|----------------|-------------|------------------------|
+| NAMESPACE |      NAME      | TARGET PORT |          URL           |
+|-----------|----------------|-------------|------------------------|
+| default   | hello-minikube |             | http://127.0.0.1:35053 |
+|-----------|----------------|-------------|------------------------|
+🎉  Opening service default/hello-minikube in default browser...
+👉  http://127.0.0.1:35053
+❗  Because you are using a Docker driver on linux, the terminal needs to be open to run it.
+^C✋  Stopping tunnel for service hello-minikube.
+
+❌  Exiting due to SVC_TUNNEL_STOP: stopping ssh tunnel: os: process already finished
+
+😿  If the above advice does not help, please let us know:
+👉  https://github.com/kubernetes/minikube/issues/new/choose
+
+y56@AA2100083-NB:~$ kubectl get all -A
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+default       pod/hello-minikube-6ddfcc9757-9hdr6    1/1     Running   0          55m
+kube-system   pod/coredns-74ff55c5b-jdqqh            1/1     Running   0          62m
+kube-system   pod/etcd-minikube                      1/1     Running   0          62m
+kube-system   pod/kube-apiserver-minikube            1/1     Running   0          62m
+kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          62m
+kube-system   pod/kube-proxy-vwqd4                   1/1     Running   0          62m
+kube-system   pod/kube-scheduler-minikube            1/1     Running   0          62m
+kube-system   pod/storage-provisioner                1/1     Running   0          62m
+
+NAMESPACE     NAME                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE
+default       service/hello-minikube   NodePort    10.107.169.186   <none>        8080:31472/TCP           55m
+default       service/kubernetes       ClusterIP   10.96.0.1        <none>        443/TCP                  62m
+kube-system   service/kube-dns         ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP   62m
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   62m
+
+NAMESPACE     NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+default       deployment.apps/hello-minikube   1/1     1            1           55m
+kube-system   deployment.apps/coredns          1/1     1            1           62m
+
+NAMESPACE     NAME                                        DESIRED   CURRENT   READY   AGE
+default       replicaset.apps/hello-minikube-6ddfcc9757   1         1         1       55m
+kube-system   replicaset.apps/coredns-74ff55c5b           1         1         1       62m
+y56@AA2100083-NB:~$ kubectl get no -A
+NAME       STATUS   ROLES                  AGE   VERSION
+minikube   Ready    control-plane,master   63m   v1.20.2
+y56@AA2100083-NB:~$ kubectl get no
+NAME       STATUS   ROLES                  AGE   VERSION
+minikube   Ready    control-plane,master   63m   v1.20.2
+y56@AA2100083-NB:~$ kubectl get no --all
+Error: unknown flag: --all
+See 'kubectl get --help' for usage.
+y56@AA2100083-NB:~$
+```
+
+# [GG] [no permission to pull my own image??!!] Quickstart: Develop on Azure Kubernetes Service (AKS) with Helm
+https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal
+```powershell
+# az acr build --image webfrontend:v1 --registry MyHelmACR --file Dockerfile .
+az acr build --image webfrontend:v1 --registry kgacrdruiddev --file Dockerfile .
+
+git clone https://github.com/Azure/dev-spaces
+cd dev-spaces/samples/nodejs/getting-started/webfrontend
+
+# install choco
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+# install helm
+choco install kubernetes-helm  # reboot win 10, win 10 is BAD~
+
+# Create a new Dockerfile file using the following commands: ... 
+
+# az acr build --image webfrontend:v1 --registry MyHelmACR --file Dockerfile .
+az acr build --image webfrontend:v1 --registry kgacrdruiddev --file Dockerfile .
+
+helm create webfrontend
+helm install webfrontend webfrontend/
+
+kubectl get all -A
+    default       pod/webfrontend-6d85cfcc65-kqh5n          0/1     ImagePullBackOff   0          11s
+
+PS C:\Users\eugene_wang\dev-spaces\samples\nodejs\getting-started\webfrontend> kubectl describe pod/webfrontend-6d85cfcc65-kqh5n
+```
+
+  ```powershell
+  Name:         webfrontend-6d85cfcc65-kqh5n
+  Namespace:    default
+  Priority:     0
+  Node:         aks-agentpool-62526533-vmss000002/10.240.0.6
+  Start Time:   Wed, 24 Mar 2021 16:02:32 +0800
+  Labels:       app.kubernetes.io/instance=webfrontend
+                app.kubernetes.io/name=webfrontend
+                pod-template-hash=6d85cfcc65
+  Annotations:  <none>
+  Status:       Pending
+  IP:           10.244.0.12
+  IPs:
+    IP:           10.244.0.12
+  Controlled By:  ReplicaSet/webfrontend-6d85cfcc65
+  Containers:
+    webfrontend:
+      Container ID:
+      Image:          kgacrdruiddev.azurecr.io/webfrontend:v1
+      Image ID:
+      Port:           80/TCP
+      Host Port:      0/TCP
+      State:          Waiting
+        Reason:       ImagePullBackOff
+      Ready:          False
+      Restart Count:  0
+      Liveness:       http-get http://:http/ delay=0s timeout=1s period=10s #success=1 #failure=3
+      Readiness:      http-get http://:http/ delay=0s timeout=1s period=10s #success=1 #failure=3
+      Environment:    <none>
+      Mounts:
+        /var/run/secrets/kubernetes.io/serviceaccount from webfrontend-token-bhk9n (ro)
+  Conditions:
+    Type              Status
+    Initialized       True
+    Ready             False
+    ContainersReady   False
+    PodScheduled      True
+  Volumes:
+    webfrontend-token-bhk9n:
+      Type:        Secret (a volume populated by a Secret)
+      SecretName:  webfrontend-token-bhk9n
+      Optional:    false
+  QoS Class:       BestEffort
+  Node-Selectors:  <none>
+  Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                  node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+  Events:
+    Type     Reason          Age                 From               Message
+    ----     ------          ----                ----               -------
+    Normal   Scheduled       112s                default-scheduler  Successfully assigned default/webfrontend-6d85cfcc65-kqh5n to aks-agentpool-62526533-vmss000002
+    Normal   SandboxChanged  111s                kubelet            Pod sandbox changed, it will be killed and re-created.
+    Warning  Failed          65s (x3 over 111s)  kubelet            Failed to pull image "kgacrdruiddev.azurecr.io/webfrontend:v1": rpc error: code = Unknown desc = Error response from daemon: Get https://kgacrdruiddev.azurecr.io/v2/webfrontend/manifests/v1: unauthorized: authentication required, visit https://aka.ms/acr/authorization for more information.
+    Warning  Failed          65s (x3 over 111s)  kubelet            Error: ErrImagePull
+    Normal   BackOff         27s (x7 over 110s)  kubelet            Back-off pulling image "kgacrdruiddev.azurecr.io/webfrontend:v1"
+    Warning  Failed          27s (x7 over 110s)  kubelet            Error: ImagePullBackOff
+    Normal   Pulling         14s (x4 over 112s)  kubelet            Pulling image "kgacrdruiddev.azurecr.io/webfrontend:v1"
+  ```
+
+
+# [OK] Quickstart: Deploy an Azure Kubernetes Service cluster using the Azure CLI
+```
+PS C:\Users\eugene_wang> code azure-vote.yaml  # to create the file
+PS C:\Users\eugene_wang> kubectl apply -f azure-vote.yaml
+  deployment.apps/azure-vote-back created
+  service/azure-vote-back created
+  deployment.apps/azure-vote-front created
+  service/azure-vote-front created
+PS C:\Users\eugene_wang> kubectl get service azure-vote-front --watch
+  NAME               TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)        AGE
+  azure-vote-front   LoadBalancer   10.0.57.71   20.195.53.3   80:30815/TCP   39s
+```
+20.195.53.3:80 http 
+:::success
+success
+:::
+
+#
+
+AA2100083-NB
