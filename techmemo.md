@@ -1687,7 +1687,7 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
-#### QQ: hard to use on WSL2/Linux to access AKS
+#### [solved]: hard to use on WSL2/Linux to access AKS
 ```bash=
 kubectl get all
 ```
@@ -1696,6 +1696,9 @@ The connection to the server 127.0.0.1:32769 was refused - did you specify the r
 ```
 WSL is trying to connect minikube, don't know how to config it
 give up; dont use wsl
+
+replace the content of /home/y56/.kube/config by C:\Users\eugene_wang\.kube\config
+
 
 # [OK] hello world, for minikube, on WSL
 Use the Windows-native desktop docker as the docker engine, don't use dockerd in WSL
@@ -1878,10 +1881,12 @@ y56@AA2100083-NB:~$
 ```
 
 # [GG] [no permission to pull my own image??!!] Quickstart: Develop on Azure Kubernetes Service (AKS) with Helm
-https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal
+https://docs.microsoft.com/en-us/azure/aks/quickstart-helm
 ```powershell
+# create the Dockfile
+
 # az acr build --image webfrontend:v1 --registry MyHelmACR --file Dockerfile .
-az acr build --image webfrontend:v1 --registry kgacrdruiddev --file Dockerfile .
+az acr build --image webfrontend:v1 --registry kgacrdruiddev2 --file Dockerfile .
 
 git clone https://github.com/Azure/dev-spaces
 cd dev-spaces/samples/nodejs/getting-started/webfrontend
@@ -1892,12 +1897,16 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 # install helm
 choco install kubernetes-helm  # reboot win 10, win 10 is BAD~
 
-# Create a new Dockerfile file using the following commands: ... 
-
-# az acr build --image webfrontend:v1 --registry MyHelmACR --file Dockerfile .
-az acr build --image webfrontend:v1 --registry kgacrdruiddev --file Dockerfile .
 
 helm create webfrontend
+
+# Update webfrontend/values.yaml:
+##  Replace the loginServer of your registry that you noted in an earlier step, such as myhelmacr.azurecr.io.
+##  Change image.repository to <loginServer>/webfrontend
+##  Change service.type to LoadBalancer
+
+# Update Update appVersion to v1 in webfrontend/Chart.yaml. 
+
 helm install webfrontend webfrontend/
 
 kubectl get all -A
@@ -1965,6 +1974,7 @@ PS C:\Users\eugene_wang\dev-spaces\samples\nodejs\getting-started\webfrontend> k
   ```
 
 
+
 # [OK] Quickstart: Deploy an Azure Kubernetes Service cluster using the Azure CLI
 ```
 PS C:\Users\eugene_wang> code azure-vote.yaml  # to create the file
@@ -1984,4 +1994,3 @@ success
 
 #
 
-AA2100083-NB
