@@ -1109,7 +1109,7 @@ D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用
 
 \# 索引简写可查询：https://github.com/facebookresearch/faiss/wiki/Faiss-indexes
 
-=>一般选用欧式距离，速度较快(KNN算法-KDTree? 处理高维向量 - BallTree?)；也可得到距离矩阵后转化为cosine(向量须为L2归一化后), 方便有用户商品对截断需求的阈值确定。
+=>一般选用欧式距离，速度较快(KNN算法-KDTree? 处理高维向量 - BallTree?)；也可得到距离矩阵后转化为cosine(向量须为L2归一化后), 方便有用户商品对截断需求的阈值确定。p n
 
 cosine = (2 - L2_Distance)/2
 
@@ -1119,6 +1119,10 @@ cosine = (2 - L2_Distance)/2
 编译安装：
 
     依赖库 – OpenBLAS 依赖库 – Lapack (yum install)安装swig & 环境配置 https://www.lizenghai.com/archives/29946.html安装faiss 手把手教你安装Faiss（Linux） (./configure --without-cuda)make py 然后 cd faiss/python 执行：python setup.py install
+
+# SLA:  Service-level agreement
+A service-level agreement (SLA) is a commitment between a service provider and a client.
+The underlying benefit of cloud computing is shared resources, which is supported by the underlying nature of a shared infrastructure environment. Thus, SLAs span across the cloud and are offered by service providers as a service-based agreement rather than a customer-based agreement. 
 
 # windows powershell beautiful
 * to set font
@@ -1188,16 +1192,38 @@ local to remote with gui
 
 # apache druid on k8s on azure (aks=azure k8s service)
 
-## [yet] deffer: this one uses helm 2, decrepted
+## [success] incubator/druid; this one uses helm 2, decrepted
 https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
+```
+helm repo add incubator https://charts.helm.sh/incubator
+helm install druid incubator/druid
+```
+```bash
+WARNING: This chart is deprecated
+NAME: druid
+LAST DEPLOYED: Thu Mar 25 14:45:29 2021
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+1. Get the router URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app=druid,release=druid" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl port-forward $POD_NAME 8080:8888
+```
+### [success] on AKS
+:::success 
+on AKS
+:::
+### [WSL sucks] WSL2 + minikube + win docker engine ==> pod: ImagePullBackOff
+Failed to pull image "apache/druid:0.19.0": rpc error: code = Unknown desc = Error response from daemon: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io on 192.168.65.2:53: read udp 192.168.49.2:57045->192.168.65.2:53: i/o timeout
 
-
-## [?? 8080???] try splunk druid-operator in aks
+## [?? 8080???] try splunk druid-operator in aks; [success on native ubuntu 18]
 https://github.com/druid-io/druid-operator/blob/master/docs/getting_started.md
 
 git clone
 cd into dir
-
 
 kubectl create namespace druid-operator
 helm -n druid-operator install cluster-druid-operator ./chart
@@ -1271,7 +1297,7 @@ make: *** [Makefile:26: run] Error 1
 netstat -an --tcp --program  //  check port w/o sudo
 forget to record output GG
 
-### not sure whether druid operator provide gui??????
+### not sure whether druid operator provide gui?????? it provides~
 
 set a non-splunk druid @u5 to observe/play, get the gui endpoint
 set a splunk druid-operator @u5 to observe/play, get the gui endpoint 
@@ -1669,6 +1695,10 @@ do
   kubectl delete ns $each
 done
 ```
+
+### restart a node in aks
+
+https://pumpingco.de/blog/restart-a-node-in-aks/
 
 ### kill a process
 kill pid_number
