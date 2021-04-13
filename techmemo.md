@@ -1198,6 +1198,18 @@ kubectl get node // list node
 # noVNC
 local to remote with gui
 
+# grep ignore case
+grep -i match_word
+
+# grep surrounding line
+grep -A 2 -B 3 match_word
+
+# yaml file syntax
+single quotation for number and boolean
+```
+Error: ConfigMap in version "v1" cannot be handled as a ConfigMap: v1.ConfigMap.Data: ReadString: expects " or n, but found 1, error found in #10 byte of ...|gLength":1024,"druid|..., bigger context ...|
+```
+
 # apache druid on k8s on azure (aks=azure k8s service)
 
 ## [success] incubator/druid; this one uses helm 2, decrepted
@@ -1227,7 +1239,7 @@ on AKS
 ### [WSL sucks] WSL2 + minikube + win docker engine ==> pod: ImagePullBackOff
 Failed to pull image "apache/druid:0.19.0": rpc error: code = Unknown desc = Error response from daemon: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io on 192.168.65.2:53: read udp 192.168.49.2:57045->192.168.65.2:53: i/o timeout
 
-## [?? 8080???] try splunk druid-operator in aks; [success on native ubuntu 18]
+## [yet] [?? 8080???] try splunk druid-operator in aks; [success on native ubuntu 18]
 https://github.com/druid-io/druid-operator/blob/master/docs/getting_started.md
 
 git clone
@@ -1978,7 +1990,7 @@ See 'kubectl get --help' for usage.
 y56@AA2100083-NB:~$
 ```
 
-# [GG] [no permission to pull my own image??!!] Quickstart: Develop on Azure Kubernetes Service (AKS) with Helm
+# [solved] [no permission to pull my own image??!!] Quickstart: Develop on Azure Kubernetes Service (AKS) with Helm
 https://docs.microsoft.com/en-us/azure/aks/quickstart-helm
 ```powershell
 # create the Dockfile
@@ -2090,5 +2102,34 @@ PS C:\Users\eugene_wang> kubectl get service azure-vote-front --watch
 success
 :::
 
-#
+# [command] delete evicted pods
+for A in `k get po | grep evicted | sed 's/ .*//'`; do kubectl delete pod/$A; done
 
+kubectl exec --stdin --tty pod/druid-coordinator-544674cfc7-t2gcx -- /bin/sh
+
+# test Druid
+
+# don't use "local" as the deep storage r
+
+# TODO: survey why Druid suits us
+
+# minikube clean all content
+minikube delete
+minikube start
+
+# why I cant't load even the sample data?
+Azure Extension BAD!
+Maybe it's my bad bc I didn't set a good setting
+Should I edit `druid_storage_type: local`? sth other than `local`?
+
+# why my segements are not availble? 
+## [too little info, deffer] try 1  
+https://stackoverflow.com/questions/60168127/why-druid-segments-become-unavailable-after-data-ingestion
+Deletion of segments-cache data and indexing logs in data and master nodes 
+???
+## try 2
+https://druid.apache.org/docs/latest/ingestion/faq.html
+
+http://localhost:7788/druid/coordinator/v1/datasources/wikipedia/loadstatus?forceMetadataRefresh=true
+
+## try 3: splunk druid-operator
