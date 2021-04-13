@@ -1,4 +1,5 @@
-
+tech note
+====
 # get a pink slip
 = get fired
 
@@ -146,7 +147,9 @@ This method is also used to remove and get the head(First) element from the queu
 Java queue implementations
 
 There are some classes that provides the implementation to queue interface.
+```
 PriorityQueue class
+
 
 PriorityQueue extends the AbstarctQueue that implements the Queue interface. The PriorityQueue works based on priority and process the objects. It is also works based on the First-In-First-Out algorithm, but sometimes it processes the element according to the priority. Let’s take an example of java queue program
 import java.util.PriorityQueue;
@@ -296,13 +299,15 @@ public class ExampleOfQueue
     System.out.println("Size of queue: " + size); 
   } 
 }
-
+```
+```
     Output: Elements from the queue: [AA, BB, CC, DD, EE]
     Getting the by peek() method: AA
     Getting the by element() method: AA
     Removing element by remove() method: AA
     Removing element by poll() method: BB
     Size of queue: 3
+```
 # 教學-android-studio-開發環境安裝教學-linux版
 
 https://xenby.com/b/227-%E6%95%99%E5%AD%B8-android-studio-%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8-linux%E7%89%88
@@ -548,7 +553,7 @@ Integrity: Integrity is used to make sure that nobody in between site A and B (f
 Confidentiality: Confidentiality is used to make sure that nobody in between site A and B is able to read what data or information is sent between the to sites. To achieve this encryption algorithms are used. There are two kinds of encryption algorithms, symmetric and also asymmetric ones. Symmetric algorithms allow encryption and decryption with the same key. With asymmetric algorithms you have to kinds of keys: a public one and also a private one. The public key is often available to the public while the private key is just available for "yourself" (if the mentioned keypair is yours). Everything that you encrypt with the public key can only be decrypted with the private one and vice versa. When it comes to confidentiality you often just use symmetric algorithms like DES, 3DES (both outdated) or AES. Asymmetric encryption is used to transfer a symmetric key and also to make sure that the other site is really who it seems to be (when it comes to SSL/TLS).
 
 Authenticity: And this last sentence of the confidentiality part leads directly to the authenticity part. Authenticity is used to make sure that you really communicate with the partner you want to. To achieve these different kinds of techniques can be used, e.g. Pre-shared keys that are configured on both sites, Elliptic Curves or RSA as public/private key algorithms. 
-# vpn nyu
+# vpn nyu vpn 
 sudo openconnect vpn.nyu.edu
 第一個密碼用2go加w
 第二個用push
@@ -1104,7 +1109,7 @@ D, I = index.search(user_vector_arr, k) # 寻找相似向量， I表示相似用
 
 \# 索引简写可查询：https://github.com/facebookresearch/faiss/wiki/Faiss-indexes
 
-=>一般选用欧式距离，速度较快(KNN算法-KDTree? 处理高维向量 - BallTree?)；也可得到距离矩阵后转化为cosine(向量须为L2归一化后), 方便有用户商品对截断需求的阈值确定。
+=>一般选用欧式距离，速度较快(KNN算法-KDTree? 处理高维向量 - BallTree?)；也可得到距离矩阵后转化为cosine(向量须为L2归一化后), 方便有用户商品对截断需求的阈值确定。p n
 
 cosine = (2 - L2_Distance)/2
 
@@ -1115,6 +1120,21 @@ cosine = (2 - L2_Distance)/2
 
     依赖库 – OpenBLAS 依赖库 – Lapack (yum install)安装swig & 环境配置 https://www.lizenghai.com/archives/29946.html安装faiss 手把手教你安装Faiss（Linux） (./configure --without-cuda)make py 然后 cd faiss/python 执行：python setup.py install
 
+# SLA:  Service-level agreement
+A service-level agreement (SLA) is a commitment between a service provider and a client.
+The underlying benefit of cloud computing is shared resources, which is supported by the underlying nature of a shared infrastructure environment. Thus, SLAs span across the cloud and are offered by service providers as a service-based agreement rather than a customer-based agreement. 
+
+# windows powershell beautiful
+* to set font
+  * https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup
+* all themes
+  * Get-PoshThemes
+    * https://ohmyposh.dev/docs/themes/
+* fonts
+  * https://ohmyposh.dev/docs/fonts
+
+# How did they ever come up with that kooky ‘Kubernetes’ name? Here’s the inside story
+https://www.geekwire.com/2016/ever-come-kooky-kubernetes-name-heptio/
 # apply a certificate for testing
 https://letsencrypt.org/zh-tw/docs/staging-environment/
 # k8s;; cert manager;; cert issuer
@@ -1130,11 +1150,7 @@ How to run a script during boot as root (7 answers)
 Proper fstab entry to mount a samba share on boot? (2 answers) 
 I need to run the following command at startup or upon login
 https://askubuntu.com/questions/956237/run-terminal-sudo-command-at-startup
-# where to add path
-https://stackoverflow.com/questions/50554817/golang-installation
-Add this line to your file /etc/profile, or better $HOME/.profile:
 
-export PATH=$PATH:/usr/local/go/bin
 # apt install golang
 https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
 First remove your current golang installation with this command, you don't need to manually remove files installed by apt-get,
@@ -1151,6 +1167,7 @@ Now you can use
 sudo apt-get install golang
 
 # apt install golang
+# wget to install golang and add path by hand
 ```bash
 wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
 rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
@@ -1159,56 +1176,94 @@ source  /etc/profile
 go version
 ```
 
-# apache druid on k8s on azure (aks=azure k8s service)
-
 ## this uses helm 2, decrepted
 https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
 
 ## kill all pods in kubernetes
 https://stackoverflow.com/questions/33509194/command-to-delete-all-pods-in-all-kubernetes-namespaces
-kubectl delete pods --all --all-namespaces
+kubectl delete pods --all --all-namespaces 
 
-## get wsl 2 // ref: 
+## where to add path
+https://stackoverflow.com/questions/50554817/golang-installation
+Add this line to your file /etc/profile, or better $HOME/.profile:
+export PATH=$PATH:/usr/local/go/bin
+
 check internet, if no, reboot
 sudo apt update && sudo apt upgrade
-## get minikube 
+
+# get minikube 
 https://minikube.sigs.k8s.io/docs/start/
 kubectl get node // list node
-## get druid in k8s
+
+# noVNC
+local to remote with gui
+
+# apache druid on k8s on azure (aks=azure k8s service)
+
+## [success] incubator/druid; this one uses helm 2, decrepted
+https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
+```
+helm repo add incubator https://charts.helm.sh/incubator
+helm install druid incubator/druid
+```
+```bash
+WARNING: This chart is deprecated
+NAME: druid
+LAST DEPLOYED: Thu Mar 25 14:45:29 2021
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+1. Get the router URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app=druid,release=druid" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl port-forward $POD_NAME 8080:8888
+```
+### [success] on AKS
+:::success 
+on AKS
+:::
+### [WSL sucks] WSL2 + minikube + win docker engine ==> pod: ImagePullBackOff
+Failed to pull image "apache/druid:0.19.0": rpc error: code = Unknown desc = Error response from daemon: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io on 192.168.65.2:53: read udp 192.168.49.2:57045->192.168.65.2:53: i/o timeout
+
+## [?? 8080???] try splunk druid-operator in aks; [success on native ubuntu 18]
 https://github.com/druid-io/druid-operator/blob/master/docs/getting_started.md
+
 git clone
 cd into dir
 
-
 kubectl create namespace druid-operator
 helm -n druid-operator install cluster-druid-operator ./chart
-
-## example of log output form splunk
+### example of log output form splunk
 https://www.slideshare.net/implydata/splunk-druid-on-kubernetes-with-druidoperator
 
-## get into the druid service gui???S
+### get into the druid service gui???
 Check the Router URL ???
 
 On the Kubernetes cluster, port forward the Druid router service using this command and open http://127.0.0.1:8080 in the browser
 
 kubectl port-forward svc/druid-router 8080:8888
 
-## note for cloud shell
+### note for cloud shell
+
 azure portal ==> cloud shell // databricks notebook is not a terminal, some commands will fail, but we can sudo // cloud shell can't sudo QQ
 az login // use azure cli (az) to login your azure accout
-az account set --subscription 35015be4-a4d5-4a9d-a705-d88eabccfa2f  // login deeper
+az account set --subscription xxxxxxxxxxxx  // login deeper
 az aks get-credentials --resource-group kg-one-id-deploy-dev --name kg-aks-druid-dev // login deeper
 kubectl create namespace druid-operator
 kubectl get nodes // list nodes // cloud shell has installed kubectl for us
-    install go // no need for cloud shell
-    method 1: https://golang.org/doc/install + https://stackoverflow.com/questions/50554817/golang-installation // if you can't a `.profile`
-    method 2: https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
+    // install go // no need for cloud shell
+    // method 1: https://golang.org/doc/install + https://stackoverflow.com/questions/50554817/golang-installation // if you can't a `.profile`
+    // method 2: https://askubuntu.com/questions/720260/updating-golang-on-ubuntu
+
 git clone https://github.com/druid-io/druid-operator.git
 
 cd druid-operator
 helm -n druid-operator install cluster-druid-operator ./chart
 kubectl apply -f examples/tiny-cluster-zk.yaml
 make run
+
 ## get druid-operator pod name
 druid-operator$ kubectl get po | grep druid-operator
 ## check druid-operator pod logs
@@ -1221,6 +1276,23 @@ druid-operator$ kubectl get cm | grep tiny
 druid-operator$ kubectl get sts | grep tiny
 ## 8080 occupied 
 netstat -an --tcp --program  //  check port w/o sudo
+
+### get druid-operator pod name
+```
+druid-operator$ kubectl get po | grep druid-operator
+```
+### check druid-operator pod logs
+```
+druid-operator$ kubectl logs <druid-operator pod name>
+```
+### check the druid spec
+druid-operator$ kubectl describe druids tiny-cluster
+###  check if druid cluster is deployed
+druid-operator$ kubectl get svc | grep tiny
+druid-operator$ kubectl get cm | grep tiny
+druid-operator$ kubectl get sts | grep tiny
+### 8080 occupied 
+
 ```
 2021-03-19T14:31:10.714Z        ERROR   controller-runtime.metrics      metrics server failed to listen. You may want to disable the metrics server or use another port if it is due to conflicts     {"error": "error listening on :8080: listen tcp :8080: bind: address already in use"}
 github.com/go-logr/zapr.(*zapLogger).Error
@@ -1244,7 +1316,6 @@ exit status 1
 make: *** [Makefile:26: run] Error 1
 ```
 
-
 # azure cloud shell error: can't mount
 error as
 ```
@@ -1263,6 +1334,12 @@ By chance did you delete the storage resource that was created for you when firs
 
 # not sure whether druid operator provide gui??????
 
+###  check ports, without sudo or su
+netstat -an --tcp --program  //  check port w/o sudo
+forget to record output GG
+
+### not sure whether druid operator provide gui?????? it provides~
+
 set a non-splunk druid @u5 to observe/play, get the gui endpoint
 set a splunk druid-operator @u5 to observe/play, get the gui endpoint 
 // make sure I am all correct with druid-operator @u5
@@ -1276,15 +1353,22 @@ local to remote with gui
 # github repo !!!
 https://github.com/Zenatix-Tech/Druid-Kubernetes
 ```
+
+## [GG] [their private hub]~~a hopeful github repo !!! Zenatix-Tech~~ GG
+Note that Helm 2 is deprecated. The `stable` and `incubator` repos have been de-listed from the Helm Hub.
+Using https://github.com/Zenatix-Tech/Druid-Kubernetes
+```bash=
+
 git clone https://github.com/Zenatix-Tech/Druid-Kubernetes
 cd Druid-Kubernetes
 helm repo add bitnami https://charts.bitnami.com/bitnami
 kubectl create namespace druid
 helm install dz -f k8s/zookeeper-values.yaml --namespace druid bitnami/zookeeper
+
 helm upgrade dz -f k8s/zookeeper-values.yaml --namespace druid bitnami/zookeeper
 
 helm uninstall dz -n druid
-
+```
 # !!!
 https://docs.imply.io/2021.02/k8s-azure/
 https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kubernetes-91739e350fac
@@ -1296,9 +1380,715 @@ https://druid.apache.org/docs/latest/operations/api-reference.html
 kill pid_number
 
 # list pid and port usage
+
+```
+> ```
+> NAME: dz
+> LAST DEPLOYED: Mon Mar 22 15:12:40 2021
+> NAMESPACE: druid
+> STATUS: deployed
+> REVISION: 1
+> TEST SUITE: None
+> NOTES:
+> ** Please be patient while the chart is being deployed **
+> 
+> ZooKeeper can be accessed via port 2181 on the following DNS name from within your cluster:
+> 
+> dz-zookeeper.druid.svc.cluster.local
+> 
+> To connect to your ZooKeeper server run the following commands:
+> 
+> export POD_NAME=$(kubectl get pods --namespace druid -l "app.kubernetes.io/name=zookeeper,app.kubernetes.io/instance=dz,app.kubernetes.io/component=zookeeper" -o jsonpath="{.items[0].metadata.name}")
+> kubectl exec -it $POD_NAME -- zkCli.sh
+> 
+> To connect to your ZooKeeper server from outside the cluster execute the following commands:
+> 
+> kubectl port-forward --namespace druid svc/dz-zookeeper 2181:2181 &
+> zkCli.sh 127.0.0.1:2181
+> ```
+```bash=
+helm upgrade dz -f k8s/zookeeper-values.yaml --namespace druid bitnami/zookeeper
+```
+> ```
+> Release "dz" has been upgraded. Happy Helming!
+> NAME: dz
+> LAST DEPLOYED: Mon Mar 22 15:13:30 2021
+> NAMESPACE: druid
+> STATUS: deployed
+> REVISION: 2
+> TEST SUITE: None
+> NOTES:
+> ** Please be patient while the chart is being deployed **
+> 
+> ZooKeeper can be accessed via port 2181 on the following DNS name from within your cluster:
+> 
+>     dz-zookeeper.druid.svc.cluster.local
+> 
+> To connect to your ZooKeeper server run the following commands:
+> 
+>     export POD_NAME=$(kubectl get pods --namespace druid -l "app.kubernetes.io/name=zookeeper,app.kubernetes.io/instance=dz,app.kubernetes.io/component=zookeeper" -o jsonpath="{.items[0].metadata.name}")
+>     kubectl exec -it $POD_NAME -- zkCli.sh
+> 
+> To connect to your ZooKeeper server from outside the cluster execute the following commands:
+> 
+>     kubectl port-forward --namespace druid svc/dz-zookeeper 2181:2181 &
+>     zkCli.sh 127.0.0.1:2181
+> ```
+```bash=
+helm install dpg -f k8s/postgresql-values.yaml --namespace druid bitnami/postgresql
+```
+> ```
+> coalesce.go:196: warning: cannot overwrite table with non table for tls (map[])
+> coalesce.go:196: warning: cannot overwrite table with non table for tls (map[])
+> NAME: dpg
+> LAST DEPLOYED: Mon Mar 22 15:41:07 2021
+> NAMESPACE: druid
+> STATUS: deployed
+> REVISION: 1
+> TEST SUITE: None
+> NOTES:
+> ** Please be patient while the chart is being deployed **
+> 
+> PostgreSQL can be accessed via port 5432 on the following DNS name from within your cluster:
+> 
+>     dpg-postgresql.druid.svc.cluster.local - Read/Write connection
+> 
+> To get the password for "postgres" run:
+> 
+>     export POSTGRES_PASSWORD=$(kubectl get secret --namespace druid dpg-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
+> 
+> To connect to your database run the following command:
+> 
+>     kubectl run dpg-postgresql-client --rm --tty -i --restart='Never' --namespace druid --image docker.io/bitnami/postgresql:11.5.0-debian-9-r84 --env="PGPASSWORD=$POSTGRES_PASSWORD" --command -- psql --host dpg-postgresql -U postgres -d druid -p 5432
+> 
+> 
+> 
+> To connect to your database from outside the cluster execute the following commands:
+> 
+>     kubectl port-forward --namespace druid svc/dpg-postgresql 5432:5432 &
+>     PGPASSWORD="$POSTGRES_PASSWORD" psql --host 127.0.0.1 -U postgres -d druid -p 5432
+> ```
+```bash=
+helm upgrade dpg -f k8s/postgresql-values.yaml --namespace druid bitnami/postgresql
+```
+> ```
+> coalesce.go:196: warning: cannot overwrite table with non table for tls (map[])
+> coalesce.go:196: warning: cannot overwrite table with non table for tls (map[])
+> Release "dpg" has been upgraded. Happy Helming!
+> NAME: dpg
+> LAST DEPLOYED: Mon Mar 22 15:41:59 2021
+> NAMESPACE: druid
+> STATUS: deployed
+> REVISION: 2
+> TEST SUITE: None
+> NOTES:
+> ** Please be patient while the chart is being deployed **
+> 
+> PostgreSQL can be accessed via port 5432 on the following DNS name from within your cluster:
+> 
+>     dpg-postgresql.druid.svc.cluster.local - Read/Write connection
+> 
+> To get the password for "postgres" run:
+> 
+>     export POSTGRES_PASSWORD=$(kubectl get secret --namespace druid dpg-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
+> 
+> To connect to your database run the following command:
+> 
+>     kubectl run dpg-postgresql-client --rm --tty -i --restart='Never' --namespace druid --image docker.io/bitnami/postgresql:11.5.0-debian-9-r84 --env="PGPASSWORD=$POSTGRES_PASSWORD" --command -- psql --host dpg-postgresql -U postgres -d druid -p 5432
+> 
+> 
+> 
+> To connect to your database from outside the cluster execute the following commands:
+> 
+>     kubectl port-forward --namespace druid svc/dpg-postgresql 5432:5432 &
+>     PGPASSWORD="$POSTGRES_PASSWORD" psql --host 127.0.0.1 -U postgres -d druid -p 5432
+> ```
+```bash=
+eugene@Azure:~/Druid-Kubernetes$ kubectl apply -f k8s/druid
+```
+> ```
+> deployment.apps/druid-broker created
+> service/druid-broker created
+> deployment.apps/druid-coordinator created
+> service/druid-coordinator created
+> service/druid-historical created
+> statefulset.apps/druid-historical created
+> service/druid-middlemanager created
+> statefulset.apps/druid-middlemanager created
+> deployment.apps/druid-overlord created
+> service/druid-overlord created
+> deployment.apps/druid-router created
+> ```
+Use `kubectl get all` to check but only have
+```
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.0.0.1     <none>        443/TCP   16h
+```
+
+```bash= 
+kubectl get no
+``` 
+shows that my nodes are not ready,
+so stop and start the cluster after start 
+```bash= 
+kubectl get no 
+``` 
+> ``` 
+> NAME                                STATUS   ROLES   AGE   VERSION 
+> aks-agentpool-28667265-vmss000006   Ready    agent   18m   v1.18.14 
+> aks-agentpool-28667265-vmss000007   Ready    agent 19m   v1.18.14 
+> aks-agentpool-28667265-vmss000008   Ready    agent   18m   v1.18.14 
+> ```
+```bash= 
+kubectl get all --all-namespaces=true 
+``` 
+``` 
+NAMESPACE     NAME                                      READY   STATUS             RESTARTS   AGE 
+druid         pod/dpg-postgresql-0                      0/2     Pending            0          13h 
+druid         pod/druid-broker-758c9c5d5f-dx24b         0/2     Pending            0          101m 
+druid         pod/druid-coordinator-8675f4755b-7fvc4    0/2     Pending            0          101m 
+druid         pod/druid-historical-0                    0/2     Pending            0          101m 
+druid         pod/druid-middlemanager-0                 0/2     Pending            0          101m 
+druid         pod/druid-overlord-6bbbc78d69-8qj2s       0/2     Pending            0          101m 
+druid         pod/druid-router-7cf678f494-ps7zf         1/2     ImagePullBackOff   0          101m 
+druid         pod/dz-zookeeper-0                        0/1     Pending            0          14h 
+druid         pod/dz-zookeeper-1                        0/1     Pending            0          14h 
+druid         pod/dz-zookeeper-2                        0/1     Pending            0          14h
+kube-system   pod/coredns-748cdb7bf4-gs7br              1/1     Running            0          10h 
+kube-system   pod/coredns-748cdb7bf4-zzctr              1/1     Running            0          16h 
+kube-system   pod/coredns-autoscaler-868b684fd4-dgpv5   1/1     Running            0          16h 
+kube-system   pod/kube-proxy-c2qqz                      1/1     Running            0          23m 
+kube-system   pod/kube-proxy-f89t7                      1/1     Running            0          23m 
+kube-system   pod/kube-proxy-qwpsv                      1/1     Running            0          22m 
+kube-system   pod/metrics-server-58fdc875d5-5dvxn       1/1     Running            4          16h 
+kube-system   pod/omsagent-6w7xq                        1/1     Running            0          23m 
+kube-system   pod/omsagent-hn6lt                        1/1     Running            0          23m 
+kube-system   pod/omsagent-j456f                        1/1     Running            1          22m 
+kube-system   pod/omsagent-rs-5f8ccc6d89-9w8hn          1/1     Running            0          10h
+kube-system   pod/tunnelfront-544d5fbfd9-h4qn4          1/1     Running            0          16h
+
+NAMESPACE     NAME                                     TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)
+default       service/kubernetes                       ClusterIP      10.0.0.1       <none>          443/TCP         17h
+druid         service/dpg-postgresql                   ClusterIP      10.0.170.172   <none>          5432/TCP        13h
+druid         service/dpg-postgresql-headless          ClusterIP      None           <none>          5432/TCP        13h
+druid         service/dpg-postgresql-metrics           ClusterIP      10.0.163.233   <none>          9187/TCP         3h
+druid         service/druid-broker                     LoadBalancer   10.0.129.55    20.198.201.25   8082:31936/TCP  101m
+druid         service/druid-coordinator                LoadBalancer   10.0.3.151     20.197.103.26   8081:30290/TCP  101m
+druid         service/druid-historical                 ClusterIP      10.0.205.91    <none>          8083/TCP        101m
+druid         service/druid-middlemanager              ClusterIP      10.0.3.211     <none>          8091/TCP,8100/TCP,8101/TCP,8102/TCP,8103/TCP,8104/TCP,8105/TCP,8106/TCP,8107/TCP,8108/TCP,8109/TCP,8110/TCP,8111/TCP,8112/TCP,8113/TCP,8114/TCP,8115/TCP,8116/TCP,8117/TCP,8118/TCP,8119/TCP,8120/TCP   101m
+druid         service/druid-overlord                   ClusterIP      10.0.190.152   <none>          8090/TCP                    101m
+druid         service/druid-router                     ClusterIP      10.0.135.146   <none>          8888/TCP                    101m
+druid         service/dz-zookeeper                     ClusterIP      10.0.105.195   <none>          2181/TCP,2888/TCP,3888/TCP  14h
+druid         service/dz-zookeeper-headless            ClusterIP      None           <none>          2181/TCP,2888/TCP,3888/TCP  14h
+druid         service/dz-zookeeper-metrics             ClusterIP      10.0.245.12    <none>          9141/TCP                    14h
+kube-system   service/healthmodel-replicaset-service   ClusterIP      10.0.145.54    <none>          25227/TCP                   17h
+kube-system   service/kube-dns                         ClusterIP      10.0.0.10      <none>          53/UDP,53/TCP               17h
+kube-system   service/metrics-server                   ClusterIP      10.0.228.28    <none>          443/TCP                     17h
+
+NAMESPACE     NAME                          DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                 AGE
+kube-system   daemonset.apps/kube-proxy     3         3         3       3            3           beta.kubernetes.io/os=linux   17h
+kube-system   daemonset.apps/omsagent       3         3         3       3            3           <none>                        17h
+kube-system   daemonset.apps/omsagent-win   0         0         0       0            0           <none>                        17h
+
+NAMESPACE     NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+druid         deployment.apps/druid-broker         0/1     1            0           101m
+druid         deployment.apps/druid-coordinator    0/1     1            0           101m
+druid         deployment.apps/druid-overlord       0/1     1            0           101m
+druid         deployment.apps/druid-router         0/1     1            0           101m
+kube-system   deployment.apps/coredns              2/2     2            2           17h
+kube-system   deployment.apps/coredns-autoscaler   1/1     1            1           17h
+kube-system   deployment.apps/metrics-server       1/1     1            1           17h
+kube-system   deployment.apps/omsagent-rs          1/1     1            1           17h
+kube-system   deployment.apps/tunnelfront          1/1     1            1           17h
+
+NAMESPACE     NAME                                            DESIRED   CURRENT   READY   AGE
+druid         replicaset.apps/druid-broker-758c9c5d5f         1         1         0       101m
+druid         replicaset.apps/druid-coordinator-8675f4755b    1         1         0       101m
+druid         replicaset.apps/druid-overlord-6bbbc78d69       1         1         0       101m
+druid         replicaset.apps/druid-router-7cf678f494         1         1         0       101m
+kube-system   replicaset.apps/coredns-748cdb7bf4              2         2         2       17h
+kube-system   replicaset.apps/coredns-autoscaler-868b684fd4   1         1         1       17h
+kube-system   replicaset.apps/metrics-server-58fdc875d5       1         1         1       17h
+kube-system   replicaset.apps/omsagent-rs-5f8ccc6d89          1         1         1       17h
+kube-system   replicaset.apps/tunnelfront-544d5fbfd9          1         1         1       17h
+
+NAMESPACE   NAME                                   READY   AGE
+druid       statefulset.apps/dpg-postgresql        0/1     13h
+druid       statefulset.apps/druid-historical      0/1     101m
+druid       statefulset.apps/druid-middlemanager   0/8     101m
+druid       statefulset.apps/dz-zookeeper          0/3     14h
+```
+
+try to look into 
+```
+druid         pod/druid-router-7cf678f494-ps7zf         1/2     ImagePullBackOff   0          101m
+```
+```
+eugene@Azure:~/Druid-Kubernetes$ kubectl describe pod/druid-router-7cf678f494-ps7zf -n druid
+Name:         druid-router-7cf678f494-ps7zf
+Namespace:    druid
+Priority:     0
+Node:         aks-agentpool-28667265-vmss000007/10.240.0.5
+Start Time:   Tue, 23 Mar 2021 04:53:30 +0000
+Labels:       component=router
+              pod-template-hash=7cf678f494
+Annotations:  prometheus.io/port: 8000
+              prometheus.io/scrape: true
+Status:       Pending
+IP:           10.244.0.8
+IPs:
+  IP:           10.244.0.8
+Controlled By:  ReplicaSet/druid-router-7cf678f494
+Containers:
+  druid:
+    Container ID:
+    Image:         gcr.io/zenatix-data-archiver/kube-druid:0.0.1
+    Image ID:
+    Port:          8888/TCP
+    Host Port:     0/TCP
+    Command:
+      /bin/bash
+      -c
+      ip=$(awk 'END{print $1}' /etc/hosts) && sed -ri 's/druid.host=.*/druid.host='${ip}'/g' /druid/conf/router/runtime.properties && bin/run-druid router /druid/conf
+    State:          Waiting
+      Reason:       ImagePullBackOff
+    Ready:          False
+    Restart Count:  0
+    Readiness:      http-get http://:8888/status/health delay=30s timeout=1s period=10s #success=1 #failure=3
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-vpwg6 (ro)
+  druid-exporter:
+    Container ID:   docker://4548c74ceb25d6c2052de2dc5d23e839d7c1e5bb2165de9b5ae8193ac28faa45
+    Image:          deepaksood619/druid-exporter:0.0.2
+    Image ID:       docker-pullable://deepaksood619/druid-exporter@sha256:9c9f729b651fdeeb0097044e9498026db76f243f8ba98e56cae1a1eb3d0f93d7
+    Port:           8000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 23 Mar 2021 04:54:18 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-vpwg6 (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             False
+  ContainersReady   False
+  PodScheduled      True
+Volumes:
+  default-token-vpwg6:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-vpwg6
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age                    From               Message
+  ----     ------            ----                   ----               -------
+  Warning  FailedScheduling  113m                   default-scheduler  0/3 nodes are available: 3 node(s) had taint {node.kubernetes.io/unreachable: }, that the pod didn't tolerate.
+  Warning  FailedScheduling  36m (x4 over 38m)      default-scheduler  no nodes available to schedule pods
+  Warning  FailedScheduling  35m                    default-scheduler  0/1 nodes are available: 1 node(s) had taint {node.kubernetes.io/not-ready: }, that the pod didn't tolerate.
+  Normal   Scheduled         35m                    default-scheduler  Successfully assigned druid/druid-router-7cf678f494-ps7zf to aks-agentpool-28667265-vmss000007
+  Normal   Pulling           34m                    kubelet            Pulling image "deepaksood619/druid-exporter:0.0.2"
+  Normal   Pulled            34m                    kubelet            Successfully pulled image "deepaksood619/druid-exporter:0.0.2"
+  Normal   Created           34m                    kubelet            Created container druid-exporter
+  Normal   Started           34m                    kubelet            Started container druid-exporter
+  Warning  Failed            33m (x3 over 34m)      kubelet            Failed to pull image "gcr.io/zenatix-data-archiver/kube-druid:0.0.1": rpc error: code = Unknown desc = Error response from daemon: unauthorized: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
+  Normal   BackOff           33m (x5 over 34m)      kubelet            Back-off pulling image "gcr.io/zenatix-data-archiver/kube-druid:0.0.1"
+  Normal   Pulling           33m (x4 over 35m)      kubelet            Pulling image "gcr.io/zenatix-data-archiver/kube-druid:0.0.1"
+  Warning  Failed            33m (x4 over 34m)      kubelet            Error: ErrImagePull
+  Warning  Failed            4m35s (x131 over 34m)  kubelet            Error: ImagePullBackOff
+```
+seem like nodes not enough and some permission issue, 
+scale up to 6 nodes by azure portal gui
+succeed
+try to restart a pod... GG, don't want to spend time on this repo
+:::danger
+too much time spent this repo, try other methods
+give up this repo
+:::
+
+See: https://ithelp.ithome.com.tw/articles/10193944
+try:
+```
+// in WSL // sudo dockerd in another terminal
+y56@AA2100083-NB:~$ docker pull gcr.io/zenatix-data-archiver/kube-druid:0.0.1
+Error response from daemon: unauthorized: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
+y56@AA2100083-NB:~$ docker pull gcr.io/zenatix-data-archiver/kube-druid
+Using default tag: latest
+Error response from daemon: unauthorized: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
+y56@AA2100083-NB:~$ docker pull zenatix-data-archiver/kube-druid
+Using default tag: latest
+Error response from daemon: pull access denied for zenatix-data-archiver/kube-druid, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+```
+:::danger
+That's a private docker hub, GG
+:::
+
+
+## [yet] try: Imply
+https://docs.imply.io/2021.02/k8s-azure/
+https://docs.imply.io/3.0/on-prem/quickstart
+
+
+## tools
+
+### delete some of them
+
+kubectl delete deployment webfrontend  # clear all resources except service
+
+helm uninstall webfrontend  # need to wait pod, few seconds 
+
+### [bad, clean too much] clean all the stuff; get a clean aks env
+will take a few minutes to derminate things
+```
+kubectl delete pods --all --all-namespaces
+kubectl delete --all pods --all-namespaces
+kubectl delete --all deployments --all-namespaces
+kubectl delete --all namespaces  # bad, will break kube-system, need to restart nodes
+
+kubectl get all --all-namespaces=true  # to check
+```
+However, the latter command is probably not something you want to do, since it will delete things in the kube-system namespace, which will make your cluster not usable. This command will delete all the namespaces except kube-system, which might be useful:
+```
+# for linux
+for each in $(kubectl get ns -o jsonpath="{.items[*].metadata.name}" | grep -v kube-system);
+do
+  kubectl delete ns $each
+done
+```
+
+### restart a node in aks
+
+https://pumpingco.de/blog/restart-a-node-in-aks/
+
+### kill a process
+kill pid_number
+
+### list pid and port usage
+
 sudo ss -lp "sport = :443"
 sudo ss -lp "sport = :8080"
 sudo ss -lp "sport = :domain"
 sudo ss -lp "sport = :53"
 sudo ss -lp "sport = :22"
+
+
+### install kubectl on WSL2 or linux
+```
+// make sure you have internet QQ
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl version --client
+```
+#### [solved]: hard to use on WSL2/Linux to access AKS
+```bash=
+kubectl get all
+```
+```
+The connection to the server 127.0.0.1:32769 was refused - did you specify the right host or port?
+```
+WSL is trying to connect minikube, don't know how to config it
+give up; dont use wsl
+
+replace the content of /home/y56/.kube/config by C:\Users\eugene_wang\.kube\config
+
+
+# [OK] hello world, for minikube, on WSL
+Use the Windows-native desktop docker as the docker engine, don't use dockerd in WSL
+Otherwise, you will have
+```
+❗  This container is having trouble accessing https://k8s.gcr.io
+💡  To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+```
+when doing minikube start
+and will have status as `ErrImagePull` or `ImagePullBackOff` for the pod created by
+```
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
+```
+See: https://blog.miniasp.com/post/2020/08/21/Install-Kubernetes-cluster-in-WSL-2-Docker-on-Windows-using-kind
+
+## command and printout
+```
+y56@AA2100083-NB:~$ minikube start
+😄  minikube v1.18.1 on Ubuntu 20.04
+✨  Using the docker driver based on existing profile
+
+💣  Exiting due to PROVIDER_DOCKER_NOT_RUNNING: "docker version --format -" exit status 1: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+💡  Suggestion: Start the Docker service
+📘  Documentation: https://minikube.sigs.k8s.io/docs/drivers/docker/
+
+y56@AA2100083-NB:~$ minikube start
+😄  minikube v1.18.1 on Ubuntu 20.04
+✨  Using the docker driver based on existing profile
+
+💣  Exiting due to PROVIDER_DOCKER_NOT_RUNNING: "docker version --format -" exit status 1: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+💡  Suggestion: Start the Docker service
+📘  Documentation: https://minikube.sigs.k8s.io/docs/drivers/docker/
+
+y56@AA2100083-NB:~$ minikube start
+😄  minikube v1.18.1 on Ubuntu 20.04
+✨  Using the docker driver based on existing profile
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+🤷  docker "minikube" container is missing, will recreate.
+🔥  Creating docker container (CPUs=2, Memory=3100MB) ...
+🐳  Preparing Kubernetes v1.20.2 on Docker 20.10.3 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v4
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+y56@AA2100083-NB:~$ kubectl get all -A
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-74ff55c5b-jdqqh            1/1     Running   0          46s
+kube-system   pod/etcd-minikube                      0/1     Running   0          54s
+kube-system   pod/kube-apiserver-minikube            1/1     Running   0          54s
+kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          54s
+kube-system   pod/kube-proxy-vwqd4                   1/1     Running   0          46s
+kube-system   pod/kube-scheduler-minikube            0/1     Running   0          54s
+kube-system   pod/storage-provisioner                1/1     Running   0          55s
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  66s
+kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   61s
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR
+AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   60s
+
+NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   deployment.apps/coredns   1/1     1            1           61s
+
+NAMESPACE     NAME                                DESIRED   CURRENT   READY   AGE
+y56@AA2100083-NB:~$ kubectl get all -A
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-74ff55c5b-jdqqh            1/1     Running   0          64s
+kube-system   pod/etcd-minikube                      0/1     Running   0          72s
+kube-system   pod/kube-apiserver-minikube            1/1     Running   0          72s
+kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          72s
+kube-system   pod/kube-proxy-vwqd4                   1/1     Running   0          64s
+kube-system   pod/kube-scheduler-minikube            1/1     Running   0          72s
+kube-system   pod/storage-provisioner                1/1     Running   0          73s
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  84s
+kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   79s
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   78s
+
+NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   deployment.apps/coredns   1/1     1            1           79s
+
+NAMESPACE     NAME                                DESIRED   CURRENT   READY   AGE
+kube-system   replicaset.apps/coredns-74ff55c5b   1         1         1       65s
+y56@AA2100083-NB:~$ kubectl get all -A
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-74ff55c5b-jdqqh            1/1     Running   0          76s
+kube-system   pod/etcd-minikube                      1/1     Running   0          84s
+kube-system   pod/kube-apiserver-minikube            1/1     Running   0          84s
+kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          84s
+kube-system   pod/kube-proxy-vwqd4                   1/1     Running   0          76s
+kube-system   pod/kube-scheduler-minikube            1/1     Running   0          84s
+kube-system   pod/storage-provisioner                1/1     Running   0          85s
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  96s
+kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   91s
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   90s
+
+NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   deployment.apps/coredns   1/1     1            1           91s
+
+NAMESPACE     NAME                                DESIRED   CURRENT   READY   AGE
+kube-system   replicaset.apps/coredns-74ff55c5b   1         1         1       77s
+y56@AA2100083-NB:~$ kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
+deployment.apps/hello-minikube created
+y56@AA2100083-NB:~$ kubectl expose deployment hello-minikube --type=NodePort --port=8080
+service/hello-minikube exposed
+y56@AA2100083-NB:~$ kubectl get services hello-minikube
+NAME             TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+hello-minikube   NodePort   10.107.169.186   <none>        8080:31472/TCP   7s
+y56@AA2100083-NB:~$ minikube service hello-minikube
+|-----------|----------------|-------------|---------------------------|
+| NAMESPACE |      NAME      | TARGET PORT |            URL            |
+|-----------|----------------|-------------|---------------------------|
+| default   | hello-minikube |        8080 | http://192.168.49.2:31472 |
+|-----------|----------------|-------------|---------------------------|
+🏃  Starting tunnel for service hello-minikube.
+|-----------|----------------|-------------|------------------------|
+| NAMESPACE |      NAME      | TARGET PORT |          URL           |
+|-----------|----------------|-------------|------------------------|
+| default   | hello-minikube |             | http://127.0.0.1:35053 |
+|-----------|----------------|-------------|------------------------|
+🎉  Opening service default/hello-minikube in default browser...
+👉  http://127.0.0.1:35053
+❗  Because you are using a Docker driver on linux, the terminal needs to be open to run it.
+^C✋  Stopping tunnel for service hello-minikube.
+
+❌  Exiting due to SVC_TUNNEL_STOP: stopping ssh tunnel: os: process already finished
+
+😿  If the above advice does not help, please let us know:
+👉  https://github.com/kubernetes/minikube/issues/new/choose
+
+y56@AA2100083-NB:~$ kubectl get all -A
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+default       pod/hello-minikube-6ddfcc9757-9hdr6    1/1     Running   0          55m
+kube-system   pod/coredns-74ff55c5b-jdqqh            1/1     Running   0          62m
+kube-system   pod/etcd-minikube                      1/1     Running   0          62m
+kube-system   pod/kube-apiserver-minikube            1/1     Running   0          62m
+kube-system   pod/kube-controller-manager-minikube   1/1     Running   0          62m
+kube-system   pod/kube-proxy-vwqd4                   1/1     Running   0          62m
+kube-system   pod/kube-scheduler-minikube            1/1     Running   0          62m
+kube-system   pod/storage-provisioner                1/1     Running   0          62m
+
+NAMESPACE     NAME                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE
+default       service/hello-minikube   NodePort    10.107.169.186   <none>        8080:31472/TCP           55m
+default       service/kubernetes       ClusterIP   10.96.0.1        <none>        443/TCP                  62m
+kube-system   service/kube-dns         ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP   62m
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   62m
+
+NAMESPACE     NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+default       deployment.apps/hello-minikube   1/1     1            1           55m
+kube-system   deployment.apps/coredns          1/1     1            1           62m
+
+NAMESPACE     NAME                                        DESIRED   CURRENT   READY   AGE
+default       replicaset.apps/hello-minikube-6ddfcc9757   1         1         1       55m
+kube-system   replicaset.apps/coredns-74ff55c5b           1         1         1       62m
+y56@AA2100083-NB:~$ kubectl get no -A
+NAME       STATUS   ROLES                  AGE   VERSION
+minikube   Ready    control-plane,master   63m   v1.20.2
+y56@AA2100083-NB:~$ kubectl get no
+NAME       STATUS   ROLES                  AGE   VERSION
+minikube   Ready    control-plane,master   63m   v1.20.2
+y56@AA2100083-NB:~$ kubectl get no --all
+Error: unknown flag: --all
+See 'kubectl get --help' for usage.
+y56@AA2100083-NB:~$
+```
+
+# [GG] [no permission to pull my own image??!!] Quickstart: Develop on Azure Kubernetes Service (AKS) with Helm
+https://docs.microsoft.com/en-us/azure/aks/quickstart-helm
+```powershell
+# create the Dockfile
+
+# az acr build --image webfrontend:v1 --registry MyHelmACR --file Dockerfile .
+az acr build --image webfrontend:v1 --registry kgacrdruiddev2 --file Dockerfile .
+
+git clone https://github.com/Azure/dev-spaces
+cd dev-spaces/samples/nodejs/getting-started/webfrontend
+
+# install choco
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+# install helm
+choco install kubernetes-helm  # reboot win 10, win 10 is BAD~
+
+
+helm create webfrontend
+
+# Update webfrontend/values.yaml:
+##  Replace the loginServer of your registry that you noted in an earlier step, such as myhelmacr.azurecr.io.
+##  Change image.repository to <loginServer>/webfrontend
+##  Change service.type to LoadBalancer
+
+# Update Update appVersion to v1 in webfrontend/Chart.yaml. 
+
+helm install webfrontend webfrontend/
+
+kubectl get all -A
+    default       pod/webfrontend-6d85cfcc65-kqh5n          0/1     ImagePullBackOff   0          11s
+
+PS C:\Users\eugene_wang\dev-spaces\samples\nodejs\getting-started\webfrontend> kubectl describe pod/webfrontend-6d85cfcc65-kqh5n
+```
+
+  ```powershell
+  Name:         webfrontend-6d85cfcc65-kqh5n
+  Namespace:    default
+  Priority:     0
+  Node:         aks-agentpool-62526533-vmss000002/10.240.0.6
+  Start Time:   Wed, 24 Mar 2021 16:02:32 +0800
+  Labels:       app.kubernetes.io/instance=webfrontend
+                app.kubernetes.io/name=webfrontend
+                pod-template-hash=6d85cfcc65
+  Annotations:  <none>
+  Status:       Pending
+  IP:           10.244.0.12
+  IPs:
+    IP:           10.244.0.12
+  Controlled By:  ReplicaSet/webfrontend-6d85cfcc65
+  Containers:
+    webfrontend:
+      Container ID:
+      Image:          kgacrdruiddev.azurecr.io/webfrontend:v1
+      Image ID:
+      Port:           80/TCP
+      Host Port:      0/TCP
+      State:          Waiting
+        Reason:       ImagePullBackOff
+      Ready:          False
+      Restart Count:  0
+      Liveness:       http-get http://:http/ delay=0s timeout=1s period=10s #success=1 #failure=3
+      Readiness:      http-get http://:http/ delay=0s timeout=1s period=10s #success=1 #failure=3
+      Environment:    <none>
+      Mounts:
+        /var/run/secrets/kubernetes.io/serviceaccount from webfrontend-token-bhk9n (ro)
+  Conditions:
+    Type              Status
+    Initialized       True
+    Ready             False
+    ContainersReady   False
+    PodScheduled      True
+  Volumes:
+    webfrontend-token-bhk9n:
+      Type:        Secret (a volume populated by a Secret)
+      SecretName:  webfrontend-token-bhk9n
+      Optional:    false
+  QoS Class:       BestEffort
+  Node-Selectors:  <none>
+  Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                  node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+  Events:
+    Type     Reason          Age                 From               Message
+    ----     ------          ----                ----               -------
+    Normal   Scheduled       112s                default-scheduler  Successfully assigned default/webfrontend-6d85cfcc65-kqh5n to aks-agentpool-62526533-vmss000002
+    Normal   SandboxChanged  111s                kubelet            Pod sandbox changed, it will be killed and re-created.
+    Warning  Failed          65s (x3 over 111s)  kubelet            Failed to pull image "kgacrdruiddev.azurecr.io/webfrontend:v1": rpc error: code = Unknown desc = Error response from daemon: Get https://kgacrdruiddev.azurecr.io/v2/webfrontend/manifests/v1: unauthorized: authentication required, visit https://aka.ms/acr/authorization for more information.
+    Warning  Failed          65s (x3 over 111s)  kubelet            Error: ErrImagePull
+    Normal   BackOff         27s (x7 over 110s)  kubelet            Back-off pulling image "kgacrdruiddev.azurecr.io/webfrontend:v1"
+    Warning  Failed          27s (x7 over 110s)  kubelet            Error: ImagePullBackOff
+    Normal   Pulling         14s (x4 over 112s)  kubelet            Pulling image "kgacrdruiddev.azurecr.io/webfrontend:v1"
+  ```
+
+
+
+# [OK] Quickstart: Deploy an Azure Kubernetes Service cluster using the Azure CLI
+```
+PS C:\Users\eugene_wang> code azure-vote.yaml  # to create the file
+PS C:\Users\eugene_wang> kubectl apply -f azure-vote.yaml
+  deployment.apps/azure-vote-back created
+  service/azure-vote-back created
+  deployment.apps/azure-vote-front created
+  service/azure-vote-front created
+PS C:\Users\eugene_wang> kubectl get service azure-vote-front --watch
+  NAME               TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)        AGE
+  azure-vote-front   LoadBalancer   10.0.57.71   20.195.53.3   80:30815/TCP   39s
+```
+20.195.53.3:80 http 
+:::success
+success
+:::
+
+#
 
