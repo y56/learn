@@ -2133,3 +2133,51 @@ https://druid.apache.org/docs/latest/ingestion/faq.html
 http://localhost:7788/druid/coordinator/v1/datasources/wikipedia/loadstatus?forceMetadataRefresh=true
 
 ## try 3: splunk druid-operator
+
+
+# kg dashboard
+## setup env
+### npm
+### nodejs
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+### aics private npm package need auth
+https://asus-aics.github.io/DeveloperGuide/pages/032_npm_package/
+You must create the personal token with the read:packages and write:packages scopes.
+```
+$ npm login --registry=https://npm.pkg.github.com
+> Username: USERNAME
+> Password: TOKEN
+> Email: PUBLIC EMAIL ADDRESS
+```
+### active backend server
+npm install
+npm start
+! login to https://microsoft.com/devicelogin
+```
+info: AICS API Template started on http://localhost:3030
+```
+
+means success 
+
+### install nodemon
+```
+npm install -g nodemon // to have nodemon, rebuild when make change
+```
+### postresql
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+sudo -i -u postgres
+psql -h kg-dashboard-dev.postgres.database.azure.com -U kgadmin@kg-dashboard-dev -d kgdashboard
+輸入密碼 
+### the postresql setting in confit/default.js
+```
+  "dialect": "postgres",
+  "postgres": {
+    "host": "",
+    "username": "",
+    "password": "",
+    "database": "kgdashboard"
+  },
+```
