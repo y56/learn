@@ -332,7 +332,7 @@ https://superuser.com/questions/1365258/how-to-change-the-dark-blue-in-wsl-to-so
 ```
 console.log('\x1b[36m%s\x1b[0m', 'I am cyan');  //cyan
 console.log('\x1b[33m%s\x1b[0m', stringToMakeYellow);  //yellow
-'\x1b[31m%s\x1b[0m' // red
+console.log('\x1b[31m%s\x1b[0m', 'yo yo yo RED'); // RED
 ```
 https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
 ```
