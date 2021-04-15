@@ -2138,7 +2138,32 @@ http://localhost:7788/druid/coordinator/v1/datasources/wikipedia/loadstatus?forc
 # kg dashboard
 ## setup env
 ### npm
-### nodejs
+### nodejs to ver 14+
+when i am w/ node v 12.44
+i faced 
+```
+> kg-oneid-dashboard-backend@0.4.0 start /home/y56/aics-gh/kg-oneid-analytics-system
+> node src/
+
+error: uncaughtException: Unexpected token '.'
+/home/y56/aics-gh/kg-oneid-analytics-system/src/services/product-analysis/product-analysis.class.js:101
+      mau: totalResult[0]?.total ?? 0,
+                          ^
+
+SyntaxError: Unexpected token '.'
+    at wrapSafe (internal/modules/cjs/loader.js:915:16)
+    at Module._compile (internal/modules/cjs/loader.js:963:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+    at Module.load (internal/modules/cjs/loader.js:863:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+    at Module.require (internal/modules/cjs/loader.js:887:19)
+    at Module.patchedRequire [as require] (/home/y56/aics-gh/kg-oneid-analytics-system/node_modules/diagnostic-channel/dist/src/patchRequire.js:14:46)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (/home/y56/aics-gh/kg-oneid-analytics-system/src/services/product-analysis/product-analysis.service.js:2:27)
+    at Module._compile (internal/modules/cjs/loader.js:999:30) {"error":{},"stack":"/home/y56/aics-gh/kg-oneid-analytics-system/src/services/product-analysis/product-analysis.class.js:101\n      mau: totalResult[0]?.total ?? 0,\n                          ^\n\nSyntaxError: Unexpected token '.'\n    at wrapSafe (internal/modules/cjs/loader.js:915:16)\n    at Module._compile (internal/modules/cjs/loader.js:963:27)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)\n    at Module.load (internal/modules/cjs/loader.js:863:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:708:14)\n    at Module.require (internal/modules/cjs/loader.js:887:19)\n    at Module.patchedRequire [as require] (/home/y56/aics-gh/kg-oneid-analytics-system/node_modules/diagnostic-channel/dist/src/patchRequire.js:14:46)\n    at require (internal/modules/cjs/helpers.js:74:18)\n    at Object.<anonymous> (/home/y56/aics-gh/kg-oneid-analytics-system/src/services/product-analysis/product-analysis.service.js:2:27)\n    at Module._compile (internal/modules/cjs/loader.js:999:30)","exception":true,"date":"Wed Apr 14 2021 12:39:20 GMT+0800 (Taipei Standard Time)","process":{"pid":26334,"uid":1000,"gid":1000,"cwd":"/home/y56/aics-gh/kg-oneid-analytics-system","execPath":"/usr/bin/node","version":"v12.22.1","argv":["/usr/bin/node","/home/y56/aics-gh/kg-oneid-analytics-system/src"],"memoryUsage":{"rss":69730304,"heapTotal":52912128,"heapUsed":21841072,"external":4342567,"arrayBuffers":201726}},"os":{"loadavg":[0.64,1.02,1.03],"uptime":43440},"trace":[{"column":16,"file":"internal/modules/cjs/loader.js","function":"wrapSafe","line":915,"method":null,"native":false},{"column":27,"file":"internal/modules/cjs/loader.js","function":"Module._compile","line":963,"method":"_compile","native":false},{"column":10,"file":"internal/modules/cjs/loader.js","function":"Module._extensions..js","line":1027,"method":".js","native":false},{"column":32,"file":"internal/modules/cjs/loader.js","function":"Module.load","line":863,"method":"load","native":false},{"column":14,"file":"internal/modules/cjs/loader.js","function":"Module._load","line":708,"method":"_load","native":false},{"column":19,"file":"internal/modules/cjs/loader.js","function":"Module.require","line":887,"method":"require","native":false},{"column":46,"file":"/home/y56/aics-gh/kg-oneid-analytics-system/node_modules/diagnostic-channel/dist/src/patchRequire.js","function":"Module.patchedRequire [as require]","line":14,"method":"patchedRequire [as require]","native":false},{"column":18,"file":"internal/modules/cjs/helpers.js","function":"require","line":74,"method":null,"native":false},{"column":27,"file":"/home/y56/aics-gh/kg-oneid-analytics-system/src/services/product-analysis/product-analysis.service.js","function":null,"line":2,"method":null,"native":false},{"column":30,"file":"internal/modules/cjs/loader.js","function":"Module._compile","line":999,"method":"_compile","native":false}]}
+```
+this go away after i use the below to go to node v 14 
+
 sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable
