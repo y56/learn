@@ -2135,7 +2135,7 @@ http://localhost:7788/druid/coordinator/v1/datasources/wikipedia/loadstatus?forc
 ## try 3: splunk druid-operator
 
 
-# kg dashboard
+# kg dashboard -- ad-create api 
 ## setup env
 ### npm
 ### nodejs to ver 14+
@@ -2196,6 +2196,7 @@ sudo apt install postgresql postgresql-contrib
 sudo -i -u postgres
 psql -h kg-dashboard-dev.postgres.database.azure.com -U kgadmin@kg-dashboard-dev -d kgdashboard
 輸入密碼 
+## code 
 ### the postresql setting in confit/default.js
 ```
   "dialect": "postgres",
@@ -2206,3 +2207,66 @@ psql -h kg-dashboard-dev.postgres.database.azure.com -U kgadmin@kg-dashboard-dev
     "database": "kgdashboard"
   },
 ```
+### some knowledge of the executtion tree structure of node.js
+#### the entry point
+##### /home/y56/kg-oneid-analytics-system/.scannerwork/css-bundle/package/package.json
+  "main": "index.js",
+##### index.js
+module.exports = function(app) {
+  app.configure(users);
+  app.configure(activeUsers);
+  app.configure(userTrends);
+  app.configure(conditionOptions);
+  app.configure(productAnalysis);
+  app.configure(nonactiveUsers);
+  app.configure(endpointAnalysis);
+  app.configure(businessUnits); 
+  app.configure(readingAnalysis);
+  app.configure(feedback);
+  app.configure(adCreate); // !!!
+};
+each is DB tabel
+##### database table name
+const adCreate = sequelizeClient.define(THE_DB_TABLE_NAME, {
+## what will happen if i change schema?
+Let's assume it will b updated to newest schema accordingly
+## [task][done] ad-create GET 
+## [task] parse POST payload and write to DB
+go to serve/hook/class
+### info pattern 
+https://github.com/feathersjs/feathers/issues/804
+#### one api endpoit, write to many database chart
+
+
+#### use create() to write to database
+https://docs.feathersjs.com/guides/basics/services.html#customizing-a-service
+## [question] 
+```json
+    hooks: {
+      beforeCount(options) {
+        options.raw = true; // ? y56 ?????
+      },
+      // beforeValidate is applied before beforeCreate
+      beforeValidate(bu, options) {
+        // bu.id = uuidv4();
+      },
+```
+
+### postgresql commands
+
+table ad_placement;table ad; table campaign;table campaign_placement;table "order"; table placement;
+
+drop table ad_placement;drop table ad; drop table campaign;drop table campaign_placement;drop table "order";drop table placement;
+
+delete from ad_placement;delete from ad; delete from campaign;delete from campaign_placement;delete from "order"; delete from placement;
+
+select * from ad_placement;select * from ad; select * from campaign;select * from  campaign_placement;select * from "order";select * from placement;
+
+
+### js style syntax check
+npx eslint .
+
+
+### skip the original service method 
+When context.result is set in a before hook, the original service method call will be skipped. 
+https://docs.feathersjs.com/api/hooks.html#setting-context-result
