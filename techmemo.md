@@ -2252,7 +2252,7 @@ https://docs.feathersjs.com/guides/basics/services.html#customizing-a-service
       },
 ```
 
-### postgresql commands
+## postgresql commands
 
 table ad_placement;table ad; table campaign;table campaign_placement;table "order"; table placement;
 
@@ -2263,10 +2263,26 @@ delete from ad_placement;delete from ad; delete from campaign;delete from campai
 select * from ad_placement;select * from ad; select * from campaign;select * from  campaign_placement;select * from "order";select * from placement;
 
 
-### js style syntax check
+## js style syntax check
 npx eslint .
 
-
-### skip the original service method 
+## skip the original service method 
 When context.result is set in a before hook, the original service method call will be skipped. 
 https://docs.feathersjs.com/api/hooks.html#setting-context-result
+
+## List foreign keys in PostgreSQL database
+https://dataedo.com/kb/query/postgresql/list-foreign-keys
+
+## API　error handling, documentation, desigh
+
+### code 200 as soft error
+
+https://softwareengineering.stackexchange.com/questions/305250/should-i-use-http-status-codes-to-describe-application-level-events
+
+#### Most straightforward way of getting a raw, unparsed HTTPS response
+https://unix.stackexchange.com/questions/29402/most-straightforward-way-of-getting-a-raw-unparsed-https-response
+
+curl -D - https://www.google.com/
+
+### Difference between system level exception and Application level exception.
+
