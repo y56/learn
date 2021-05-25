@@ -2286,3 +2286,83 @@ curl -D - https://www.google.com/
 
 ### Difference between system level exception and Application level exception.
 
+# mysql bug resolution
+
+## set a local mysql
+
+following: https://blog.csdn.net/m0_49270962/article/details/116246774
+also following: https://www.computerhope.com/unix/mysqltut.htm#Connecting-And-Disconnecting
+
+for start process: https://www.computerhope.com/forum/index.php?topic=170610.0
+
+sudo apt update
+sudo apt-get install mysql-client mysql-server
+
+### misc
+
+If you want to install a specific version of MySQL, specify the version number in the package name. For instance,
+
+sudo apt-get install mysql-client-5.5
+
+sudo mysql -u root -p // must sudo
+see: https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied-for-user-rootlocalhost
+
+
+TODO: choose a specific mysql to run
+
+### login 
+
+sudo mysql -u root
+
+## check current mysql server version
+
+mysql --version // for client
+
+mysqld --version // for server
+
+## experiment
+
+
+```
+mysql> SELECT DATABASE();
++------------+
+| DATABASE() |
++------------+
+| NULL       |
++------------+
+```
+
+
+CREATE DATABASE test;
+show databases;
+user test;
+
+```
+mysql> SELECT DATABASE();
++------------+
+| DATABASE() |
++------------+
+| test       |
++------------+
+```
+
+### schema of fake raw data
+table: checks_ddspasyntheticsalerts
+
+Created     // str 2020/12/31 18:01:01
+device      // str
+product     // str   
+id1         // str
+status      // str: 'error' 'recovery' 'sthelse'
+Error    ?? // str: 'fake error value'
+### create table with schema
+mysql> create table checks_ddspasyntheticsalerts (
+    -> Created varchar(255),
+    -> device varchar(255),
+    -> product varchar(255),
+    -> id1 varchar(255),
+    -> status varchar(255),
+    -> Error varchar(255));
+### insert data
+mysql> 
+insert into checks_ddspasyntheticsalerts values ( '2020/12/31 01:01:01', 'desktop', 'Product 1', '5566', 'recovery', 'fake001');
