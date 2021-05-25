@@ -1,5 +1,11 @@
+delete from checks_ddspasyntheticsalerts;
 insert into checks_ddspasyntheticsalerts values ( '2020/12/31 01:01:01', 'desktop', 'Product 1', '10', 'recovery', 'fake001');
 insert into checks_ddspasyntheticsalerts values ( '2020/12/31 02:01:01', 'desktop', 'Product 1', '20', 'error', 'fake001');
 insert into checks_ddspasyntheticsalerts values ( '2020/12/31 03:01:01', 'desktop', 'Product 1', '30', 'recovery', 'fake001');
 insert into checks_ddspasyntheticsalerts values ( '2020/12/31 04:01:01', 'desktop', 'Product 1', '40', 'error', 'fake001');
 insert into checks_ddspasyntheticsalerts values ( '2020/12/31 05:01:01', 'desktop', 'Product 1', '50', 'recovery', 'fake001');
+insert into checks_ddspasyntheticsalerts values ( '2020/12/31 11:01:01', 'desktop', 'Product 1', '11', 'recovery', 'fake002');
+insert into checks_ddspasyntheticsalerts values ( '2020/12/31 12:01:01', 'desktop', 'Product 1', '21', 'error', 'fake002');
+insert into checks_ddspasyntheticsalerts values ( '2020/12/31 14:01:01', 'desktop', 'Product 1', '31', 'recovery', 'fake002');
+insert into checks_ddspasyntheticsalerts values ( '2020/12/31 17:01:01', 'desktop', 'Product 1', '41', 'error', 'fake002');
+insert into checks_ddspasyntheticsalerts values ( '2020/12/31 21:01:01', 'desktop', 'Product 1', '51', 'recovery', 'fake002');

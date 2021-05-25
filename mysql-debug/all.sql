@@ -40,6 +40,7 @@ from
         from 
           `checks_ddspasyntheticsalerts`
         order by 
+          Error,
           cast(Id1 as dec)
       ) a 
     where 
@@ -72,6 +73,7 @@ from
         from 
           `checks_ddspasyntheticsalerts`
         order by 
+          Error,
           cast(Id1 as dec)
       ) a 
     where 
@@ -80,3 +82,6 @@ from
   on ERR.create_date = REC.create_date 
   AND ERR.Error = REC.Error 
   AND ERR.row_id = REC.row_id - 1
+
+order by 
+  Error
