@@ -60,7 +60,7 @@ https://stackoverflow.com/questions/34429519/python-difference-between-open-and-
 
 https://stackoverflow.com/questions/3012488/what-is-the-python-with-statement-designed-for
 
-# h5py 
+# h5py
 
 model = ...  # Get model (Sequential, Functional Model, or Model subclass)
 
@@ -78,7 +78,7 @@ https://www.tensorflow.org/guide/keras/save_and_serialize
 my_iter_1 = range()
 for ele in li:
     for i in my_iter_1:
-        # good 
+        # good
         # new instance of iterator are created
 ```
 ```python
@@ -153,44 +153,44 @@ PriorityQueue class
 
 PriorityQueue extends the AbstarctQueue that implements the Queue interface. The PriorityQueue works based on priority and process the objects. It is also works based on the First-In-First-Out algorithm, but sometimes it processes the element according to the priority. Let’s take an example of java queue program
 import java.util.PriorityQueue;
-import java.util.Queue; 
-  
-public class ExampleOfQueue 
-{ 
-  public static void main(String[] args) 
-  { 
-    Queue<String> stringQueue = new PriorityQueue<String>(); 
-  
+import java.util.Queue;
+
+public class ExampleOfQueue
+{
+  public static void main(String[] args)
+  {
+    Queue<String> stringQueue = new PriorityQueue<String>();
+
     // Adding some number/elements in queue by use of add() method
-    stringQueue.add("AA"); 
-    stringQueue.add("BB"); 
-    stringQueue.add("CC"); 
+    stringQueue.add("AA");
+    stringQueue.add("BB");
+    stringQueue.add("CC");
     stringQueue.add("DD");
-    stringQueue.add("EE"); 
-    
+    stringQueue.add("EE");
+
     // Showing all data from queue
-    System.out.println("Elements from the queue: "+stringQueue); 
-  
-    // Getting the head(First) element from queue by use of peek() method. 
-    String firstStringByPeek = stringQueue.peek(); 
-    System.out.println("Getting the by peek() method: " + firstStringByPeek); 
-  
-    // Getting the head(First) element from queue by use of element() method. 
-    String firstStringByElement = stringQueue.element(); 
-    System.out.println("Getting the by element() method: " + firstStringByElement); 
-    
-    // Removing the head(First) element from queue by use of remove() method. 
-    String removedElement = stringQueue.remove(); 
-    System.out.println("Removing element by remove() method: " + removedElement); 
-  
-    // Removing the head(First) element from queue by use of poll() method. 
-    String removedElementByPoll = stringQueue.poll(); 
-    System.out.println("Removing element by poll() method: " + removedElementByPoll); 
-  
+    System.out.println("Elements from the queue: "+stringQueue);
+
+    // Getting the head(First) element from queue by use of peek() method.
+    String firstStringByPeek = stringQueue.peek();
+    System.out.println("Getting the by peek() method: " + firstStringByPeek);
+
+    // Getting the head(First) element from queue by use of element() method.
+    String firstStringByElement = stringQueue.element();
+    System.out.println("Getting the by element() method: " + firstStringByElement);
+
+    // Removing the head(First) element from queue by use of remove() method.
+    String removedElement = stringQueue.remove();
+    System.out.println("Removing element by remove() method: " + removedElement);
+
+    // Removing the head(First) element from queue by use of poll() method.
+    String removedElementByPoll = stringQueue.poll();
+    System.out.println("Removing element by poll() method: " + removedElementByPoll);
+
     // Getting size of Queue
-    int size = stringQueue.size(); 
-    System.out.println("Size of queue: " + size); 
-  } 
+    int size = stringQueue.size();
+    System.out.println("Size of queue: " + size);
+  }
 }
 
     Output: Elements from the queue: [AA, BB, CC, DD, EE]
@@ -203,46 +203,46 @@ public class ExampleOfQueue
 LinkedList class
 
 LinkedList class is a very popular implementation of the Queue interface. It stores the elements in the contiguous memory location and maintains the insertion order of the element. Let’s take an example of java queue program
-import java.util.LinkedList; 
-import java.util.Queue; 
-  
-public class ExampleOfQueue 
-{ 
-  public static void main(String[] args) 
-  { 
-    Queue<Integer> numbers = new LinkedList<Integer>(); 
-  
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class ExampleOfQueue
+{
+  public static void main(String[] args)
+  {
+    Queue<Integer> numbers = new LinkedList<Integer>();
+
     // Adding some number/elements in queue by use of add() method
-    numbers.add(1); 
-    numbers.add(2); 
-    numbers.add(3); 
+    numbers.add(1);
+    numbers.add(2);
+    numbers.add(3);
     numbers.add(4);
-    numbers.add(5); 
-    
+    numbers.add(5);
+
     // Showing all data from queue
     for(Integer num : numbers)
-        System.out.println("Elements from the queue: "+num); 
-  
-    // Getting the head(First) element from queue by use of peek() method. 
-    int firstNumberByPeek = numbers.peek(); 
-    System.out.println("Getting the by peek() method: " + firstNumberByPeek); 
-  
-    // Getting the head(First) element from queue by use of element() method. 
-    int firstNumberByElement = numbers.element(); 
-    System.out.println("Getting the by element() method: " + firstNumberByElement); 
-    
-    // Removing the head(First) element from queue by use of remove() method. 
-    int removedElement = numbers.remove(); 
-    System.out.println("Removing element by remove() method: " + removedElement); 
-  
-    // Removing the head(First) element from queue by use of poll() method. 
-    int removedElementByPoll = numbers.poll(); 
-    System.out.println("Removing element by poll() method: " + removedElementByPoll); 
-  
+        System.out.println("Elements from the queue: "+num);
+
+    // Getting the head(First) element from queue by use of peek() method.
+    int firstNumberByPeek = numbers.peek();
+    System.out.println("Getting the by peek() method: " + firstNumberByPeek);
+
+    // Getting the head(First) element from queue by use of element() method.
+    int firstNumberByElement = numbers.element();
+    System.out.println("Getting the by element() method: " + firstNumberByElement);
+
+    // Removing the head(First) element from queue by use of remove() method.
+    int removedElement = numbers.remove();
+    System.out.println("Removing element by remove() method: " + removedElement);
+
+    // Removing the head(First) element from queue by use of poll() method.
+    int removedElementByPoll = numbers.poll();
+    System.out.println("Removing element by poll() method: " + removedElementByPoll);
+
     // Getting size of Queue
-    int size = numbers.size(); 
-    System.out.println("Size of queue: " + size); 
-  } 
+    int size = numbers.size();
+    System.out.println("Size of queue: " + size);
+  }
 }
 
     Output: Elements from the queue: 1
@@ -260,44 +260,44 @@ PriorityBlockingQueue class
 
 PriorityBlockingQueue class implements the Queue interface and provides the thread-safe implementation of the queue. The PriorityQueue and LinkedList are not thread-safe. Let’s take an example of java queue program
 import java.util.Queue;
-import java.util.concurrent.PriorityBlockingQueue; 
-  
-public class ExampleOfQueue 
-{ 
-  public static void main(String[] args) 
-  { 
-    Queue<String> stringQueue = new PriorityBlockingQueue<String>(); 
-  
+import java.util.concurrent.PriorityBlockingQueue;
+
+public class ExampleOfQueue
+{
+  public static void main(String[] args)
+  {
+    Queue<String> stringQueue = new PriorityBlockingQueue<String>();
+
     // Adding some number/elements in queue by use of add() method
-    stringQueue.add("AA"); 
-    stringQueue.add("BB"); 
-    stringQueue.add("CC"); 
+    stringQueue.add("AA");
+    stringQueue.add("BB");
+    stringQueue.add("CC");
     stringQueue.add("DD");
-    stringQueue.add("EE"); 
-    
+    stringQueue.add("EE");
+
     // Showing all data from queue
-    System.out.println("Elements from the queue: "+stringQueue); 
-  
-    // Getting the head(First) element from queue by use of peek() method. 
-    String firstStringByPeek = stringQueue.peek(); 
-    System.out.println("Getting the by peek() method: " + firstStringByPeek); 
-  
-    // Getting the head(First) element from queue by use of element() method. 
-    String firstStringByElement = stringQueue.element(); 
-    System.out.println("Getting the by element() method: " + firstStringByElement); 
-    
-    // Removing the head(First) element from queue by use of remove() method. 
-    String removedElement = stringQueue.remove(); 
-    System.out.println("Removing element by remove() method: " + removedElement); 
-  
-    // Removing the head(First) element from queue by use of poll() method. 
-    String removedElementByPoll = stringQueue.poll(); 
-    System.out.println("Removing element by poll() method: " + removedElementByPoll); 
-  
+    System.out.println("Elements from the queue: "+stringQueue);
+
+    // Getting the head(First) element from queue by use of peek() method.
+    String firstStringByPeek = stringQueue.peek();
+    System.out.println("Getting the by peek() method: " + firstStringByPeek);
+
+    // Getting the head(First) element from queue by use of element() method.
+    String firstStringByElement = stringQueue.element();
+    System.out.println("Getting the by element() method: " + firstStringByElement);
+
+    // Removing the head(First) element from queue by use of remove() method.
+    String removedElement = stringQueue.remove();
+    System.out.println("Removing element by remove() method: " + removedElement);
+
+    // Removing the head(First) element from queue by use of poll() method.
+    String removedElementByPoll = stringQueue.poll();
+    System.out.println("Removing element by poll() method: " + removedElementByPoll);
+
     // Getting size of Queue
-    int size = stringQueue.size(); 
-    System.out.println("Size of queue: " + size); 
-  } 
+    int size = stringQueue.size();
+    System.out.println("Size of queue: " + size);
+  }
 }
 ```
 ```
@@ -344,7 +344,7 @@ Blink = "\x1b[5m"
 Reverse = "\x1b[7m"
 Hidden = "\x1b[8m"
 
-%s 
+%s
 
 FgBlack = "\x1b[30m"
 FgRed = "\x1b[31m"
@@ -391,7 +391,7 @@ http://www.cs.technion.ac.il/users/yechiel/c++-faq/what-is-a-handle.html
 
 The term handle is used to mean any technique that lets you get to another object — a generalized pseudo-pointer. The term is (intentionally) ambiguous and vague.
 
-Ambiguity is actually an asset in certain cases. For example, during early design you might not be ready to commit to a specific representation for the handles. You might not be sure whether you'll want simple pointers vs. references vs. pointers-to-pointers vs. references-to-pointers vs. integer indices into an array vs. strings (or other key) that can be looked up in a hash-table (or other data structure) vs. database keys vs. some other technique. If you merely know that you'll need some sort of thingy that will uniquely identify and get to an object, you call the thingy a Handle. 
+Ambiguity is actually an asset in certain cases. For example, during early design you might not be ready to commit to a specific representation for the handles. You might not be sure whether you'll want simple pointers vs. references vs. pointers-to-pointers vs. references-to-pointers vs. integer indices into an array vs. strings (or other key) that can be looked up in a hash-table (or other data structure) vs. database keys vs. some other technique. If you merely know that you'll need some sort of thingy that will uniquely identify and get to an object, you call the thingy a Handle.
 
 # COM Component Object Model
 https://de.wikipedia.org/wiki/Component_Object_Model
@@ -482,7 +482,7 @@ Here is everything about Python dicts that I was able to put together (probably 
 NOTE: I did the research on Python Dict implementation in response to my own question about how multiple entries in a dict can have same hash values. I posted a slightly edited version of the response here because all the research is very relevant for this question as well.
 # Memory-usage of dictionary in Python?
 https://stackoverflow.com/questions/6579757/memory-usage-of-dictionary-in-python
-Compute Memory footprint of an object and its contents (Python recipe) 
+Compute Memory footprint of an object and its contents (Python recipe)
 https://code.activestate.com/recipes/577504/
 ```python
 from __future__ import print_function
@@ -544,7 +544,7 @@ if __name__ == '__main__':
 ```
 # can't login to aics github, login prompt doesn't pop up
 clean history, cookie, and cache
-https://support.mozilla.org/en-US/kb/fix-login-issues-on-websites-require-passwords 
+https://support.mozilla.org/en-US/kb/fix-login-issues-on-websites-require-passwords
 
 # Integrity Confidentiality Authenticity
 https://security.stackexchange.com/questions/148173/authenticity-confidentiality-integrity-general-questions
@@ -552,13 +552,13 @@ Integrity: Integrity is used to make sure that nobody in between site A and B (f
 
 Confidentiality: Confidentiality is used to make sure that nobody in between site A and B is able to read what data or information is sent between the to sites. To achieve this encryption algorithms are used. There are two kinds of encryption algorithms, symmetric and also asymmetric ones. Symmetric algorithms allow encryption and decryption with the same key. With asymmetric algorithms you have to kinds of keys: a public one and also a private one. The public key is often available to the public while the private key is just available for "yourself" (if the mentioned keypair is yours). Everything that you encrypt with the public key can only be decrypted with the private one and vice versa. When it comes to confidentiality you often just use symmetric algorithms like DES, 3DES (both outdated) or AES. Asymmetric encryption is used to transfer a symmetric key and also to make sure that the other site is really who it seems to be (when it comes to SSL/TLS).
 
-Authenticity: And this last sentence of the confidentiality part leads directly to the authenticity part. Authenticity is used to make sure that you really communicate with the partner you want to. To achieve these different kinds of techniques can be used, e.g. Pre-shared keys that are configured on both sites, Elliptic Curves or RSA as public/private key algorithms. 
-# vpn nyu vpn 
+Authenticity: And this last sentence of the confidentiality part leads directly to the authenticity part. Authenticity is used to make sure that you really communicate with the partner you want to. To achieve these different kinds of techniques can be used, e.g. Pre-shared keys that are configured on both sites, Elliptic Curves or RSA as public/private key algorithms.
+# vpn nyu vpn
 sudo openconnect vpn.nyu.edu
 第一個密碼用2go加w
 第二個用push
 then confirm by DUO
-# Add more color to the Python code of your Databricks notebook 
+# Add more color to the Python code of your Databricks notebook
 https://keestalkstech.com/2019/11/add-more-color-to-the-python-code-of-your-databricks-notebook/
 # How do I resolve ExecutorLostFailure "Slave lost" errors in Spark on Amazon EMR?
 https://aws.amazon.com/premiumsupport/knowledge-center/executorlostfailure-slave-lost-emr/
@@ -699,7 +699,7 @@ select('source', 'bu', 'identify_id', 'fake_local_cookie_id', 'fake_cookie_id', 
 fake_data = \
 safe_union(safe_union(second_XXXmall, second_XXXtoday), first_XXXmall).withColumn("fake_user_id",F.col('fake_user_id').cast(StringType()))
 
- 
+
 
 def working_fun(my_dict):
     def f(x):
@@ -709,12 +709,12 @@ def working_fun(my_dict):
 ####
 for d in ['ALL']:
   print(d, "start XDD")
-  
+
   feb_data = \
   spark.read.format('delta').\
   load('dbfs:/mnt/XXXdev/XXXdata-v5-prod/delta/XXX_id_optimize_v2/').\
   filter(F.col('month')=='02')
-  
+
   print("XDD, before, null count")
   a1=feb_data.where("app_device_id is NULL").count()
   a2=feb_data.where("app_advertising_id is NULL").count()
@@ -727,7 +727,7 @@ for d in ['ALL']:
   print('cookie_id', a4)
   print('user_id', a5)
   print("++++++++")
-    
+
   device_id_map = \
   fake_data.\
   filter(F.col('source')=='app').\
@@ -740,7 +740,7 @@ for d in ['ALL']:
   toPandas().\
   set_index('fake_device_id')['app_device_id'].\
   to_dict()
-  
+
   print('app_device_id:: ', len(set(device_id_map.keys())),
         len(set(device_id_map.values())), len(set(device_id_map.keys()))-
         len(set(device_id_map.values())))
@@ -757,7 +757,7 @@ for d in ['ALL']:
   toPandas().\
   set_index('fake_advertising_id')['app_advertising_id'].\
   to_dict()
-  
+
   print('app_advertising_id:: ', len(set(ad_id_map.keys())),
         len(set(ad_id_map.values())), len(set(ad_id_map.keys()))-
         len(set(ad_id_map.values())))
@@ -774,7 +774,7 @@ for d in ['ALL']:
   toPandas().\
   set_index('fake_local_cookie_id')['local_cookie_id'].\
   to_dict()
-  
+
   print('local_cookie_id:: ', len(set(lc_map.keys())),
         len(set(lc_map.values())), len(set(lc_map.keys()))-
         len(set(lc_map.values())))
@@ -791,7 +791,7 @@ for d in ['ALL']:
   toPandas().\
   set_index('fake_cookie_id')['cookie_id'].\
   to_dict()
-  
+
   print('cookie_id:: ', len(set(cookie_map.keys())),
         len(set(cookie_map.values())), len(set(cookie_map.keys()))-
         len(set(cookie_map.values())))
@@ -816,13 +816,13 @@ for d in ['ALL']:
   toPandas().\
   set_index('fake_user_id')['user_id'].\
   to_dict()
-  
+
   print('user_id:: ', len(set(user_id_map.keys())),
         len(set(user_id_map.values())), len(set(user_id_map.keys()))-
         len(set(user_id_map.values())))
-  
+
   print("========")
-  
+
   # get all dict
 
   # use udf to take dict
@@ -832,8 +832,8 @@ for d in ['ALL']:
                     .withColumn('cookie_id', working_fun(cookie_map)(F.col('cookie_id')))\
                     .withColumn('user_id', working_fun(user_id_map)(F.col('user_id')))
 
-  
-  # after 
+
+  # after
   print("XDD, QQQQ, AFTER, null count")
   b1=feb_data.where("app_device_id is NULL").count()
   b2=feb_data.where("app_advertising_id is NULL").count()
@@ -851,22 +851,22 @@ for d in ['ALL']:
   print('local_cookie_id', b3-a3)
   print('cookie_id', b4-a4)
   print('user_id', b5-a5)
-  
+
   # disp to check
 #   display(feb_data)
 #   display(feb_data.groupBy('year','month','day').count())
-  
+
   # write
   feb_data.write.format("delta").option("mergeSchema", "true").mode("overwrite").\
   partitionBy(['source','bu','year','month','day']).\
   save("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d)
-  
+
   # load to disp to check
 #   display(spark.read.format('delta').\
 #   load("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d).\
 #   groupBy('year','month','day').\
 #   count())
-  
+
   print(d, "finish XDD")
 
 ####
@@ -875,12 +875,12 @@ for d in ['ALL']:
 
 for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']:
   print(d, "start XDD")
-  
+
   feb_data = \
   spark.read.format('delta').\
   load('dbfs:/mnt/XXXdev/XXXdata-v5-prod/delta/kg_id_optimize_v2/').\
   filter(F.col('month')=='02').filter(F.col('day')==d)
-  
+
   print("XDD, before, null count")
   a1=feb_data.where("app_device_id is NULL").count()
   a2=feb_data.where("app_advertising_id is NULL").count()
@@ -893,7 +893,7 @@ for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']
   print('cookie_id', a4)
   print('user_id', a5)
   print("++++++++")
-    
+
   device_id_map = \
   fake_data.\
   filter(F.col('source')=='app').\
@@ -906,7 +906,7 @@ for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']
   toPandas().\
   set_index('fake_device_id')['app_device_id'].\
   to_dict()
-  
+
   print('app_device_id:: ', len(set(device_id_map.keys())),
         len(set(device_id_map.values())), len(set(device_id_map.keys()))-
         len(set(device_id_map.values())))
@@ -923,7 +923,7 @@ for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']
   toPandas().\
   set_index('fake_advertising_id')['app_advertising_id'].\
   to_dict()
-  
+
   print('app_advertising_id:: ', len(set(ad_id_map.keys())),
         len(set(ad_id_map.values())), len(set(ad_id_map.keys()))-
         len(set(ad_id_map.values())))
@@ -940,7 +940,7 @@ for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']
   toPandas().\
   set_index('fake_local_cookie_id')['local_cookie_id'].\
   to_dict()
-  
+
   print('local_cookie_id:: ', len(set(lc_map.keys())),
         len(set(lc_map.values())), len(set(lc_map.keys()))-
         len(set(lc_map.values())))
@@ -957,7 +957,7 @@ for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']
   toPandas().\
   set_index('fake_cookie_id')['cookie_id'].\
   to_dict()
-  
+
   print('cookie_id:: ', len(set(cookie_map.keys())),
         len(set(cookie_map.values())), len(set(cookie_map.keys()))-
         len(set(cookie_map.values())))
@@ -982,13 +982,13 @@ for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']
   toPandas().\
   set_index('fake_user_id')['user_id'].\
   to_dict()
-  
+
   print('user_id:: ', len(set(user_id_map.keys())),
         len(set(user_id_map.values())), len(set(user_id_map.keys()))-
         len(set(user_id_map.values())))
-  
+
   print("========")
-  
+
   # get all dict
 
   # use udf to take dict
@@ -998,8 +998,8 @@ for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']
                     .withColumn('cookie_id', working_fun(cookie_map)(F.col('cookie_id')))\
                     .withColumn('user_id', working_fun(user_id_map)(F.col('user_id')))
 
-  
-  # after 
+
+  # after
   print("XDD, QQQQ, AFTER, null count")
   b1=feb_data.where("app_device_id is NULL").count()
   b2=feb_data.where("app_advertising_id is NULL").count()
@@ -1017,31 +1017,31 @@ for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']
   print('local_cookie_id', b3-a3)
   print('cookie_id', b4-a4)
   print('user_id', b5-a5)
-  
+
   # disp to check
 #   display(feb_data)
 #   display(feb_data.groupBy('year','month','day').count())
-  
+
   # write
   feb_data.write.format("delta").option("mergeSchema", "true").mode("overwrite").\
   partitionBy(['source','bu','year','month','day']).\
   save("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d)
-  
+
   # load to disp to check
 #   display(spark.read.format('delta').\
 #   load("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d).\
 #   groupBy('year','month','day').\
 #   count())
-  
+
   print(d, "finish XDD")
-  
+
 ```
 ```python
 for d in ['03','04','05','06','07','08','09','10','11','19','20','21','22','23']:
   tmp=spark.read.format('delta').load("dbfs:/mnt/XXXdev/personal/eugene/recovered_feb"+d)\
   .write.format("delta").option("mergeSchema", "true").mode("append").\
   partitionBy(['source','bu','year','month','day']).save("dbfs:/mnt/XXXdev/XXXdata-e2e/model_20210305/delta/kg_id_optimize_v2/")
-  
+
 display(spark.read.format('delta').\
 load("dbfs:/mnt/XXXdev/XXXdata-e2e/model_20210305/delta/kg_id_optimize_v2/").\
 groupBy('year','month','day').\
@@ -1075,7 +1075,7 @@ dim = 128 # 向量维度
 k = 10  # 定义召回向量个数
 nlist = 100 #聚类中心的个数
 quantizer = faiss.IndexFlatL2(dim)  # 定义量化器
-index = faiss.IndexIVFFlat(quantizer, dim, nlist, faiss.METRIC_L2) #也可采用向量內积               
+index = faiss.IndexIVFFlat(quantizer, dim, nlist, faiss.METRIC_L2) #也可采用向量內积
 index.nprobe = 10 #查找聚类中心的个数，默认为1个，若nprobe=nlist则等同于精确查找
 index.train(gds_vector_arr) #需要训练
 index.add(gds_vector_arr) # 添加训练时的样本
@@ -1089,7 +1089,7 @@ dim = 128 # 向量维度
 k = 10  # 定义召回向量个数
 nlist = 100  #聚类中心的个数
 m = 8        # 压缩成8bits
-quantizer = faiss.IndexFlatL2(dim) # 定义量化器  
+quantizer = faiss.IndexFlatL2(dim) # 定义量化器
 index = faiss.IndexIVFPQ(quantizer, dim, nlist, m, 8)  # 8 specifies that each sub-vector is encoded as 8 bits
 index.nprobe = 10 #查找聚类中心的个数，默认为1个，若nprobe=nlist则等同于精确查找
 index.train(gds_vector_arr) #需要训练
@@ -1122,7 +1122,7 @@ cosine = (2 - L2_Distance)/2
 
 # SLA:  Service-level agreement
 A service-level agreement (SLA) is a commitment between a service provider and a client.
-The underlying benefit of cloud computing is shared resources, which is supported by the underlying nature of a shared infrastructure environment. Thus, SLAs span across the cloud and are offered by service providers as a service-based agreement rather than a customer-based agreement. 
+The underlying benefit of cloud computing is shared resources, which is supported by the underlying nature of a shared infrastructure environment. Thus, SLAs span across the cloud and are offered by service providers as a service-based agreement rather than a customer-based agreement.
 
 # windows powershell beautiful
 * to set font
@@ -1144,10 +1144,10 @@ can use variable etc
 azure container registry
 # `#!/bin/sh -e`
 https://stackoverflow.com/questions/2936287/what-does-the-line-bin-sh-e-do
-The -e flag's long name is errexit, causing the script to immediately exit on the first error. 
+The -e flag's long name is errexit, causing the script to immediately exit on the first error.
 # Run terminal sudo command at startup
 How to run a script during boot as root (7 answers)
-Proper fstab entry to mount a samba share on boot? (2 answers) 
+Proper fstab entry to mount a samba share on boot? (2 answers)
 I need to run the following command at startup or upon login
 https://askubuntu.com/questions/956237/run-terminal-sudo-command-at-startup
 
@@ -1181,7 +1181,7 @@ https://medium.com/@aeli/apache-druid-setup-monitoring-and-auto-scaling-on-kuber
 
 ## kill all pods in kubernetes
 https://stackoverflow.com/questions/33509194/command-to-delete-all-pods-in-all-kubernetes-namespaces
-kubectl delete pods --all --all-namespaces 
+kubectl delete pods --all --all-namespaces
 
 ## where to add path
 https://stackoverflow.com/questions/50554817/golang-installation
@@ -1191,7 +1191,7 @@ export PATH=$PATH:/usr/local/go/bin
 check internet, if no, reboot
 sudo apt update && sudo apt upgrade
 
-# get minikube 
+# get minikube
 https://minikube.sigs.k8s.io/docs/start/
 kubectl get node // list node
 
@@ -1233,7 +1233,7 @@ NOTES:
   kubectl port-forward $POD_NAME 8080:8888
 ```
 ### [success] on AKS
-:::success 
+:::success
 on AKS
 :::
 ### [WSL sucks] WSL2 + minikube + win docker engine ==> pod: ImagePullBackOff
@@ -1286,7 +1286,7 @@ druid-operator$ kubectl describe druids tiny-cluster
 druid-operator$ kubectl get svc | grep tiny
 druid-operator$ kubectl get cm | grep tiny
 druid-operator$ kubectl get sts | grep tiny
-## 8080 occupied 
+## 8080 occupied
 netstat -an --tcp --program  //  check port w/o sudo
 
 ### get druid-operator pod name
@@ -1303,7 +1303,7 @@ druid-operator$ kubectl describe druids tiny-cluster
 druid-operator$ kubectl get svc | grep tiny
 druid-operator$ kubectl get cm | grep tiny
 druid-operator$ kubectl get sts | grep tiny
-### 8080 occupied 
+### 8080 occupied
 
 ```
 2021-03-19T14:31:10.714Z        ERROR   controller-runtime.metrics      metrics server failed to listen. You may want to disable the metrics server or use another port if it is due to conflicts     {"error": "error listening on :8080: listen tcp :8080: bind: address already in use"}
@@ -1353,7 +1353,7 @@ forget to record output GG
 ### not sure whether druid operator provide gui?????? it provides~
 
 set a non-splunk druid @u5 to observe/play, get the gui endpoint
-set a splunk druid-operator @u5 to observe/play, get the gui endpoint 
+set a splunk druid-operator @u5 to observe/play, get the gui endpoint
 // make sure I am all correct with druid-operator @u5
 
 set a splunk druid-operator @aks to observe/play, get the gui endpoint
@@ -1403,18 +1403,18 @@ kill pid_number
 > TEST SUITE: None
 > NOTES:
 > ** Please be patient while the chart is being deployed **
-> 
+>
 > ZooKeeper can be accessed via port 2181 on the following DNS name from within your cluster:
-> 
+>
 > dz-zookeeper.druid.svc.cluster.local
-> 
+>
 > To connect to your ZooKeeper server run the following commands:
-> 
+>
 > export POD_NAME=$(kubectl get pods --namespace druid -l "app.kubernetes.io/name=zookeeper,app.kubernetes.io/instance=dz,app.kubernetes.io/component=zookeeper" -o jsonpath="{.items[0].metadata.name}")
 > kubectl exec -it $POD_NAME -- zkCli.sh
-> 
+>
 > To connect to your ZooKeeper server from outside the cluster execute the following commands:
-> 
+>
 > kubectl port-forward --namespace druid svc/dz-zookeeper 2181:2181 &
 > zkCli.sh 127.0.0.1:2181
 > ```
@@ -1431,18 +1431,18 @@ helm upgrade dz -f k8s/zookeeper-values.yaml --namespace druid bitnami/zookeeper
 > TEST SUITE: None
 > NOTES:
 > ** Please be patient while the chart is being deployed **
-> 
+>
 > ZooKeeper can be accessed via port 2181 on the following DNS name from within your cluster:
-> 
+>
 >     dz-zookeeper.druid.svc.cluster.local
-> 
+>
 > To connect to your ZooKeeper server run the following commands:
-> 
+>
 >     export POD_NAME=$(kubectl get pods --namespace druid -l "app.kubernetes.io/name=zookeeper,app.kubernetes.io/instance=dz,app.kubernetes.io/component=zookeeper" -o jsonpath="{.items[0].metadata.name}")
 >     kubectl exec -it $POD_NAME -- zkCli.sh
-> 
+>
 > To connect to your ZooKeeper server from outside the cluster execute the following commands:
-> 
+>
 >     kubectl port-forward --namespace druid svc/dz-zookeeper 2181:2181 &
 >     zkCli.sh 127.0.0.1:2181
 > ```
@@ -1460,23 +1460,23 @@ helm install dpg -f k8s/postgresql-values.yaml --namespace druid bitnami/postgre
 > TEST SUITE: None
 > NOTES:
 > ** Please be patient while the chart is being deployed **
-> 
+>
 > PostgreSQL can be accessed via port 5432 on the following DNS name from within your cluster:
-> 
+>
 >     dpg-postgresql.druid.svc.cluster.local - Read/Write connection
-> 
+>
 > To get the password for "postgres" run:
-> 
+>
 >     export POSTGRES_PASSWORD=$(kubectl get secret --namespace druid dpg-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
-> 
+>
 > To connect to your database run the following command:
-> 
+>
 >     kubectl run dpg-postgresql-client --rm --tty -i --restart='Never' --namespace druid --image docker.io/bitnami/postgresql:11.5.0-debian-9-r84 --env="PGPASSWORD=$POSTGRES_PASSWORD" --command -- psql --host dpg-postgresql -U postgres -d druid -p 5432
-> 
-> 
-> 
+>
+>
+>
 > To connect to your database from outside the cluster execute the following commands:
-> 
+>
 >     kubectl port-forward --namespace druid svc/dpg-postgresql 5432:5432 &
 >     PGPASSWORD="$POSTGRES_PASSWORD" psql --host 127.0.0.1 -U postgres -d druid -p 5432
 > ```
@@ -1495,23 +1495,23 @@ helm upgrade dpg -f k8s/postgresql-values.yaml --namespace druid bitnami/postgre
 > TEST SUITE: None
 > NOTES:
 > ** Please be patient while the chart is being deployed **
-> 
+>
 > PostgreSQL can be accessed via port 5432 on the following DNS name from within your cluster:
-> 
+>
 >     dpg-postgresql.druid.svc.cluster.local - Read/Write connection
-> 
+>
 > To get the password for "postgres" run:
-> 
+>
 >     export POSTGRES_PASSWORD=$(kubectl get secret --namespace druid dpg-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
-> 
+>
 > To connect to your database run the following command:
-> 
+>
 >     kubectl run dpg-postgresql-client --rm --tty -i --restart='Never' --namespace druid --image docker.io/bitnami/postgresql:11.5.0-debian-9-r84 --env="PGPASSWORD=$POSTGRES_PASSWORD" --command -- psql --host dpg-postgresql -U postgres -d druid -p 5432
-> 
-> 
-> 
+>
+>
+>
 > To connect to your database from outside the cluster execute the following commands:
-> 
+>
 >     kubectl port-forward --namespace druid svc/dpg-postgresql 5432:5432 &
 >     PGPASSWORD="$POSTGRES_PASSWORD" psql --host 127.0.0.1 -U postgres -d druid -p 5432
 > ```
@@ -1537,45 +1537,45 @@ NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 service/kubernetes   ClusterIP   10.0.0.1     <none>        443/TCP   16h
 ```
 
-```bash= 
+```bash=
 kubectl get no
-``` 
+```
 shows that my nodes are not ready,
-so stop and start the cluster after start 
-```bash= 
-kubectl get no 
-``` 
-> ``` 
-> NAME                                STATUS   ROLES   AGE   VERSION 
-> aks-agentpool-28667265-vmss000006   Ready    agent   18m   v1.18.14 
-> aks-agentpool-28667265-vmss000007   Ready    agent 19m   v1.18.14 
-> aks-agentpool-28667265-vmss000008   Ready    agent   18m   v1.18.14 
+so stop and start the cluster after start
+```bash=
+kubectl get no
+```
 > ```
-```bash= 
-kubectl get all --all-namespaces=true 
-``` 
-``` 
-NAMESPACE     NAME                                      READY   STATUS             RESTARTS   AGE 
-druid         pod/dpg-postgresql-0                      0/2     Pending            0          13h 
-druid         pod/druid-broker-758c9c5d5f-dx24b         0/2     Pending            0          101m 
-druid         pod/druid-coordinator-8675f4755b-7fvc4    0/2     Pending            0          101m 
-druid         pod/druid-historical-0                    0/2     Pending            0          101m 
-druid         pod/druid-middlemanager-0                 0/2     Pending            0          101m 
-druid         pod/druid-overlord-6bbbc78d69-8qj2s       0/2     Pending            0          101m 
-druid         pod/druid-router-7cf678f494-ps7zf         1/2     ImagePullBackOff   0          101m 
-druid         pod/dz-zookeeper-0                        0/1     Pending            0          14h 
-druid         pod/dz-zookeeper-1                        0/1     Pending            0          14h 
+> NAME                                STATUS   ROLES   AGE   VERSION
+> aks-agentpool-28667265-vmss000006   Ready    agent   18m   v1.18.14
+> aks-agentpool-28667265-vmss000007   Ready    agent 19m   v1.18.14
+> aks-agentpool-28667265-vmss000008   Ready    agent   18m   v1.18.14
+> ```
+```bash=
+kubectl get all --all-namespaces=true
+```
+```
+NAMESPACE     NAME                                      READY   STATUS             RESTARTS   AGE
+druid         pod/dpg-postgresql-0                      0/2     Pending            0          13h
+druid         pod/druid-broker-758c9c5d5f-dx24b         0/2     Pending            0          101m
+druid         pod/druid-coordinator-8675f4755b-7fvc4    0/2     Pending            0          101m
+druid         pod/druid-historical-0                    0/2     Pending            0          101m
+druid         pod/druid-middlemanager-0                 0/2     Pending            0          101m
+druid         pod/druid-overlord-6bbbc78d69-8qj2s       0/2     Pending            0          101m
+druid         pod/druid-router-7cf678f494-ps7zf         1/2     ImagePullBackOff   0          101m
+druid         pod/dz-zookeeper-0                        0/1     Pending            0          14h
+druid         pod/dz-zookeeper-1                        0/1     Pending            0          14h
 druid         pod/dz-zookeeper-2                        0/1     Pending            0          14h
-kube-system   pod/coredns-748cdb7bf4-gs7br              1/1     Running            0          10h 
-kube-system   pod/coredns-748cdb7bf4-zzctr              1/1     Running            0          16h 
-kube-system   pod/coredns-autoscaler-868b684fd4-dgpv5   1/1     Running            0          16h 
-kube-system   pod/kube-proxy-c2qqz                      1/1     Running            0          23m 
-kube-system   pod/kube-proxy-f89t7                      1/1     Running            0          23m 
-kube-system   pod/kube-proxy-qwpsv                      1/1     Running            0          22m 
-kube-system   pod/metrics-server-58fdc875d5-5dvxn       1/1     Running            4          16h 
-kube-system   pod/omsagent-6w7xq                        1/1     Running            0          23m 
-kube-system   pod/omsagent-hn6lt                        1/1     Running            0          23m 
-kube-system   pod/omsagent-j456f                        1/1     Running            1          22m 
+kube-system   pod/coredns-748cdb7bf4-gs7br              1/1     Running            0          10h
+kube-system   pod/coredns-748cdb7bf4-zzctr              1/1     Running            0          16h
+kube-system   pod/coredns-autoscaler-868b684fd4-dgpv5   1/1     Running            0          16h
+kube-system   pod/kube-proxy-c2qqz                      1/1     Running            0          23m
+kube-system   pod/kube-proxy-f89t7                      1/1     Running            0          23m
+kube-system   pod/kube-proxy-qwpsv                      1/1     Running            0          22m
+kube-system   pod/metrics-server-58fdc875d5-5dvxn       1/1     Running            4          16h
+kube-system   pod/omsagent-6w7xq                        1/1     Running            0          23m
+kube-system   pod/omsagent-hn6lt                        1/1     Running            0          23m
+kube-system   pod/omsagent-j456f                        1/1     Running            1          22m
 kube-system   pod/omsagent-rs-5f8ccc6d89-9w8hn          1/1     Running            0          10h
 kube-system   pod/tunnelfront-544d5fbfd9-h4qn4          1/1     Running            0          16h
 
@@ -1631,7 +1631,7 @@ druid       statefulset.apps/druid-middlemanager   0/8     101m
 druid       statefulset.apps/dz-zookeeper          0/3     14h
 ```
 
-try to look into 
+try to look into
 ```
 druid         pod/druid-router-7cf678f494-ps7zf         1/2     ImagePullBackOff   0          101m
 ```
@@ -1715,7 +1715,7 @@ Events:
   Warning  Failed            33m (x4 over 34m)      kubelet            Error: ErrImagePull
   Warning  Failed            4m35s (x131 over 34m)  kubelet            Error: ImagePullBackOff
 ```
-seem like nodes not enough and some permission issue, 
+seem like nodes not enough and some permission issue,
 scale up to 6 nodes by azure portal gui
 succeed
 try to restart a pod... GG, don't want to spend time on this repo
@@ -1753,7 +1753,7 @@ https://docs.imply.io/3.0/on-prem/quickstart
 
 kubectl delete deployment webfrontend  # clear all resources except service
 
-helm uninstall webfrontend  # need to wait pod, few seconds 
+helm uninstall webfrontend  # need to wait pod, few seconds
 
 ### [bad, clean too much] clean all the stuff; get a clean aks env
 will take a few minutes to derminate things
@@ -2015,7 +2015,7 @@ helm create webfrontend
 ##  Change image.repository to <loginServer>/webfrontend
 ##  Change service.type to LoadBalancer
 
-# Update Update appVersion to v1 in webfrontend/Chart.yaml. 
+# Update Update appVersion to v1 in webfrontend/Chart.yaml.
 
 helm install webfrontend webfrontend/
 
@@ -2097,7 +2097,7 @@ PS C:\Users\eugene_wang> kubectl get service azure-vote-front --watch
   NAME               TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)        AGE
   azure-vote-front   LoadBalancer   10.0.57.71   20.195.53.3   80:30815/TCP   39s
 ```
-20.195.53.3:80 http 
+20.195.53.3:80 http
 :::success
 success
 :::
@@ -2122,10 +2122,10 @@ Azure Extension BAD!
 Maybe it's my bad bc I didn't set a good setting
 Should I edit `druid_storage_type: local`? sth other than `local`?
 
-# why my segements are not availble? 
-## [too little info, deffer] try 1  
+# why my segements are not availble?
+## [too little info, deffer] try 1
 https://stackoverflow.com/questions/60168127/why-druid-segments-become-unavailable-after-data-ingestion
-Deletion of segments-cache data and indexing logs in data and master nodes 
+Deletion of segments-cache data and indexing logs in data and master nodes
 ???
 ## try 2
 https://druid.apache.org/docs/latest/ingestion/faq.html
@@ -2135,12 +2135,12 @@ http://localhost:7788/druid/coordinator/v1/datasources/wikipedia/loadstatus?forc
 ## try 3: splunk druid-operator
 
 
-# kg dashboard -- ad-create api 
+# kg dashboard -- ad-create api
 ## setup env
 ### npm
 ### nodejs to ver 14+
 when i am w/ node v 12.44
-i faced 
+i faced
 ```
 > kg-oneid-dashboard-backend@0.4.0 start /home/y56/aics-gh/kg-oneid-analytics-system
 > node src/
@@ -2162,7 +2162,7 @@ SyntaxError: Unexpected token '.'
     at Object.<anonymous> (/home/y56/aics-gh/kg-oneid-analytics-system/src/services/product-analysis/product-analysis.service.js:2:27)
     at Module._compile (internal/modules/cjs/loader.js:999:30) {"error":{},"stack":"/home/y56/aics-gh/kg-oneid-analytics-system/src/services/product-analysis/product-analysis.class.js:101\n      mau: totalResult[0]?.total ?? 0,\n                          ^\n\nSyntaxError: Unexpected token '.'\n    at wrapSafe (internal/modules/cjs/loader.js:915:16)\n    at Module._compile (internal/modules/cjs/loader.js:963:27)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)\n    at Module.load (internal/modules/cjs/loader.js:863:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:708:14)\n    at Module.require (internal/modules/cjs/loader.js:887:19)\n    at Module.patchedRequire [as require] (/home/y56/aics-gh/kg-oneid-analytics-system/node_modules/diagnostic-channel/dist/src/patchRequire.js:14:46)\n    at require (internal/modules/cjs/helpers.js:74:18)\n    at Object.<anonymous> (/home/y56/aics-gh/kg-oneid-analytics-system/src/services/product-analysis/product-analysis.service.js:2:27)\n    at Module._compile (internal/modules/cjs/loader.js:999:30)","exception":true,"date":"Wed Apr 14 2021 12:39:20 GMT+0800 (Taipei Standard Time)","process":{"pid":26334,"uid":1000,"gid":1000,"cwd":"/home/y56/aics-gh/kg-oneid-analytics-system","execPath":"/usr/bin/node","version":"v12.22.1","argv":["/usr/bin/node","/home/y56/aics-gh/kg-oneid-analytics-system/src"],"memoryUsage":{"rss":69730304,"heapTotal":52912128,"heapUsed":21841072,"external":4342567,"arrayBuffers":201726}},"os":{"loadavg":[0.64,1.02,1.03],"uptime":43440},"trace":[{"column":16,"file":"internal/modules/cjs/loader.js","function":"wrapSafe","line":915,"method":null,"native":false},{"column":27,"file":"internal/modules/cjs/loader.js","function":"Module._compile","line":963,"method":"_compile","native":false},{"column":10,"file":"internal/modules/cjs/loader.js","function":"Module._extensions..js","line":1027,"method":".js","native":false},{"column":32,"file":"internal/modules/cjs/loader.js","function":"Module.load","line":863,"method":"load","native":false},{"column":14,"file":"internal/modules/cjs/loader.js","function":"Module._load","line":708,"method":"_load","native":false},{"column":19,"file":"internal/modules/cjs/loader.js","function":"Module.require","line":887,"method":"require","native":false},{"column":46,"file":"/home/y56/aics-gh/kg-oneid-analytics-system/node_modules/diagnostic-channel/dist/src/patchRequire.js","function":"Module.patchedRequire [as require]","line":14,"method":"patchedRequire [as require]","native":false},{"column":18,"file":"internal/modules/cjs/helpers.js","function":"require","line":74,"method":null,"native":false},{"column":27,"file":"/home/y56/aics-gh/kg-oneid-analytics-system/src/services/product-analysis/product-analysis.service.js","function":null,"line":2,"method":null,"native":false},{"column":30,"file":"internal/modules/cjs/loader.js","function":"Module._compile","line":999,"method":"_compile","native":false}]}
 ```
-this go away after i use the below to go to node v 14 
+this go away after i use the below to go to node v 14
 
 sudo npm cache clean -f
 sudo npm install -g n
@@ -2184,7 +2184,7 @@ npm start
 info: AICS API Template started on http://localhost:3030
 ```
 
-means success 
+means success
 
 ### install nodemon
 ```
@@ -2195,8 +2195,8 @@ sudo apt update
 sudo apt install postgresql postgresql-contrib
 sudo -i -u postgres
 psql -h kg-dashboard-dev.postgres.database.azure.com -U kgadmin@kg-dashboard-dev -d kgdashboard
-輸入密碼 
-## code 
+輸入密碼
+## code
 ### the postresql setting in confit/default.js
 ```
   "dialect": "postgres",
@@ -2220,7 +2220,7 @@ module.exports = function(app) {
   app.configure(productAnalysis);
   app.configure(nonactiveUsers);
   app.configure(endpointAnalysis);
-  app.configure(businessUnits); 
+  app.configure(businessUnits);
   app.configure(readingAnalysis);
   app.configure(feedback);
   app.configure(adCreate); // !!!
@@ -2230,17 +2230,17 @@ each is DB tabel
 const adCreate = sequelizeClient.define(THE_DB_TABLE_NAME, {
 ## what will happen if i change schema?
 Let's assume it will b updated to newest schema accordingly
-## [task][done] ad-create GET 
+## [task][done] ad-create GET
 ## [task] parse POST payload and write to DB
 go to serve/hook/class
-### info pattern 
+### info pattern
 https://github.com/feathersjs/feathers/issues/804
 #### one api endpoit, write to many database chart
 
 
 #### use create() to write to database
 https://docs.feathersjs.com/guides/basics/services.html#customizing-a-service
-## [question] 
+## [question]
 ```json
     hooks: {
       beforeCount(options) {
@@ -2266,8 +2266,8 @@ select * from ad_placement;select * from ad; select * from campaign;select * fro
 ## js style syntax check
 npx eslint .
 
-## skip the original service method 
-When context.result is set in a before hook, the original service method call will be skipped. 
+## skip the original service method
+When context.result is set in a before hook, the original service method call will be skipped.
 https://docs.feathersjs.com/api/hooks.html#setting-context-result
 
 ## List foreign keys in PostgreSQL database
@@ -2310,7 +2310,7 @@ see: https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied
 
 TODO: choose a specific mysql to run
 
-### login 
+### login
 
 sudo mysql -u root
 
@@ -2351,7 +2351,7 @@ table: checks_ddspasyntheticsalerts
 
 Created     // str 2020/12/31 18:01:01
 device      // str
-product     // str   
+product     // str
 id1         // str
 status      // str: 'error' 'recovery' 'sthelse'
 Error    ?? // str: 'fake error value'
@@ -2364,5 +2364,81 @@ mysql> create table checks_ddspasyntheticsalerts (
     -> status varchar(255),
     -> Error varchar(255));
 ### insert data
-mysql> 
+mysql>
 insert into checks_ddspasyntheticsalerts values ( '2020/12/31 01:01:01', 'desktop', 'Product 1', '5566', 'recovery', 'fake001');
+
+### summarized results on HackMD
+
+https://hackmd.io/jfScpkdmRMi4yG1093lErw
+
+# blocking, non-blocking, synchronous, asynchronous
+
+ref:
+https://stackoverflow.com/questions/2625493/asynchronous-and-non-blocking-calls-also-between-blocking-and-synchronous
+
+Let X and Y both be modules.
+(X and Y are some functional entities.
+May be a block of code, process, or threads.)
+Also, X need Y's answer to perform further tasks, or, to finish.
+## blocking (as an adj.)
+主詞一個
+可以拿來形容 caller 也可以拿來形容 the one being called
+如果是拿來形容 caller 是說 caller 因為等資源而停在呼叫資源的那一行程式碼
+
+如果是拿來形容 the called 是說會害 caller 停在那邊等
+會因為我還沒好而把你懸置在那邊
+
+X 會塞住別人
+（X 在等待某種資源的這件事會讓 X 懸在那邊停下來，進而使得 X 塞住別人）
+
+
+X keeps waiting there for the answer.
+X is blocking before Y gives the answer.
+(X is a blocking process/thread.)
+(X blocks sth. X blocks a workflow, or, occupies some sort of resources.)
+
+A blocking API blocks a caller while the API is preparing, hanging up the caller.
+The caller can't leave to do things.
+## non-blocking
+主詞一個
+可以拿來形容 caller 也可以拿來形容 the one being called
+不會因為我還沒好而把你懸置在那邊
+
+
+For a non-blocking caller X,
+X 在等待某種資源的這件事不會讓 X 懸在那邊停下來，故 X 不是阻塞式的
+
+X can do other jobs while Y is preparing the answer.
+X doesn't blocks anything.
+So no resources are occupied bc X is waiting Y's answer.
+
+X and Y are two threads or two processes or one process? we DON'T know.
+BUT we are sure that X and Y couldn't be one thread.
+
+There should be some mechanisms to let X know Y's answer is ready. May be
+polling or interrupt/signal. We don't know; only knowing X is non-blocking.
+
+A non-blocking API returns a special message: "Still working on it".
+So the caller can leave to do things.
+## synchronous
+主詞兩個
+A好了B就馬上拿去用開始做後續的事 中間沒有要做其他事
+
+上一個的結束跟下一個的開始是同步的 或是說 結束後（盡量）馬上就接開始
+也就會需要：你準備的同時我也在等
+也還會需要：一個完成了之後到另一個開始之間沒有再排其他工作
+
+X is waiting Y while Y is preparing the answer.
+X and Y are synchronous.
+## asynchronous (evented)
+主詞兩個
+A好了之後B沒有要馬上拿去用 中間要先做其他事
+
+一個完成了之後另一個不是馬上就會接著開始 所以是異步式的
+但也已經表示了下一階段的工作是會開始的
+當然就需要某種機制來使得後續工作得以開始 **X won't come back until Y calls him.**
+
+before Y answers X, X leaves there and X can do other jobs.
+**X won't come back until Y calls him.**
+ Now we say: X and Y (two modules) are asynchronous. X and Y are two threads or two processes or one process? we DON'T know. BUT we are sure that X and Y couldn't be one thread.
+
