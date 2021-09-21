@@ -11,6 +11,7 @@ Sub ShowBkMk()
         Set r = ActiveDocument.Bookmarks(J).Range
         With r
             r.HighlightColorIndex = wdBrightGreen
+            r.Font.ColorIndex = wdRed
             .InsertAfter Text:=ActiveDocument.Bookmarks(J).Name
             '.InsertParagraphAfter
         End With
