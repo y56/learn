@@ -1,5 +1,5 @@
 // var target_wo_list =  ['303088'];
-var target_wo_list = result;
+let target_wo_list = result;
 for (const target_wo of target_wo_list){
     $("span[wonumber=" + target_wo + "]", frames['main'].document)
     .each(
