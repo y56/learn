@@ -15,3 +15,13 @@ Package0000003_20210207_dlzhang_26145.zip
 ls -1 | cut -f4 | cut -c 16-999 | cut -d '.' -f1 | sed "s/^/\'/" | sed "s/$/\'/" | tr '\n' ',' | sed 's/.$//' | sed "s/^/[/" | sed "s/$/]/" | clip.exe
       # by tab  # mystr[16::]                                                                  # mystr[:-1]
 ```
+### search for col in all tabls in a db
+```
+SELECT      c.name  AS 'ColumnName'
+            ,t.name AS 'TableName'
+FROM        sys.columns c
+JOIN        sys.tables  t   ON c.object_id = t.object_id
+WHERE       c.name LIKE '%MyName%'
+ORDER BY    TableName
+            ,ColumnName;
+```
